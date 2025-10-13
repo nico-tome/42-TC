@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:43:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/13 17:00:48 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/13 18:26:49 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
-void	*ft_memchr(const void *s, int c, size_t n); //TODO
+void	*ft_memchr(const void *s, int c, size_t n);
 int		ft_memcmp(const void *s1, const void *s2, size_t n); //TODO
-char	*strnstr(const char *big, const char *little, size_t len); //TODO
-int		atoi(const char *nptr); //TODO
+char	*ft_strnstr(const char *big, const char *little, size_t len); //TODO
+int		ft_atoi(const char *nptr); //TODO
 
 #endif
