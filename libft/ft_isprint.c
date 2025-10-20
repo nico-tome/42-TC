@@ -1,31 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   isprint.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 18:35:45 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/15 20:01:06 by ntome            ###   ########.fr       */
+/*   Created: 2025/10/13 12:25:54 by ntome             #+#    #+#             */
+/*   Updated: 2025/10/14 11:42:50 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+int	ft_isprint(int c)
 {
-	size_t	i;
-	const unsigned char * tmp_s1;
-	const unsigned char * tmp_s2;
-
-	i = 0;
-	tmp_s1 = s1;
-	tmp_s2 = s2;
-	while (i < n)
-	{
-		if (*(tmp_s1++) != *(tmp_s2++))
-			return (*(tmp_s1 - 1) - *(tmp_s2 - 1));
-		i++;
-	}
+	if (c >= ' ' && c <= '~')
+		return (1);
 	return (0);
 }

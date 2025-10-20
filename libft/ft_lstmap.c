@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strnstr.c                                       :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/14 11:57:45 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/16 17:31:33 by ntome            ###   ########.fr       */
+/*   Created: 2025/10/20 14:42:00 by ntome             #+#    #+#             */
+/*   Updated: 2025/10/20 15:11:45 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strnstr(const char *big, const char *litlle, size_t len)
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 {
-	size_t	i;
-	size_t	j;
+	t_list	*new_lst;
+	t_list	*new_node;
+	void	*new_content;
 
-	i = 0;
-	if ((!big || !litlle) && !len)
+	if (!lst || !f || !del)
 		return (NULL);
-	if (litlle[0] == '\0')
-		return ((char *)big);
-	while (big[i])
+	new_lst = NULL;
+	while (lst)
 	{
-		j = 0;
-		if (big[i] == litlle[j] && i + j < len)
+		new_node = NULL;
+		new_content = f(lst->content);
+		if (new_content)
+			new_node = ft_lstnew(new_content);
+		if (!new_node)
 		{
-			while (i + j < len && big[i + j] == litlle[j])
-			{
-				if (litlle[j + 1] == '\0')
-					return ((char *)big + i);
-				j++;
-			}
+			del(new_content);
+			ft_lstclear(&new_lst, del);
+			return (NULL);
 		}
-		i++;
+		ft_lstadd_back(&new_lst, new_node);
+		lst = lst->next;
 	}
-	return (NULL);
+	return (new_lst);
 }

@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memcmp.c                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 18:35:45 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/15 20:01:06 by ntome            ###   ########.fr       */
+/*   Created: 2025/10/16 14:55:33 by ntome             #+#    #+#             */
+/*   Updated: 2025/10/17 00:03:11 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_memcmp(const void *s1, const void *s2, size_t n)
+char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	const unsigned char * tmp_s1;
-	const unsigned char * tmp_s2;
+	char	*duplicated_str;
+	size_t	str_len;
 
-	i = 0;
-	tmp_s1 = s1;
-	tmp_s2 = s2;
-	while (i < n)
-	{
-		if (*(tmp_s1++) != *(tmp_s2++))
-			return (*(tmp_s1 - 1) - *(tmp_s2 - 1));
-		i++;
-	}
-	return (0);
+	str_len = ft_strlen(s);
+	if (!s)
+		return (NULL);
+	duplicated_str = malloc(sizeof(char) * (str_len + 1));
+	if (!duplicated_str)
+		return (NULL);
+	ft_memcpy(duplicated_str, s, str_len);
+	duplicated_str[str_len] = '\0';
+	return (duplicated_str);
 }

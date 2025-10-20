@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   isprint.c                                          :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 12:25:54 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/13 14:57:17 by ntome            ###   ########.fr       */
+/*   Created: 2025/10/20 14:12:05 by ntome             #+#    #+#             */
+/*   Updated: 2025/10/20 15:06:01 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_isprint(int c)
+#include "libft.h"
+
+t_list	*ft_lstlast(t_list *lst)
 {
-	if (c >= ' ' && c <= '~')
-		return (1);
-	return (0);
+	t_list	*node;
+
+	if (!lst)
+		return (NULL);
+	node = lst;
+	while (node->next)
+		node = node->next;
+	return (node); 
 }

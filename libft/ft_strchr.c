@@ -6,20 +6,24 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:44:26 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/13 16:44:50 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/15 20:31:56 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "libft.h"
+
 char	*ft_strchr(const char *s, int c)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == c)
-			break ;
+		if (s[i] == (char)c)
+			return ((char *)s + i);
 		i++;
 	}
-	return ((char *)(s + i));
+	if (s[i] == (char)c)
+		return ((char *)s + i);
+	return (0);
 }
