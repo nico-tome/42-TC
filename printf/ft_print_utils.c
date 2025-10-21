@@ -6,36 +6,38 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 01:39:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/21 12:39:43 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 14:27:16 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_write_char(const char c)
+int	ft_write_char(char c)
 {
 	write(1, &c, 1);
+	return (1);
 }
 
-void	ft_write_str(const char *str)
+int	ft_write_str(char *str)
 {
 	int	i;
 
 	i = 0;
 	if (!str)
-	{
-		ft_write_str("(null)");
-		return ;
-	}
+		return (ft_write_str("(null)"));
 	while (str[i])
 	{
 		ft_write_char(str[i]);
 		i++;
 	}
+	return (i);
 }
 
-void	ft_put_nbr(int	nb)
+int	ft_put_nbr(int nb)
 {
+	int	size;
+
+	size = ft_get_int_size(nb);
 	if (nb == -2147483648)
 		write(1, "-2147483648", 11);
 	else if (nb < 0)
@@ -53,43 +55,42 @@ void	ft_put_nbr(int	nb)
 		else
 			ft_write_char(nb % 10 + '0');
 	}
+	return (size);
 }
 
-void	ft_write_unsigned(unsigned int nb)
+int	ft_write_unsigned(unsigned int nb)
 {
+	int	size;
+
+	size = ft_get_unsigned_size(nb);
 	if (nb <= 0)
 		ft_write_char('0');
 	else if (nb < 10)
 		ft_write_char(nb + '0');
 	else
 	{
-		ft_write_char(nb % 10 + '0');
 		ft_write_unsigned(nb / 10);
+		ft_write_char(nb % 10 + '0');
 	}
+	return (size);
 }
 
-void	ft_write_hexa(unsigned int nb, int upper)
+int	ft_write_hexa(unsigned int nb, int lower)
 {
+	int	size;
+
+	size = ft_get_hexa_size(nb);
 	if (nb < 16)
 	{
 		if (nb < 10)
 			ft_write_char(nb + '0');
 		else
-			ft_write_char((nb - 10) + ('A' + 32 * upper));
+			ft_write_char((nb - 10) + ('A' + 32 * lower));
 	}
 	else
 	{
-		ft_write_hexa(nb / 16, upper);
-		ft_write_hexa(nb % 16, upper);
+		ft_write_hexa(nb / 16, lower);
+		ft_write_hexa(nb % 16, lower);
 	}
-}
-
-void	ft_write_ptr(void *ptr)
-{
-	if (!ptr)
-	{
-		ft_write_str("(nil)");
-		return ;
-	}
-	ft_write_hexa((uintptr_t)ptr, 0);
+	return (size);
 }

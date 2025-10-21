@@ -6,13 +6,13 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:06:42 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/21 12:39:20 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 14:24:02 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -77,7 +77,7 @@ int	ft_get_ptr_size(void *ptr)
 
 	if (!ptr)
 		return (ft_strlen("(nil)"));
-	size = 3;
-	size += ft_get_hexa_size((uintptr_t)ptr);
+	size = 2;
+	size += ft_get_ptr_in_hexa_size((uintptr_t)ptr);
 	return (size);
 }
