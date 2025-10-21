@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 12:31:57 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/13 14:09:00 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 18:46:28 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ void	*ft_memset(void *s, int c, size_t n)
 	size_t	i;
 
 	i = 0;
-	if (!s)
-		return (NULL);
 	while (i < n)
 	{
 		((char *)s)[i] = c;

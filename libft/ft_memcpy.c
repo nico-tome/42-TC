@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:43:59 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/15 15:03:40 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 18:39:46 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,6 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	tmp_dest = dest;
 	tmp_src = src;
-	if (!src && !dest)
-		return (NULL);
 	while (i < n)
 	{
 		tmp_dest[i] = tmp_src[i];

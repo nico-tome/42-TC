@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:43:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/20 12:06:37 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 18:42:03 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 # include <unistd.h>
 # include <stdlib.h>
-# include <string.h>
 
 typedef struct	s_list
 {

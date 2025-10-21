@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 15:01:07 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/16 15:22:08 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 19:04:18 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ size_t	ft_strlcat(char *dest, const char *src, size_t size)
 	size_t	dest_len;
 
 	dest_len = ft_strlen(dest);
-	if ((!dest || !src) && !size)
+	if ((!dest || !src))
 		return (0);
+	if (!size)
+		return (ft_strlen(src));
 	if (size <= dest_len)
 		return (size + ft_strlen(src));
 	size -= (dest_len + 1);
