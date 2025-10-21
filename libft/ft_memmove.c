@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 13:48:16 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/21 19:06:30 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 19:09:17 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 			*tmp_dest++ = *tmp_src++;
 		}
 	}
-	else 
+	else
 	{
 		tmp_dest += n - 1;
 		tmp_src += n - 1;

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 12:17:43 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/17 13:30:54 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/21 21:30:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	ft_get_word_size(char const *s, char c, int start)
 	int	i;
 
 	i = 0;
-	while (s[start + i] != c && s[start +i])
+	while (s[start + i] != c && s[start + i])
 	{
 		i++;
 	}
