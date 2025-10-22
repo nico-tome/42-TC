@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 19:23:09 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/21 21:33:17 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/22 02:34:00 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,12 @@ char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*new_string;
 	size_t	s1_len;
-	size_t	s2_len;
 	size_t	i;
 
 	if (!s1 || !s2)
 		return (NULL);
 	s1_len = ft_strlen(s1);
-	s2_len = ft_strlen(s2);
-	new_string = malloc(sizeof(char) * (s1_len + s2_len + 1));
+	new_string = malloc(sizeof(char) * (s1_len + ft_strlen(s2) + 1));
 	if (!new_string)
 		return (NULL);
 	i = 0;
@@ -33,7 +31,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		i++;
 	}
 	i = 0;
-	while (i < s2_len)
+	while (i < ft_strlen(s2))
 	{
 		new_string[s1_len + i] = s2[i];
 		i++;
