@@ -7,7 +7,7 @@ This is my repo for all project from 42School. (2025 CC version)
 
 ## 0️⃣ | RING 0
 
-### 📚 **Libft**: (?/100)
+### 📚 **Libft**: (125/100) ✅
 
 Create your own library in C. You need to code function from the *libc*, and some additional function.
 
@@ -16,3 +16,7 @@ Create your own library in C. You need to code function from the *libc*, and som
 ### 🖨️ **ft_printf**: (?/100)
 
 Code your own version of printf in C.
+
+### ⎘ **gnl**: (?/100)
+
+Create a function that read and return the line of a file or of the terminal input.

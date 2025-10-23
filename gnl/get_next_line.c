@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:28:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/22 20:28:32 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/22 22:53:28 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	if (!new_string)
 		return (NULL);
 	i = 0;
-	while (i < s1_len)
-	{
-		new_string[i] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (i < ft_strlen(s2))
-	{
-		new_string[s1_len + i] = s2[i];
-		i++;
-	}
-	new_string[s1_len + i] = '\0';
+	ft_strcpy(new_string, s1, s1_len);
+	ft_strcpy(new_string + s1_len, s2, ft_strlen(s2));
 	return (new_string);
 }
 
@@ -73,41 +63,119 @@ char	*ft_get_line_from_buffer(t_buffer *buf, t_buffer *head, int *n)
 	char	*tmp_str;
 	int		t;
 
+	str = malloc(1);
+	if (!str)
+		return (NULL);
+	*str = 0;
 	while (buf != head)
 	{
-		ft_strjoin(str, buf->buffer);
+		tmp_str = str;
+		str = ft_strjoin(str, buf->buffer);
+		free(tmp_str);
 		buf = buf->next;
 	}
-	t = ft_strchr(buf->buffer, '\n') - buf->buffer;
-	ft_strjoin(str, ft_substr(buf->buffer, 0, t));
+	t = ft_strchr(buf->buffer, '\n') - buf->buffer + 1;
+	tmp_str = str;
+	char	*caca = ft_substr(buf->buffer, 0, t);
+	str = ft_strjoin(str, caca);
+	free(caca);
+	free(tmp_str);
 	*n = BUFFER_SIZE - t;
 	return (str);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_buffer	buf;
+	static t_buffer	buf[1024] = {0};
 	t_buffer		*head;
 	int				flag;
 	int				n;
 	char			*str;
 
-	head = &buf;
-
+	head = &buf[fd];
+	if (!ft_strchr(head->buffer, '\n') && *head->buffer)
+	{
+		head->next = malloc(sizeof(t_buffer));
+		head = head->next;
+		head->next = NULL;
+		*head->buffer = 0;
+	}
 	while (1)
 	{	
-		flag = read(fd, head->buffer, BUFFER_SIZE);
-		if (flag < 0 || ft_strchr(head->buffer, '\n'))
+		flag = ft_strlen(head->buffer);
+		if (!ft_strchr(head->buffer, '\n'))
 		{
-			str = ft_get_line_from_buffer(&buf, head, &n);
-			ft_strcpy(buf.buffer, buf.buffer + BUFFER_SIZE - n, n + 1);
+			flag = read(fd, head->buffer, BUFFER_SIZE);
+			if (flag <= 0)
+				return (NULL);
+		}
+		head->buffer[flag] = 0;
+		if (ft_strchr(head->buffer, '\n'))
+		{
+			str = ft_get_line_from_buffer(&buf[fd], head, &n);
+			ft_strcpy(buf[fd].buffer, head->buffer + BUFFER_SIZE - n, n);
+
+			head = buf[fd].next;
+			t_buffer *tmp = head;
+			t_buffer *prev;
+
+			while (tmp)
+			{
+				prev = tmp;
+				tmp = tmp->next;
+				free(prev);
+			}
+
 			break;
 		}
 		else
 		{
 			head->next = malloc(sizeof(t_buffer));
 			head = head->next;
+			head->next = NULL;
+			*head->buffer = 0;
 		}
 	}
 	return (str);
+}
+
+#include <fcntl.h>
+#include <stdio.h>
+
+int main(int argc, char **argv)
+{
+	int fd = open(argv[1], O_RDONLY);
+	int fd2 = open(argv[2], O_RDONLY);
+
+	char	*line;
+
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+
+	line = get_next_line(fd2);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd2);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd2);
+	printf("%s", line);
+	free(line);
+
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
+	line = get_next_line(fd);
+	printf("%s", line);
+	free(line);
 }

@@ -6,13 +6,13 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/22 17:48:08 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/22 20:26:39 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/22 22:26:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int	ft_strchr(char *str, char c)
+char	*ft_strchr(char *str, char c)
 {
 	int	i;
 
@@ -20,21 +20,22 @@ int	ft_strchr(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c)
-			return (*str + i);
+			return (str + i);
 		i++;
 	}
 	if (str[i] == c)
-		return (*str + i);
+		return (str + i);
 	return (0);
 }
 
 int	ft_strlen(const char *str)
 {
-	int	i;
+	const char	*tmp;
 
-	while (str[i])
-		i++;
-	return (i);
+	tmp = str;
+	while (*tmp)
+		tmp++;
+	return (tmp - str);
 }
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
@@ -54,16 +55,13 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	return (dest);
 }
 
-void	ft_strcpy(char *dest, const char *src, size_t size)
+char	*ft_strcpy(char *dest, const char *src, size_t size)
 {
-	size_t	src_len;
+	char	*tmp;
 
-	src_len = ft_strlen(src);
-	if (src_len + 1 < size)
-		ft_memcpy(dest, src, src_len + 1);
-	else if (size != 0)
-	{
-		ft_memcpy(dest, src, size - 1);
-		dest[size - 1] = '\0';
-	}
+	tmp = dest;
+	while (*src && size-- > 0)
+		*dest++ = *src++;
+	*dest = 0;
+	return (tmp);
 }

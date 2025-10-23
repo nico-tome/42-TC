@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:41:38 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/22 20:26:56 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/22 21:46:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ typedef struct s_buffer
 }	t_buffer;
 
 char	*get_next_line(int fd);
-void	ft_strcpy(char *dest, char *src, size_t size);
-int		ft_strchr(char *str, char c);
+char	*ft_strcpy(char *dest, const char *src, size_t size);
+char	*ft_strchr(char *str, char c);
 int		ft_strlen(const char *str);
 
 #endif
