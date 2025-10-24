@@ -13,7 +13,7 @@ Create your own library in C. You need to code function from the *libc*, and som
 
 ## 1️⃣ | RING 1
 
-### 🖨️ **ft_printf**: (?/100)
+### 🖨️ **ft_printf**: (100/100) ✅
 
 Code your own version of printf in C.
 

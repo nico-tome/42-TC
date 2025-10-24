@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 19:28:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/24 22:16:49 by ntome            ###   ########.fr       */
+/*   Updated: 2025/10/24 22:16:17 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*ft_strdup(const char *s)
 {
@@ -86,23 +86,23 @@ char	*ft_read(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	static char	*str = NULL;
-	char		*sub_str;
+	static char	*str[1024] = {0};
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	str = ft_read(fd, str);
-	if (str && !*str)
+	str[fd] = ft_read(fd, str[fd]);
+	if (str[fd] && !*str[fd])
 	{
-		free(str);
-		str = NULL;
+		free(str[fd]);
+		str[fd] = NULL;
 	}
-	if (str)
+	if (str[fd])
 	{
-		sub_str = ft_get_line(str);
-		str = ft_clean(str);
+		line = ft_get_line(str[fd]);
+		str[fd] = ft_clean(str[fd]);
 	}
 	else
-		sub_str = str;
-	return (sub_str);
+		line = str[fd];
+	return (line);
 }
