@@ -17,6 +17,6 @@ Create your own library in C. You need to code function from the *libc*, and som
 
 Code your own version of printf in C.
 
-### ⎘ **gnl**: (?/100)
+### 👓 **gnl**: (125/100) ✅
 
 Create a function that read and return the line of a file or of the terminal input.
