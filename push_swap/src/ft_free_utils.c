@@ -1,39 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort_3.c                                        :+:      :+:    :+:   */
+/*   ft_free_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/01 18:32:10 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:00:01 by ntome            ###   ########.fr       */
+/*   Created: 2025/11/02 21:02:32 by ntome             #+#    #+#             */
+/*   Updated: 2025/11/02 21:03:25 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
 
-void	ft_sort_2(t_stack *stack)
+void	ft_free_char_starstar(char **str)
 {
-	if (!ft_is_sorted(stack))
-		ft_sa(stack);
-}
+	int	i;
 
-void	ft_sort_3(t_stack *stack)
-{
-	int	max_idx;
-
-	if (stack->size == 1)
-		return ;
-	if (stack->size == 2)
+	i = 0;
+	while (str[i])
 	{
-		ft_sort_2(stack);
-		return ;
+		free(str[i]);
+		i++;
 	}
-	max_idx = ft_get_index(stack, ft_max_in_stack(stack));
-	if (max_idx == 0)
-		ft_ra(stack);
-	else if (max_idx == 1)
-		ft_rra(stack);
-	if (!ft_is_sorted(stack))
-		ft_sa(stack);
+	free(str);
 }

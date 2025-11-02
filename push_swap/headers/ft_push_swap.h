@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_push_swap.h                                     :+:      :+:    :+:   */
+/*   ft_push_swap.h:x                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:22:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 20:01:40 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:03:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_stack
 	int	size;
 }			t_stack;
 
+void	ft_free_char_starstar(char **str);
 void	ft_error_exit(void);
 int		ft_check_dup(int *items, int size);
 int		ft_count_total_args(int ac, char **av);

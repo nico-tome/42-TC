@@ -17,6 +17,7 @@ SRC = ft_check_sort.c \
       ft_smaller.c \
       ft_sort.c \
       ft_sort_3.c \
+	  ft_free_utils.c \
       ft_swap_utils.c
       
 BONUS = ft_lstnew_bonus.c

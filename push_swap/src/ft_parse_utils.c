@@ -6,15 +6,23 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:54:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 20:52:21 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:07:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
 #include <stdlib.h>
 
-void	ft_free_tmp_list(char ***tmp_split, int **final_args)
+void	ft_free_tmp_list(char **tmp_split, int *final_args)
 {
+	int	i;
+
+	i = 0;
+	while (tmp_split[i])
+	{
+		free(tmp_split[i]);
+		i++;
+	}
 	free(tmp_split);
 	free(final_args);
 	ft_error_exit();
@@ -56,7 +64,7 @@ int	ft_count_total_args(int ac, char **av)
 	{
 		tmp_split = ft_split(av[i], ' ');
 		count += ft_count_args(tmp_split);
-		free(tmp_split);
+		ft_free_char_starstar(tmp_split);
 		i++;
 	}
 	return (count);
@@ -82,12 +90,12 @@ int	*ft_parse_args(int ac, char **av, int size)
 		while (tmp_split[tmp_list_i])
 		{
 			if (!ft_is_valid(tmp_split[tmp_list_i]))
-				ft_free_tmp_list(&tmp_split, &final_args);
+				ft_free_tmp_list(tmp_split, final_args);
 			final_args[list_i] = ft_atoi(tmp_split[tmp_list_i]);
 			list_i++;
 			tmp_list_i++;
 		}
-		free(tmp_split);
+		ft_free_char_starstar(tmp_split);
 		av_i++;
 	}
 	return (final_args);
