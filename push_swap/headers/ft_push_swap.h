@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:22:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/01 23:03:41 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 01:59:36 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		ft_get_prev_value(t_stack *stack, int item);
 int		ft_find_best_move(t_stack *stack_a, t_stack *stack_b);
 int		ft_check_combined(t_stack *s_a, t_stack *s_b, int idx_a, int idx_b);
 void	ft_do_move(t_stack *stack_a, t_stack *stack_b, int *idx_a, int *idx_b);
-int		ft_abs(int i);
+int		ft_smaller(int a, int b);
 void	ft_push_in_stack_a(t_stack *stack_a, t_stack *stack_b);
 void	ft_sort_3(t_stack *stack);
 void	ft_sort(t_stack *stack_a, t_stack *stack_b);

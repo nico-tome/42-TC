@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/28 13:12:43 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/01 22:02:51 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 02:37:40 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ void	ft_push(t_stack *stack_src, t_stack *stack_dest)
 		return ;
 	pushed_value = stack_src->items[0];
 	i = 0;
-	while (i < stack_src->size)
+	while (i < stack_src->size - 1)
 	{
 		stack_src->items[i] = stack_src->items[i + 1];
 		i++;
 	}
 	stack_src->size--;
 	stack_dest->size++;
-	i = stack_dest->size;
+	i = stack_dest->size - 1;
 	while (i > 0)
 	{
 		stack_dest->items[i] = stack_dest->items[i - 1];

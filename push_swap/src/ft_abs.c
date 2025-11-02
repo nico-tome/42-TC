@@ -6,15 +6,15 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 17:54:26 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/01 17:56:34 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 02:00:09 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
 
-int	ft_abs(int i)
+int	ft_smaller(int a, int b)
 {
-	if (i < 0)
-		return (i * -1);
-	return (i);
+	if (a < b)
+		return (a);
+	return (b);
 }

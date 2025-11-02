@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 14:29:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/01 22:10:54 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 02:41:22 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ int	ft_get_prev_value(t_stack *stack, int item)
 	int	value;
 
 	i = 0;
+	value = stack->items[0];
 	if (stack->size > 0)
 	{
 		while (i < stack->size)
 		{
-			if (!value || (stack->items[i] < value && stack->items[i] > item))
+			if (value < item || (stack->items[i] < value && stack->items[i] > item))
 				value = stack->items[i];
 			i++;
 		}

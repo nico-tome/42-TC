@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 20:59:33 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/01 23:05:20 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 01:28:47 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@ void	ft_move_index_to_top(int idx, t_stack *stack_a, t_stack *stack_b)
 	int	next_value;
 
 	if (stack_a->items[idx] < ft_min_in_stack(stack_b))
-		return ;
-	next_value = ft_get_index(stack_b, ft_get_next_value(stack_b, stack_a->items[idx]));
+		next_value = ft_get_index(stack_b, ft_max_in_stack(stack_b));	
+	else
+		next_value = ft_get_index(stack_b, ft_get_next_value(stack_b, stack_a->items[idx]));
 	while (ft_check_combined(stack_a, stack_b, idx, next_value) > 0)
 	{
 		if (ft_check_combined(stack_a, stack_b, idx, next_value) == 1)

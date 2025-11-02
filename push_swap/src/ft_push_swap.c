@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:14:08 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/01 19:22:33 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 02:47:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	ft_free_stacks(t_stack *stack_a, t_stack *stack_b)
 
 void	ft_init_stack(t_stack *stack_a, t_stack *stack_b, int ac, char **args)
 {
-	int	size;
+	int		size;
+	char	**args_split;
 
 	size = ft_count_args(ac, args);
 	stack_a->size = size;
@@ -35,7 +36,11 @@ void	ft_init_stack(t_stack *stack_a, t_stack *stack_b, int ac, char **args)
 	if (size == ac - 1)
 		stack_a->items = ft_parse_multiple_args(size, args);
 	else
-		stack_a->items = ft_parse_multiple_args(size, ft_split(args[1], ' '));
+	{
+		args_split = ft_split(args[1], ' ');
+		stack_a->items = ft_parse_multiple_args(size, args_split);
+		free(args_split);
+	}
 }
 
 int	main(int ac, char **av)
