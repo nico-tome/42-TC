@@ -1,24 +1,27 @@
 NAME = push_swap
 
-SRC = src/ft_check_sort.c \
-	  src/ft_combined_move_utils.c \
-	  src/ft_find_best_move_utils.c \
-	  src/ft_index_values_utils.c \
-	  src/ft_parse_utils.c \
-	  src/ft_parse_utils_2.c \
-	  src/ft_push_back.c \
-	  src/ft_push_swap.c \
-	  src/ft_push_utils.c \
-	  src/ft_reverse_rotate_utils.c \
-	  src/ft_rotate_utils.c \
-	  src/ft_smaller.c \
-	  src/ft_sort.c \
-	  src/ft_sort_3.c \
-	  src/ft_swap_utils.c
-	  
+SRC_DIR = src/
+BUILD_DIR = build/
+
+SRC = ft_check_sort.c \
+      ft_combined_move_utils.c \
+      ft_find_best_move_utils.c \
+      ft_index_values_utils.c \
+      ft_parse_utils.c \
+      ft_parse_utils_2.c \
+      ft_push_back.c \
+      ft_push_swap.c \
+      ft_push_utils.c \
+      ft_reverse_rotate_utils.c \
+      ft_rotate_utils.c \
+      ft_smaller.c \
+      ft_sort.c \
+      ft_sort_3.c \
+      ft_swap_utils.c
+      
 BONUS = ft_lstnew_bonus.c
 
-OBJ = $(SRC:.c=.o)
+OBJ    :=    $(patsubst %.c, $(BUILD_DIR)%.o, $(SRC))
 
 OBJS = ${OBJ} ${BONUS:.c=.o}
 
@@ -34,11 +37,12 @@ all: ${NAME}
 
 ${LIBS}:
 	make -C lib/libft
-	
+    
 $(NAME): ${LIBS} ${OBJ}
 	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${LIBS}
 
-.c.o:
+${BUILD_DIR}%.o: ${SRC_DIR}%.c
+	mkdir -p build
 	${CC} -o $@ -I ${HEADERS} -c $< ${FLAGS}
 
 clean:
@@ -55,4 +59,3 @@ fclean: clean
 re: fclean all
 
 .PHONY: clean flcean re all
-

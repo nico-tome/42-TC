@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:54:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 20:24:22 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 20:52:21 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	ft_is_valid(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (!ft_isdigit(str[i]))
+		if (!ft_isdigit(str[i]) && str[i] != '-')
 			return (0);
 		i++;
 	}
