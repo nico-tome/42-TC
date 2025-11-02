@@ -1,16 +1,17 @@
 NAME = push_swap
 
-SRC = src/ft_abs.c \
-	  src/ft_check_sort.c \
+SRC = src/ft_check_sort.c \
 	  src/ft_combined_move_utils.c \
 	  src/ft_find_best_move_utils.c \
-	  src/ft_min_max_utils.c \
+	  src/ft_index_values_utils.c \
 	  src/ft_parse_utils.c \
+	  src/ft_parse_utils_2.c \
 	  src/ft_push_back.c \
 	  src/ft_push_swap.c \
 	  src/ft_push_utils.c \
 	  src/ft_reverse_rotate_utils.c \
 	  src/ft_rotate_utils.c \
+	  src/ft_smaller.c \
 	  src/ft_sort.c \
 	  src/ft_sort_3.c \
 	  src/ft_swap_utils.c

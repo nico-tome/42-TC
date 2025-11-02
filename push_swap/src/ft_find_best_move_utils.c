@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 14:45:02 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 02:23:11 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 18:15:38 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
-#include <stdio.h>
 
 int	ft_move_to_top_count(t_stack *stack, int idx)
 {
@@ -22,7 +21,7 @@ int	ft_move_to_top_count(t_stack *stack, int idx)
 
 int	ft_merge_moves(t_stack *stack_a, t_stack *stack_b, int a_idx, int b_idx)
 {
-	if (ft_check_combined(stack_a, stack_b, a_idx,  b_idx) == 2)
+	if (ft_check_combined(stack_a, stack_b, a_idx, b_idx) == 2)
 		return (ft_smaller(stack_a->size - a_idx, stack_b->size - b_idx));
 	return (ft_smaller(a_idx, b_idx));
 }
@@ -48,8 +47,6 @@ int	ft_calculate_mv(t_stack *stack_a, t_stack *stack_b, int item, int idx)
 	merged_moves = 0;
 	if (ft_check_combined(stack_a, stack_b, idx, next_value) > 0)
 		merged_moves = ft_merge_moves(stack_a, stack_b, idx, next_value);
-//	if (idx < 4)
-//		printf("index: %d, next_value: %d, total: %d (%d + %d - %d)\n", idx, next_value, mv_a + mv_b - merged_moves, mv_a, mv_b, merged_moves);
 	return (mv_a + mv_b - merged_moves);
 }
 
