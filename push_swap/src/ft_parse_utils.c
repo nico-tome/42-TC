@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:54:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:29:03 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:42:50 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,34 +42,6 @@ int	ft_is_valid(char *str)
 	return (1);
 }
 
-int	ft_count_args(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i])
-		i++;
-	return (i);
-}
-
-int	ft_count_total_args(int ac, char **av)
-{
-	int		count;
-	char	**tmp_split;
-	int		i;
-
-	i = 0;
-	count = 0;
-	while (i < ac)
-	{
-		tmp_split = ft_split(av[i], ' ');
-		count += ft_count_args(tmp_split);
-		ft_free_char_starstar(tmp_split);
-		i++;
-	}
-	return (count);
-}
-
 int	*ft_parse_args(int ac, char **av, int size)
 {
 	int		*final_args;
@@ -81,9 +53,7 @@ int	*ft_parse_args(int ac, char **av, int size)
 	av_i = 1;
 	list_i = 0;
 	final_args = malloc(sizeof(int) * size);
-	if (!final_args)
-		return (NULL);
-	while (av_i < ac)
+	while (final_args && av_i < ac)
 	{
 		tmp_split = ft_split(av[av_i], ' ');
 		tmp_list_i = 0;
@@ -91,7 +61,7 @@ int	*ft_parse_args(int ac, char **av, int size)
 		{
 			if (!ft_is_valid(tmp_split[tmp_list_i]))
 				ft_free_tmp_list(tmp_split, final_args);
-			final_args[list_i++] = ft_atoi(tmp_split[tmp_list_i]);
+			final_args[list_i] = ft_atoi(tmp_split[tmp_list_i]);
 			list_i++;
 			tmp_list_i++;
 		}
