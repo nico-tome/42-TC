@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:54:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:07:07 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:29:03 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int	*ft_parse_args(int ac, char **av, int size)
 		{
 			if (!ft_is_valid(tmp_split[tmp_list_i]))
 				ft_free_tmp_list(tmp_split, final_args);
-			final_args[list_i] = ft_atoi(tmp_split[tmp_list_i]);
+			final_args[list_i++] = ft_atoi(tmp_split[tmp_list_i]);
 			list_i++;
 			tmp_list_i++;
 		}

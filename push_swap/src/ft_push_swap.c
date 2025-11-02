@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:14:08 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 20:25:48 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:25:12 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	ft_free_stacks(t_stack *stack_a, t_stack *stack_b)
 		free(stack_b);
 }
 
-void	ft_init_stack(t_stack *stack_a, t_stack *stack_b, int *stack_items, int size)
+void	ft_init_stack(t_stack *stack_a, t_stack *stack_b, int *items, int size)
 {
 	stack_a->size = size;
 	stack_a->items = malloc(size * sizeof(int));
@@ -39,7 +39,8 @@ void	ft_init_stack(t_stack *stack_a, t_stack *stack_b, int *stack_items, int siz
 	stack_b->items = malloc(size * sizeof(int));
 	if (!stack_a->items || !stack_b->items)
 		return ;
-	stack_a->items = stack_items;
+	ft_memcpy(stack_a->items, items, size * sizeof(int));
+	free(items);
 }
 
 int	main(int ac, char **av)
