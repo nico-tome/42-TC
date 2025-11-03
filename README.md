@@ -20,3 +20,13 @@ Code your own version of printf in C.
 ### 👓 **gnl**: (125/100) ✅
 
 Create a function that read and return the line of a file or of the terminal input.
+
+### 💻 **Born 2 Be Root**: (?/100)
+
+Setup a virtual machin.
+
+## 2️⃣ | RING 2
+
+### 🧮 **Push Swap**: (?/100)
+
+Sort a stack of numbers using a set of actions and two stacks.
