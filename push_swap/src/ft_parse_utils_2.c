@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 19:41:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:53:21 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/03 21:33:31 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
-#include <stdlib.h>
 
 int	ft_check_dup(int *items, int size)
 {

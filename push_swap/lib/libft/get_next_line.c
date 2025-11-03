@@ -5,104 +5,123 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/21 19:28:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/03 15:40:14 by ntome            ###   ########.fr       */
+/*   Created: 2025/11/03 22:36:19 by ntome             #+#    #+#             */
+/*   Updated: 2025/11/03 23:13:48 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s)
+static char	*ft_free_join(char *current_buffer, char *buffer)
 {
-	char	*duplicated_str;
-	size_t	str_len;
-	int		i;
+	char	*buffer_to_join;
 
-	str_len = ft_strlen(s);
-	if (!s)
-		return (NULL);
-	duplicated_str = malloc(sizeof(char) * (str_len + 1));
-	if (!duplicated_str)
-		return (NULL);
-	i = 0;
-	while (s[i])
+	buffer_to_join = ft_strjoin(current_buffer, buffer);
+	free(current_buffer);
+	return (buffer_to_join);
+}
+
+static char	*ft_read_file(int fd, char *current_buffer)
+{
+	char	*buffer;
+	int		nb_bytes_read;
+	int		check_charset;
+
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (0);
+	nb_bytes_read = 1;
+	check_charset = 1;
+	while (nb_bytes_read > 0 && check_charset)
 	{
-		duplicated_str[i] = s[i];
-		i++;
+		nb_bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (nb_bytes_read < 0)
+		{
+			free(buffer);
+			free(current_buffer);
+			return (0);
+		}
+		buffer[nb_bytes_read] = 0;
+		current_buffer = ft_free_join(current_buffer, buffer);
+		if (ft_strchr(buffer, '\n'))
+			check_charset = 0;
 	}
-	duplicated_str[str_len] = '\0';
-	return (duplicated_str);
+	free(buffer);
+	return (current_buffer);
 }
 
-char	*ft_clean(char *s)
+static char	*ft_next_line(char *buffer)
 {
 	int		i;
-	char	*str;
+	int		j;
+	char	*line;
 
 	i = 0;
-	while (s[i] && s[i] != '\n')
+	j = 0;
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	str = ft_substr(s, i + 1, ft_strlen(s));
-	free(s);
-	return (str);
+	if (!buffer[i] || !buffer[i + 1])
+	{
+		free(buffer);
+		return (0);
+	}
+	line = malloc(sizeof(char) * (ft_strlen(buffer) - i + 1));
+	if (!line)
+		return (0);
+	i++;
+	while (buffer[i])
+		line[j++] = buffer[i++];
+	line[j] = 0;
+	free(buffer);
+	return (line);
 }
 
-char	*ft_get_line(char *str)
+static char	*ft_set_line(char *buffer)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	if (!buffer[i])
+		return (0);
+	while (buffer[i] && buffer[i] != '\n')
 		i++;
-	line = ft_substr(str, 0, i + 1);
-	return (line);
-}
-
-char	*ft_read(int fd, char *str)
-{
-	char	*buffer;
-	int		flag;
-
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	flag = 1;
-	while (flag > 0)
+	if (buffer[i] != '\n')
+		line = malloc((i + 1) * sizeof(char));
+	else
+		line = malloc((i + 2) * sizeof(char));
+	if (!line)
+		return (0);
+	i = 0;
+	while (buffer[i] && buffer[i] != '\n')
 	{
-		flag = read(fd, buffer, BUFFER_SIZE);
-		if (flag <= 0)
-			break ;
-		buffer[flag] = '\0';
-		flag = !ft_strchr(buffer, '\n');
-		if (str)
-			str = ft_strjoin_free(str, buffer, 1);
-		else
-			str = ft_strdup(buffer);
+		line[i] = buffer[i];
+		i++;
 	}
-	free(buffer);
-	return (str);
+	if (buffer[i] && buffer[i] == '\n')
+		line[i++] = '\n';
+	line[i] = 0;
+	return (line);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*str = NULL;
-	char		*sub_str;
+	static char	*current_buffer[1024];
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
-	str = ft_read(fd, str);
-	if (str && !*str)
+		return (0);
+	if (!current_buffer[fd])
 	{
-		free(str);
-		str = NULL;
+		current_buffer[fd] = malloc(1);
+		if (!current_buffer[fd])
+			return (0);
+		current_buffer[fd][0] = 0;
 	}
-	if (str)
-	{
-		sub_str = ft_get_line(str);
-		str = ft_clean(str);
-	}
-	else
-		sub_str = str;
-	return (sub_str);
+	current_buffer[fd] = ft_read_file(fd, current_buffer[fd]);
+	if (!current_buffer[fd])
+		return (0);
+	line = ft_set_line(current_buffer[fd]);
+	current_buffer[fd] = ft_next_line(current_buffer[fd]);
+	return (line);
 }

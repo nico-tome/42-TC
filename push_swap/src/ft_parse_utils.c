@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:54:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:51:08 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/03 21:33:45 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
-#include <stdlib.h>
 
 void	ft_free_tmp_list(char **tmp_split, int *final_args)
 {

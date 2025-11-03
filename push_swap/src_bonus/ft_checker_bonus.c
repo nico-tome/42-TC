@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 15:23:42 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/03 20:03:23 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/03 22:29:09 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/ft_push_swap.h"
-#include <stdlib.h>
 
 int	ft_check_move(char	*str)
 {
@@ -57,13 +56,13 @@ void	ft_do_instruction(char *instruction, t_stack *stack_a, t_stack *stack_b)
 			if (instruction[1] == 'b' || instruction[1] == 'r')
 				ft_rotate(stack_b);
 		}
-		else if (ft_strncmp(instruction, "sa\n", 3))
+		else if (!ft_strncmp(instruction, "sa\n", 3))
 			ft_swap(stack_a);
-		else if (ft_strncmp(instruction, "sb\n", 3))
+		else if (!ft_strncmp(instruction, "sb\n", 3))
 			ft_swap(stack_b);
-		else if (ft_strncmp(instruction, "pa\n", 3))
+		else if (!ft_strncmp(instruction, "pa\n", 3))
 			ft_push(stack_b, stack_a);
-		else if (ft_strncmp(instruction, "pb\n", 3))
+		else if (!ft_strncmp(instruction, "pb\n", 3))
 			ft_push(stack_a, stack_b);
 	}
 }
@@ -77,8 +76,9 @@ void	ft_check(t_stack *stack_a, t_stack *stack_b)
 	{
 		if (!ft_check_move(buffer))
 		{
-			free(buffer);
 			free(get_next_line(0));
+			free(buffer);
+			ft_free_stacks(stack_a, stack_b);
 			ft_error_exit();
 		}
 		ft_do_instruction(buffer, stack_a, stack_b);

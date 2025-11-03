@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/30 20:36:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/30 20:44:08 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/03 22:24:17 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	ft_rotate(t_stack *stack)
 		return ;
 	i = 0;
 	tmp_first = stack->items[0];
-	while (i < stack->size)
+	while (i < stack->size - 1)
 	{
 		stack->items[i] = stack->items[i + 1];
 		i++;
 	}
-	stack->items[i - 1] = tmp_first;
+	stack->items[i] = tmp_first;
 }
 
 void	ft_ra(t_stack *stack_a)
