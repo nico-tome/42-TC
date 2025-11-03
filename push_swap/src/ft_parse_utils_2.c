@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/02 19:41:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:37:19 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:53:21 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,17 @@ int	ft_count_total_args(int ac, char **av)
 		i++;
 	}
 	return (count);
+}
+
+int	ft_check_overflow(char *arg)
+{
+	char	*itoa_arg;
+	int		result;
+
+	itoa_arg = ft_itoa(ft_atoi(arg));
+	result = 1;
+	if (ft_strncmp(itoa_arg, arg, ft_strlen(arg)))
+		result = 0;
+	free(itoa_arg);
+	return (result);
 }

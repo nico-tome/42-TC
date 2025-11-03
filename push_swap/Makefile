@@ -1,6 +1,8 @@
 NAME = push_swap
+NAME_BONUS = checker
 
 SRC_DIR = src/
+BONUS_DIR = src_bonus/
 BUILD_DIR = build/
 
 SRC = ft_check_sort.c \
@@ -20,11 +22,11 @@ SRC = ft_check_sort.c \
 	  ft_free_utils.c \
       ft_swap_utils.c
       
-BONUS = ft_lstnew_bonus.c
+BONUS = ft_checker_bonus.c
 
-OBJ    :=    $(patsubst %.c, $(BUILD_DIR)%.o, $(SRC))
+OBJ := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRC))
 
-OBJS = ${OBJ} ${BONUS:.c=.o}
+OBJ_BONUS = $(patsubst %.c, $(BUILD_DIR_BONUS)%.o, $(BONUS))
 
 HEADERS = headers/
 
@@ -46,12 +48,17 @@ ${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	mkdir -p build
 	${CC} -o $@ -I ${HEADERS} -c $< ${FLAGS}
 
+${BUILD_DIR_BONUS}%.o: ${BONUS_DIR}%.c
+	mkdir -p build_bonus
+	${CC} -o $@ -I ${HEADERS} -c $< ${FLAGS}
+
 clean:
 	rm -f ${OBJS}
 	make -C lib/libft clean
 
-bonus: ${OBJS} ${LIBS}
-	${AR} ${NAME} ${OBJS}
+bonus: ${OBJ} ${OBJ_BONUS} ${LIBS}
+	${CC} -o ${NAME_BONUS} -I ${HEADERS} ${OBJ} ${LIBS}
+	${CC} -o ${NAME_BONUS} -I ${HEADERS} ${OBJ_BONUS} ${LIBS}
 
 fclean: clean
 	rm -f ${NAME}

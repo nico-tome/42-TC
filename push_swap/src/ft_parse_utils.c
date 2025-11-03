@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/29 14:54:56 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 21:42:50 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/02 21:51:08 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ int	ft_is_valid(char *str)
 			return (0);
 		i++;
 	}
+	if (!ft_check_overflow(str))
+		return (0);
 	return (1);
 }
 
