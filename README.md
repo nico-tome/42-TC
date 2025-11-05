@@ -23,10 +23,14 @@ Create a function that read and return the line of a file or of the terminal inp
 
 ### 💻 **Born 2 Be Root**: (?/100)
 
-Setup a virtual machin.
+Setup a virtual machine.
 
 ## 2️⃣ | RING 2
 
 ### 🧮 **Push Swap**: (?/100)
 
 Sort a stack of numbers using a set of actions and two stacks.
+
+### ☎️ **Minitalk**: (?/100)
+
+Setup a connection between two terminals using UNIX signals.
