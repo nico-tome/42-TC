@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:16:10 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/05 12:20:54 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/05 15:03:24 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,11 @@ char	*ft_add_char(char *str, char c)
 char	*ft_setup_str(char *str)
 {
 	if (!str)
+	{
 		str = malloc(1);
+		if (str)
+			*str = 0;
+	}
 	return (str);
 }
 
@@ -70,7 +74,7 @@ int	main(void)
 {
 	signal(SIGUSR1, ft_get_signal);
 	signal(SIGUSR2, ft_get_signal);
-	ft_printf("PID: %d\n", getpid());
+	ft_printf("SERVER MANDA\nPID: %d\n", getpid());
 	while (1)
 		pause();
 	exit(EXIT_SUCCESS);

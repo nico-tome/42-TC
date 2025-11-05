@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 13:52:11 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/05 14:11:47 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/05 17:41:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ char	*ft_add_char(char *str, char c)
 {
 	char	*tmp;
 	int		i;
+	int		len;
 
 	if (!str || !c)
 		return (NULL);
-	tmp = malloc(sizeof(char) * ft_strlen(str) + 2);
+	len = ft_strlen(str);
+	tmp = malloc(sizeof(char) * len + 2);
 	if (!tmp)
 		return (NULL);
 	i = 0;
@@ -37,20 +39,25 @@ char	*ft_add_char(char *str, char c)
 char	*ft_setup_str(char *str)
 {
 	if (!str)
+	{
 		str = malloc(1);
+		if (str)
+			*str = 0;
+	}
 	return (str);
 }
 
 void	ft_get_signal(int signal, siginfo_t *signal_infos, void *nptr)
 {
-	static char	*str;
-	static int	power = 128;
-	static char	result = 0;
+	static char				*str;
+	static int				power = 128;
+	static unsigned char	result = 0;
 
 	(void)nptr;
 	str = ft_setup_str(str);
 	if (signal == SIGUSR2)
 		result += power;
+	ft_printf("power: %d, result: %d\n", power, result);
 	power /= 2;
 	if (power == 0)
 	{

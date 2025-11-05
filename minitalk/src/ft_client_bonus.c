@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 12:59:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/05 13:51:49 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/05 17:33:32 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_minitalk.h"
-#include <signal.h>
 
 void	ft_exit_messages(int message)
 {
@@ -26,7 +25,7 @@ void	ft_exit_messages(int message)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_send_letter(char c, int pid)
+void	ft_send_letter(unsigned char c, int pid)
 {
 	int	binary_count;
 	int	power_count;
@@ -43,7 +42,7 @@ void	ft_send_letter(char c, int pid)
 			kill(pid, SIGUSR2);
 		}
 		power_count /= 2;
-		usleep(300);
+		usleep(800);
 	}
 }
 
