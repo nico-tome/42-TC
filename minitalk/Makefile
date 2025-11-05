@@ -28,7 +28,7 @@ LIBS = lib/printf/libftprintf.a
 
 CC = cc
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 all: ${NAME_CLIENT} ${NAME_SERVER}
 
