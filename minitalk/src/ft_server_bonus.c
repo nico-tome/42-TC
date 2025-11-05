@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 13:52:11 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/05 17:41:30 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/05 17:57:24 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_get_signal(int signal, siginfo_t *signal_infos, void *nptr)
 		{
 			ft_printf("%s", str);
 			free(str);
-			str = NULL;
+		str = NULL;
 			kill(signal_infos->si_pid, SIGUSR1);
 		}
 		else
