@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/05 13:52:11 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/05 17:57:24 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/05 18:07:12 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	ft_get_signal(int signal, siginfo_t *signal_infos, void *nptr)
 	str = ft_setup_str(str);
 	if (signal == SIGUSR2)
 		result += power;
-	ft_printf("power: %d, result: %d\n", power, result);
 	power /= 2;
 	if (power == 0)
 	{
