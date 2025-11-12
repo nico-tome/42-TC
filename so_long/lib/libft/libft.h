@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:43:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/03 15:44:30 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 22:12:23 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdarg.h>
+# include <stdint.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 3
@@ -71,5 +73,19 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_printf(const char *str, ...);
+int		ft_print_flag(const char c, va_list params);
+int		ft_write_char(char c);
+int		ft_write_str(char *str);
+int		ft_put_nbr(int nb);
+int		ft_write_hexa(unsigned int nb, int upper);
+int		ft_write_ptr(void *ptr);
+int		ft_write_unsigned(unsigned int nb);
+int		ft_get_int_size(int n);
+int		ft_get_ptr_size(void *ptr);
+int		ft_get_unsigned_size(unsigned int n);
+int		ft_get_hexa_size(unsigned int n);
+int		ft_get_ptr_in_hexa_size(uintptr_t nb);
+void	ft_write_ptr_in_hexa(uintptr_t nb);
 
 #endif

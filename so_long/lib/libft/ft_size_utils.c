@@ -6,11 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 02:06:42 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/10 18:45:31 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 22:10:50 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_get_int_size(int n)
 {

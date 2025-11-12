@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 13:30:02 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 20:41:53 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 23:45:29 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_pf_infos	ft_pathfinding_rec(t_pf_infos pf_infos, t_map map, t_vec2 pos)
 	return (pf_infos);
 }
 
-int	ft_check_pathfinding(t_map map, t_parser_infos map_infos)
+int	ft_check_pathfinding(t_map map)
 {
 	t_vec2		spawn_pos;
 	t_pf_infos	pathfinding_infos;
@@ -91,9 +91,11 @@ int	ft_check_pathfinding(t_map map, t_parser_infos map_infos)
 	pathfinding_infos = ft_setup_pathfinding_infos(map);
 	if (!pathfinding_infos.tiles_visited)
 		return (MALLOC_ERROR_CODE);
+	pathfinding_infos.tiles_count = ft_init_tiles_count();
 	spawn_pos = ft_get_spawn_pos(map);
 	total_collectible = ft_get_total_collectible(map);
 	pathfinding_infos = ft_pathfinding_rec(pathfinding_infos, map, spawn_pos);
+	ft_free_pf_infos(pathfinding_infos, map);
 	if (pathfinding_infos.tiles_count.end == 0)
 		return (MAP_IMPOSSIBLE_MAP_ERROR_CODE);
 	if (pathfinding_infos.tiles_count.collectible != total_collectible)

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 20:44:59 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 23:39:18 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ int	main(int ac, char **av)
 		ft_exit_error(map_validity);
 	}
 	ft_printf("YAY !\n");
+	ft_free_map(map);
 }

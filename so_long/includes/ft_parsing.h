@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 18:15:13 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 20:15:35 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 23:45:21 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ typedef struct s_pathfinding_infos
 }				t_pf_infos;
 
 int				ft_check_map(t_map map);
-t_parser_infos	ft_parse_map(t_map map);
-int				ft_check_tiles_infos(t_parser_infos map_infos, int size);
+t_parser_infos	ft_parse_map(t_map map, t_parser_infos map_infos);
+int				ft_check_tiles_infos(t_parser_infos map_infos, t_map map);
 int				ft_check_size_and_close_map(t_parser_infos map_infos, t_map map);
-int				ft_check_pathfinding(t_map map, t_parser_infos map_infos);
+int				ft_check_pathfinding(t_map map);
 t_pf_infos		ft_setup_pathfinding_infos(t_map map);
+t_tiles_count	ft_init_tiles_count(void);
+void			ft_free_pf_infos(t_pf_infos pathfinding_infos, t_map map);
 
 #endif

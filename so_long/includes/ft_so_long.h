@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/11 19:16:07 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 22:56:28 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <fcntl.h>
 # include "../lib/MacroLibX/includes/mlx.h"
 # include "../lib/libft/libft.h"
-# include "../lib/libft/printf/ft_printf.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -28,6 +27,7 @@
 # define COLLECTIBLE_TILE 'C'
 # define EXIT_TILE 'E'
 # define SPAWN_TILE 'P'
+# define TILESET "01CEP"
 
 typedef struct s_vec2
 {

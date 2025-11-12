@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/03 22:36:19 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/03 23:13:48 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 22:39:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ static char	*ft_set_line(char *buffer)
 	}
 	if (buffer[i] && buffer[i] == '\n')
 		line[i++] = '\n';
-	line[i] = 0;
+	line[i] = '\0';
 	return (line);
 }
 

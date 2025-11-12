@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:19:25 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/11 19:47:55 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 21:58:45 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_file_error(int error_type)
 
 void	ft_map_error(int error_type)
 {
-	ft_printf("%s (%d): " ERROR_TYPE_MAP, error_type);
+	ft_printf("%s (%d): ", ERROR_TYPE_MAP, error_type);
 	if (error_type == MAP_WRONG_SIZE_ERROR_CODE)
 		ft_printf("%s\n", MAP_WRONG_SIZE_ERROR);
 	else if (error_type == MAP_NOT_CLOSE_ERROR_CODE)

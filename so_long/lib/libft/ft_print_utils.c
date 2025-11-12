@@ -6,11 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/21 01:39:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/10/21 14:27:16 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 22:10:20 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 int	ft_write_char(char c)
 {

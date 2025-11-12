@@ -6,19 +6,19 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/12 19:53:09 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 20:17:20 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 23:46:08 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_so_long.h"
 #include "../../includes/ft_parsing.h"
 
-void	ft_free_pf_infos(t_pf_infos pathfinding_infos)
+void	ft_free_pf_infos(t_pf_infos pathfinding_infos, t_map map)
 {
 	int	i;
 
 	i = 0;
-	while (pathfinding_infos.tiles_visited[i])
+	while (i < map.size && pathfinding_infos.tiles_visited[i])
 	{
 		free(pathfinding_infos.tiles_visited[i]);
 		i++;
@@ -38,11 +38,11 @@ t_pf_infos	ft_setup_pathfinding_infos(t_map map)
 		pf_infos.tiles_visited[coord.y] = malloc(ft_strlen(map.map[0]));
 		if (!pf_infos.tiles_visited[coord.y])
 		{
-			ft_free_pf_infos(pf_infos);
+			ft_free_pf_infos(pf_infos, map);
 			return (pf_infos);
 		}
 		coord.x = 0;
-		while (coord.x < ft_strlen(map.map[0]))
+		while (coord.x < (int)ft_strlen(map.map[0]))
 		{
 			if (map.map[coord.y][coord.x] == WALL_TILE)
 				pf_infos.tiles_visited[coord.y][coord.x] = '1';

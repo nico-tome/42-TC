@@ -34,7 +34,12 @@ SRC = ft_atoi.c \
 	  ft_putstr_fd.c \
 	  ft_putendl_fd.c \
 	  ft_putnbr_fd.c \
-	  get_next_line.c
+	  get_next_line.c \
+	  ft_flags_utils.c \
+	  ft_print_utils.c \
+	  ft_printf.c \
+	  ft_ptr_utils.c \
+	  ft_size_utils.c
 
 BONUS = ft_lstnew_bonus.c \
 		ft_lstadd_front_bonus.c \

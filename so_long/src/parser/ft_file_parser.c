@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:00:54 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/11 18:34:27 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/12 23:22:10 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	ft_check_file_type(char *file_path)
 	size = ft_strlen(file_path);
 	while (file_path[i] && file_path[i] != '.')
 		i++;
-	if (ft_strncmp(file_path + i, ".ber", 4) && i + 4 == size)
+	if (!ft_strncmp(file_path + i, ".ber", 4) && i + 4 == size)
 		return (TRUE);
 	return (FALSE);
 }
@@ -63,7 +63,10 @@ t_map	ft_read_map(char *file_path, int map_size)
 	buffer = get_next_line(fd);
 	while (buffer)
 	{
-		map.map[line_idx] = buffer;
+		if (buffer[ft_strlen(buffer) - 1] == '\n')
+			map.map[line_idx] = ft_substr(buffer, 0, ft_strlen(buffer) - 1);
+		else
+			map.map[line_idx] = ft_strdup(buffer);
 		line_idx++;
 		free(buffer);
 		buffer = get_next_line(fd);
