@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 22:56:28 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/13 13:51:44 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,12 @@ typedef struct s_map
 	char	**map;
 	int		size;
 }				t_map;
+
+typedef struct s_app
+{
+	mlx_context				mlx;
+	mlx_window				win;
+}				t_app;
 
 t_map	ft_get_map(char *file_path);
 

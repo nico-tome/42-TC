@@ -19,7 +19,8 @@ OBJ := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 
 HEADERS := headers/
 
-LIBS := lib/libft/libft.a
+LIBS := lib/libft/libft.a \
+		lib/MacroLibX/libmlx.so
 
 CC := cc
 
@@ -32,7 +33,7 @@ ${LIBS}:
 	@make -C lib/libft
     
 $(NAME): ${LIBS} ${OBJ}
-	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${LIBS}
+	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${LIBS} -lSDL2
 
 ${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	@mkdir -p $(dir $@)
