@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/13 13:51:44 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/13 23:49:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "../lib/MacroLibX/includes/mlx.h"
+# include "../lib/MacroLibX/includes/mlx_extended.h"
 # include "../lib/libft/libft.h"
 
 # define TRUE 1
