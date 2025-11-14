@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/13 23:50:53 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/14 15:29:22 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,16 +32,23 @@ void	ft_init_app(void)
 	mlx_context mlx = mlx_init();
 
     mlx_window_create_info info = { 0 };
-    info.title = "Hello World!";
+    info.title = "SO LONG";
     info.width = 400;
     info.height = 400;
     mlx_window win = mlx_new_window(mlx, &info);
-
+	mlx_set_window_fullscreen(mlx, win, TRUE);
     for(int i = 0; i < 100; i++)
     {
         for(int j = 0; j < 100; j++)
             mlx_pixel_put(mlx, win, i, j, (mlx_color){ .rgba = 0xFF0000FF });
     }
+
+	mlx_string_put(mlx, win, info.width / 2 - 50, 20, (mlx_color){ .rgba = 0xFFFFFFFF }, "this is my text");
+
+	mlx_on_event(mlx, win, MLX_KEYDOWN, key_hook, mlx);
+	mlx_on_event(mlx, win, MLX_MOUSEDOWN, mouse_hook,mlx);
+	mlx_on_event(mlx, win, MLX_MOUSEWHEEL, mouse_wheel_hook, NULL);
+	mlx_on_event(mlx, win, MLX_WINDOW_EVENT, window_hook, mlx);
 
     mlx_loop(mlx);
 

@@ -9,6 +9,7 @@ BUILD_DIR := build/
 SRCS := $(ERROR_DIR)ft_error.c \
         $(ERROR_DIR)ft_error_codes.c \
         $(GAME_DIR)main.c \
+		$(GAME_DIR)ft_event_handling.c \
         $(PARSER_DIR)ft_check_map.c \
         $(PARSER_DIR)ft_file_parser.c \
         $(PARSER_DIR)ft_parse_map_utils.c \

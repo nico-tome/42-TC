@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/13 23:49:51 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/14 14:32:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,9 @@ typedef struct s_app
 }				t_app;
 
 t_map	ft_get_map(char *file_path);
+void	key_hook(int key, void *param);
+void	mouse_hook(int button, void *param);
+void	mouse_wheel_hook(int button, void *param);
+void	window_hook(int event, void *param);
 
 #endif
