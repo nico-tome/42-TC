@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/14 15:29:22 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/16 20:49:37 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,46 @@ void	ft_free_map(t_map map)
 	free(map.map);
 }
 
-void	ft_init_app(void)
+void	update(void *param)
 {
-	mlx_context mlx = mlx_init();
+	t_mlx	*mlx;
 
-    mlx_window_create_info info = { 0 };
-    info.title = "SO LONG";
-    info.width = 400;
-    info.height = 400;
-    mlx_window win = mlx_new_window(mlx, &info);
-	mlx_set_window_fullscreen(mlx, win, TRUE);
-    for(int i = 0; i < 100; i++)
-    {
-        for(int j = 0; j < 100; j++)
-            mlx_pixel_put(mlx, win, i, j, (mlx_color){ .rgba = 0xFF0000FF });
-    }
+	mlx = (t_mlx *)param;
+	if (mlx->need_update)
+	{
+		mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){.rgba = COLOR_BLACK});
+		if (mlx->page == MAIN_MENU)
+			ft_draw_menu_page(mlx);
+		else if (mlx->page == SETTINGS)
+			ft_draw_settings_page(mlx);
+		else if (mlx->page == GAME_PAGE)
+			ft_render_map(mlx);
+		mlx->need_update = FALSE;
+	}
+}
 
-	mlx_string_put(mlx, win, info.width / 2 - 50, 20, (mlx_color){ .rgba = 0xFFFFFFFF }, "this is my text");
+void	ft_init_app(t_map map)
+{
+	static t_mlx			mlx;
+	mlx_window_create_info	info = { 0 };
 
-	mlx_on_event(mlx, win, MLX_KEYDOWN, key_hook, mlx);
-	mlx_on_event(mlx, win, MLX_MOUSEDOWN, mouse_hook,mlx);
-	mlx_on_event(mlx, win, MLX_MOUSEWHEEL, mouse_wheel_hook, NULL);
-	mlx_on_event(mlx, win, MLX_WINDOW_EVENT, window_hook, mlx);
-
-    mlx_loop(mlx);
-
-    mlx_destroy_window(mlx, win);
-    mlx_destroy_context(mlx);
+	mlx.mlx = mlx_init();
+	info.title = "SO LONG";
+	info.width = 1280;
+	info.height = 720;
+	mlx.win = mlx_new_window(mlx.mlx, &info);
+	mlx.page = GAME_PAGE;
+	mlx.game_i.map = map;
+	mlx.need_update = 1;
+	ft_init_textures(&mlx);
+	mlx_on_event(mlx.mlx, mlx.win, MLX_KEYDOWN, key_hook, &mlx);
+	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEDOWN, mouse_hook, &mlx);
+	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEWHEEL, mouse_wheel_hook, NULL);
+	mlx_on_event(mlx.mlx, mlx.win, MLX_WINDOW_EVENT, window_hook, &mlx);
+	mlx_add_loop_hook(mlx.mlx, update, &mlx);
+	mlx_loop(mlx.mlx);
+	mlx_destroy_window(mlx.mlx, mlx.win);
+	mlx_destroy_context(mlx.mlx);
 }
 
 int	main(int ac, char **av)
@@ -70,5 +83,6 @@ int	main(int ac, char **av)
 		ft_free_map(map);
 		ft_exit_error(map_validity);
 	}
-	ft_init_app();
+	ft_init_app(map);
+	ft_free_map(map);
 }

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 22:41:26 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/14 14:20:31 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/16 18:13:38 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_check_map(t_map map)
 
 	map_infos.row_size = NULL;
 	map_infos = ft_parse_map(map, map_infos);
-	error_code = ft_check_size_and_close_map(map_infos, map);
+	error_code = ft_check_size_close_map(map_infos, map);
 	if (ft_is_succes_code(error_code))
 		error_code = ft_check_tiles_infos(map_infos, map);
 	if (ft_is_succes_code(error_code))

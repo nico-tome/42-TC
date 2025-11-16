@@ -10,6 +10,9 @@ SRCS := $(ERROR_DIR)ft_error.c \
         $(ERROR_DIR)ft_error_codes.c \
         $(GAME_DIR)main.c \
 		$(GAME_DIR)ft_event_handling.c \
+		$(GAME_DIR)ft_page_manager.c \
+		$(GAME_DIR)ft_put_string_utils.c \
+		$(GAME_DIR)ft_textures_utils.c \
         $(PARSER_DIR)ft_check_map.c \
         $(PARSER_DIR)ft_file_parser.c \
         $(PARSER_DIR)ft_parse_map_utils.c \

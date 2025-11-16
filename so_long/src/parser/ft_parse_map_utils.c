@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:04 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 23:49:42 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/16 18:07:26 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ int	ft_check_tiles_infos(t_parser_infos map_infos, t_map map)
 	return (MAP_OK);
 }
 
-int	ft_check_size_and_close_map(t_parser_infos map_infos, t_map map)
+int	ft_check_size_close_map(t_parser_infos map_infos, t_map map)
 {
 	int	row;
 	int	size;
