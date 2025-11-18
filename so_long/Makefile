@@ -13,6 +13,7 @@ SRCS := $(ERROR_DIR)ft_error.c \
 		$(GAME_DIR)ft_page_manager.c \
 		$(GAME_DIR)ft_put_string_utils.c \
 		$(GAME_DIR)ft_textures_utils.c \
+		$(GAME_DIR)ft_wall_texture_utils.c \
         $(PARSER_DIR)ft_check_map.c \
         $(PARSER_DIR)ft_file_parser.c \
         $(PARSER_DIR)ft_parse_map_utils.c \
@@ -28,16 +29,16 @@ LIBS := lib/libft/libft.a \
 
 CC := cc
 
-FLAGS := -g -Wall -Werror -Wextra
+FLAGS := -g -Wall -Werror -Wextra -lm -lSDL2
 
 all: ${NAME}
 
 ${LIBS}:
-	@make -C lib/MacroLibX -j16
 	@make -C lib/libft
+	@make -C lib/MacroLibX -j16
     
 $(NAME): ${LIBS} ${OBJ}
-	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${LIBS} -lSDL2
+	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${LIBS} ${FLAGS}
 
 ${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	@mkdir -p $(dir $@)

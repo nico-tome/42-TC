@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/16 20:49:37 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 01:34:19 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,14 @@ void	ft_init_app(t_map map)
 	mlx.game_i.map = map;
 	mlx.need_update = 1;
 	ft_init_textures(&mlx);
+	mlx.tile_size = (double)info.width / ft_strlen(mlx.game_i.map.map[0]);
 	mlx_on_event(mlx.mlx, mlx.win, MLX_KEYDOWN, key_hook, &mlx);
 	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEDOWN, mouse_hook, &mlx);
 	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEWHEEL, mouse_wheel_hook, NULL);
 	mlx_on_event(mlx.mlx, mlx.win, MLX_WINDOW_EVENT, window_hook, &mlx);
 	mlx_add_loop_hook(mlx.mlx, update, &mlx);
 	mlx_loop(mlx.mlx);
+	ft_free_textures(&mlx);
 	mlx_destroy_window(mlx.mlx, mlx.win);
 	mlx_destroy_context(mlx.mlx);
 }

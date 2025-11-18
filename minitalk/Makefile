@@ -36,10 +36,10 @@ ${LIBS}:
 	make -C lib/printf
     
 $(NAME_CLIENT): ${LIBS} ${OBJ_CLIENT_MANDA}
-	${CC} -o ${NAME_CLIENT} -I ${HEADERS} ${OBJ_CLIENT_MANDA} ${LIBS}
+	${CC} -o ${NAME_CLIENT} -I ${HEADERS} ${OBJ_CLIENT_MANDA} ${LIBS} ${FLAGS}
 
 $(NAME_SERVER): ${LIBS} ${OBJ_SERVER_MANDA}
-	${CC} -o ${NAME_SERVER} -I ${HEADERS} ${OBJ_SERVER_MANDA} ${LIBS}
+	${CC} -o ${NAME_SERVER} -I ${HEADERS} ${OBJ_SERVER_MANDA} ${LIBS} ${FLAGS}
 
 ${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	mkdir -p build
@@ -50,8 +50,8 @@ clean:
 	make -C lib/printf clean
 
 bonus: ${LIBS} ${OBJ_CLIENT_BONUS} ${OBJ_SERVER_BONUS}
-	${CC} -o ${NAME_CLIENT_BONUS} -I ${HEADERS} ${OBJ_CLIENT_BONUS} ${LIBS}
-	${CC} -o ${NAME_SERVER_BONUS} -I ${HEADERS} ${OBJ_SERVER_BONUS} ${LIBS}
+	${CC} -o ${NAME_CLIENT_BONUS} -I ${HEADERS} ${OBJ_CLIENT_BONUS} ${LIBS} ${FLAGS}
+	${CC} -o ${NAME_SERVER_BONUS} -I ${HEADERS} ${OBJ_SERVER_BONUS} ${LIBS} ${FLAGS}
 
 fclean: clean
 	rm -f ${NAME_CLIENT}

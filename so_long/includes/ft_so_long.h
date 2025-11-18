@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/16 20:55:25 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 01:09:47 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h>
 # include "../lib/MacroLibX/includes/mlx.h"
 # include "../lib/MacroLibX/includes/mlx_extended.h"
 # include "../lib/libft/libft.h"
 # include "ft_colors.h"
+# include "ft_keys.h"
 
 # define TRUE 1
 # define FALSE 0
@@ -30,6 +32,7 @@
 # define EXIT_TILE 'E'
 # define SPAWN_TILE 'P'
 # define TILESET "01CEP"
+# define TILE_SIZE 16
 
 typedef enum e_page
 {
@@ -44,6 +47,20 @@ typedef struct s_vec2
 	int	x;
 	int	y;
 }				t_vec2;
+
+typedef struct s_vec_d2
+{
+	double	x;
+	double	y;
+}				t_vec_d2;
+
+typedef struct s_grid
+{
+	int	n;
+	int	s;
+	int	o;
+	int	e;
+}				t_grid;
 
 typedef struct s_map
 {
@@ -71,6 +88,11 @@ typedef struct s_textures
 	t_texture	wall_s;
 	t_texture	wall_e;
 	t_texture	wall_o;
+	t_texture	wall_ne;
+	t_texture	wall_no;
+	t_texture	wall_se;
+	t_texture	wall_so;
+	t_texture	wall_full;
 	t_texture	ground;
 	t_texture	exit_close;
 	t_texture	exit_open;
@@ -87,19 +109,21 @@ typedef struct s_mlx
 	t_page			page;
 	t_textures		t_set;
 	t_game_infos	game_i;
+	double			tile_size;
 }				t_mlx;
 
-t_map	ft_get_map(char *file_path);
-void	ft_init_textures(t_mlx *mlx);
-void	ft_free_textures(t_mlx *mlx);
-void	key_hook(int key, void *param);
-void	mouse_hook(int button, void *param);
-void	mouse_wheel_hook(int button, void *param);
-void	window_hook(int event, void *param);
-void	ft_mlx_putstr(t_mlx *mlx, t_vec2 coord, mlx_color color, char *str);
-int		ft_get_str_size(char *str, int font_size);
-void	ft_draw_menu_page(t_mlx *mlx);
-void	ft_draw_settings_page(t_mlx *mlx);
-void	ft_render_map(t_mlx *mlx);
+t_map		ft_get_map(char *file_path);
+void		ft_init_textures(t_mlx *mlx);
+void		ft_free_textures(t_mlx *mlx);
+void		key_hook(int key, void *param);
+void		mouse_hook(int button, void *param);
+void		mouse_wheel_hook(int button, void *param);
+void		window_hook(int event, void *param);
+void		ft_mlx_putstr(t_mlx *mlx, t_vec2 coord, mlx_color color, char *str);
+int			ft_get_str_size(char *str, int font_size);
+void		ft_draw_menu_page(t_mlx *mlx);
+void		ft_draw_settings_page(t_mlx *mlx);
+void		ft_render_map(t_mlx *mlx);
+t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read);
 
 #endif

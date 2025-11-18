@@ -38,7 +38,7 @@ LIBS = lib/libft/libft.a
 
 CC = cc
 
-FLAGS = -g -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra
 
 all: ${NAME}
 
@@ -46,7 +46,7 @@ ${LIBS}:
 	make -C lib/libft
     
 $(NAME): ${LIBS} ${OBJ} ${OBJ_MANDA}
-	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${OBJ_MANDA} ${LIBS}
+	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${OBJ_MANDA} ${LIBS} ${FLAGS}
 
 ${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	mkdir -p build
@@ -60,7 +60,7 @@ clean:
 	make -C lib/libft clean
 
 bonus: ${LIBS} ${OBJ} ${OBJ_BONUS}
-	${CC} -o ${NAME_BONUS} -I ${HEADERS} ${OBJ} ${OBJ_BONUS} ${LIBS}
+	${CC} -o ${NAME_BONUS} -I ${HEADERS} ${OBJ} ${OBJ_BONUS} ${LIBS} ${FLAGS}
 
 fclean: clean
 	rm -f ${NAME}
