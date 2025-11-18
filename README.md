@@ -34,3 +34,7 @@ Sort a stack of numbers using a set of actions and two stacks.
 ### ☎️ **Minitalk**: (?/100)
 
 Setup a connection between two terminals using UNIX signals.
+
+### 🐬 **So Long** (?/100)
+
+Create a 2D game with the MacroLibX. And thanks for all the fish!
