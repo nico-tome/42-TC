@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 22:20:43 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 00:38:19 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,8 @@
 
 typedef enum e_page
 {
-	MAIN_MENU,
-	SETTINGS,
-	EDIT_PAGE,
 	GAME_PAGE,
+	END_PAGE,
 }			t_page;
 
 typedef struct s_vec2
@@ -107,7 +105,10 @@ typedef struct s_textures
 	t_texture	exit_open;
 	t_texture	spawn;
 	t_texture	coin;
-	t_texture	player;
+	t_texture	player_up;
+	t_texture	player_down;
+	t_texture	player_left;
+	t_texture	player_right;
 }			t_textures;
 
 typedef struct s_mlx
@@ -137,5 +138,6 @@ void		ft_render_map(t_mlx *mlx);
 t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read);
 void		ft_move_player(t_mlx *mlx, int key);
 void		ft_print_move_count(t_mlx *mlx);
+void		ft_render_end_page(t_mlx *mlx);
 
 #endif

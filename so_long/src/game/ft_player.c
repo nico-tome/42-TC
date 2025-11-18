@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:38:15 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 19:19:21 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 00:34:22 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,22 @@ void	ft_init_player(t_mlx *mlx)
 	mlx->game_i.move_count = 0;
 }
 
+void	ft_check_end_map(t_mlx *mlx)
+{
+	t_vec2	co;
+
+	co.x = mlx->game_i.player_co.x;
+	co.y = mlx->game_i.player_co.y;
+	if (mlx->game_i.map.map[co.y][co.x] == EXIT_TILE)
+	{
+		if (mlx->game_i.coin_collected == mlx->game_i.coin_to_collect)
+		{
+			mlx->page = END_PAGE;
+			mlx->need_update = TRUE;
+		}
+	}
+}
+
 void	ft_move_player(t_mlx *mlx, int key)
 {
 	t_vec2	pos;
@@ -75,11 +91,14 @@ void	ft_move_player(t_mlx *mlx, int key)
 		mlx->game_i.player_co.x += move_x;
 		mlx->need_update = TRUE;
 		mlx->game_i.move_count++;
+		mlx->game_i.player_dir = 0 - (key == KEY_A) + (key == KEY_D);
+		mlx->game_i.player_dir += 2 * (0 - (key == KEY_W) + (key == KEY_S));
 	}
-	if (mlx->game_i.map.map[pos.y][pos.x] == COLLECTIBLE_TILE)
+	if (mlx->game_i.map.map[pos.y + move_y][pos.x + move_x] == COLLECTIBLE_TILE)
 	{
 		mlx->game_i.coin_collected++;
-		mlx->game_i.map.map[pos.y][pos.x] = FREE_SPACE_TILE;
+		mlx->game_i.map.map[pos.y + move_y][pos.x + move_x] = FREE_SPACE_TILE;
 		mlx->need_update = TRUE;
 	}
+	ft_check_end_map(mlx);
 }

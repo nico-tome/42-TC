@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:50:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 18:22:07 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 00:20:16 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@ void	ft_new_texture(t_mlx *mlx, t_texture *texture, char *path)
 	texture->image = image;
 	texture->image_width = width;
 	texture->image_height = height;
+}
+
+void	ft_load_player_sprite(t_mlx *mlx)
+{
+	ft_new_texture(mlx, &mlx->t_set.player_up, "./assets/player_up.png");
+	ft_new_texture(mlx, &mlx->t_set.player_left, "./assets/player_left.png");
+	ft_new_texture(mlx, &mlx->t_set.player_right, "./assets/player_right.png");
+	ft_new_texture(mlx, &mlx->t_set.player_down, "./assets/player_down.png");
 }
 
 void	ft_init_textures(t_mlx *mlx)
@@ -46,7 +54,7 @@ void	ft_init_textures(t_mlx *mlx)
 	ft_new_texture(mlx, &mlx->t_set.wall_c_center, "./assets/wall_c_c.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_left, "./assets/wall_c_left.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_right, "./assets/wall_c_right.png");
-	ft_new_texture(mlx, &mlx->t_set.player, "./assets/player.png");
+	ft_load_player_sprite(mlx);
 }
 
 void	ft_free_textures(t_mlx *mlx)
@@ -71,5 +79,8 @@ void	ft_free_textures(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->t_set.wall_c_right.image);
 	mlx_destroy_image(mlx->mlx, mlx->t_set.wall_c_left.image);
 	mlx_destroy_image(mlx->mlx, mlx->t_set.wall_c_center.image);
-	mlx_destroy_image(mlx->mlx, mlx->t_set.player.image);
+	mlx_destroy_image(mlx->mlx, mlx->t_set.player_up.image);
+	mlx_destroy_image(mlx->mlx, mlx->t_set.player_down.image);
+	mlx_destroy_image(mlx->mlx, mlx->t_set.player_left.image);
+	mlx_destroy_image(mlx->mlx, mlx->t_set.player_right.image);
 }

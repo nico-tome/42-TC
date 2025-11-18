@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 22:20:26 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 00:34:47 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	update(void *param)
 	mlx = (t_mlx *)param;
 	if (mlx->need_update)
 	{
-		ft_printf("moves coubt: %d\n", mlx->game_i.move_count);
+		ft_printf("moves count: %d\n", mlx->game_i.move_count);
 		mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){.rgba = COLOR_BLACK});
 		if (mlx->page == GAME_PAGE)
 		{
@@ -42,6 +42,8 @@ void	update(void *param)
 			ft_render_player(mlx);
 			ft_print_move_count(mlx);
 		}
+		if (mlx->page == END_PAGE)
+			ft_render_end_page(mlx);
 		mlx->need_update = FALSE;
 	}
 }

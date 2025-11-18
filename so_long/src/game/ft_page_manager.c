@@ -6,11 +6,21 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 22:31:54 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 00:41:52 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_so_long.h"
+
+void	ft_render_end_page(t_mlx *mlx)
+{
+	char	*str;
+
+	str = ft_strjoin("GG ! \n Moves count: ", ft_itoa(mlx->game_i.move_count));
+	mlx_string_put(mlx->mlx, mlx->win, 50, 50,
+		(mlx_color){.rgba = COLOR_BLUE}, str);
+	free(str);
+}
 
 void	ft_render_tile(t_mlx *mlx, t_vec_d2 co, char tile, t_vec2 read)
 {
@@ -71,8 +81,15 @@ void	ft_render_player(t_mlx *mlx)
 
 	co.x = mlx->game_i.player_co.x * mlx->tile_size;
 	co.y = mlx->game_i.player_co.y * mlx->tile_size;
-	scale = ((double)mlx->tile_size / mlx->t_set.player.image_height);
-	image = mlx->t_set.player.image;
+	scale = ((double)mlx->tile_size / mlx->t_set.player_up.image_height);
+	if (mlx->game_i.player_dir == 1)
+		image = mlx->t_set.player_right.image;
+	else if (mlx->game_i.player_dir == -1)
+		image = mlx->t_set.player_left.image;
+	else if (mlx->game_i.player_dir == -2)
+		image = mlx->t_set.player_up.image;
+	else if (mlx->game_i.player_dir == 2)
+		image = mlx->t_set.player_down.image;
 	mlx_put_transformed_image_to_window(mlx->mlx, mlx->win, image,
 		co.x, co.y, scale, scale, 0);
 }
@@ -80,9 +97,12 @@ void	ft_render_player(t_mlx *mlx)
 void	ft_print_move_count(t_mlx *mlx)
 {
 	char	*count;
+	char	*str;
 
 	count = ft_itoa(mlx->game_i.move_count);
-	mlx_string_put(mlx->mlx, mlx->win, 20, mlx->window_size.y - 50,
-		(mlx_color){.rgba = COLOR_RED}, count);
+	str = ft_strjoin("moves count: ", count);
+	mlx_string_put(mlx->mlx, mlx->win, 20, 720 - 50,
+		(mlx_color){.rgba = COLOR_RED}, str);
+	free(str);
 	free(count);
 }

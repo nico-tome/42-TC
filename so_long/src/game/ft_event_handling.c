@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 00:08:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 18:25:07 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 00:07:53 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	key_hook(int key, void *param)
 	mlx = (t_mlx *)param;
 	if (key == 41)
 		mlx_loop_end(mlx->mlx);
-	else if (key == KEY_W || key == KEY_S || key == KEY_A || KEY_D)
+	else if (key == KEY_W || key == KEY_S || key == KEY_A || key == KEY_D)
 		ft_move_player(mlx, key);
 }
 
