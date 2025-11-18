@@ -14,6 +14,7 @@ SRCS := $(ERROR_DIR)ft_error.c \
 		$(GAME_DIR)ft_put_string_utils.c \
 		$(GAME_DIR)ft_textures_utils.c \
 		$(GAME_DIR)ft_wall_texture_utils.c \
+		$(GAME_DIR)ft_player.c \
         $(PARSER_DIR)ft_check_map.c \
         $(PARSER_DIR)ft_file_parser.c \
         $(PARSER_DIR)ft_parse_map_utils.c \

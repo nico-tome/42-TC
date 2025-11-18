@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:50:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 14:27:14 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 18:22:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	ft_init_textures(t_mlx *mlx)
 	ft_new_texture(mlx, &mlx->t_set.wall_full, "./assets/wall_full.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_nt, "./assets/wall_nt.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_st, "./assets/wall_st.png");
-	ft_new_texture(mlx, &mlx->t_set.wall_t_center, "./assets/wall_t_center.png");
+	ft_new_texture(mlx, &mlx->t_set.wall_t_center, "./assets/wall_t_c.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_center, "./assets/wall_c_c.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_left, "./assets/wall_c_left.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_right, "./assets/wall_c_right.png");

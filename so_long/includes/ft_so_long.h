@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 14:26:07 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 22:20:43 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,12 @@ typedef struct s_map
 
 typedef struct s_game_infos
 {
-	int			move_count;
-	int			coin_collected;
-	t_map		map;
-	t_vec_d2	player_co;
+	int		move_count;
+	int		coin_collected;
+	int		coin_to_collect;
+	t_map	map;
+	t_vec2	player_co;
+	int		player_dir;
 }				t_game_infos;
 
 typedef struct s_texture
@@ -122,6 +124,7 @@ typedef struct s_mlx
 
 t_map		ft_get_map(char *file_path);
 void		ft_init_textures(t_mlx *mlx);
+void		ft_init_player(t_mlx *mlx);
 void		ft_free_textures(t_mlx *mlx);
 void		key_hook(int key, void *param);
 void		mouse_hook(int button, void *param);
@@ -132,5 +135,7 @@ int			ft_get_str_size(char *str, int font_size);
 void		ft_render_player(t_mlx *mlx);
 void		ft_render_map(t_mlx *mlx);
 t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read);
+void		ft_move_player(t_mlx *mlx, int key);
+void		ft_print_move_count(t_mlx *mlx);
 
 #endif

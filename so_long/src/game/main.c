@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 14:32:03 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 22:20:26 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,20 +34,24 @@ void	update(void *param)
 	mlx = (t_mlx *)param;
 	if (mlx->need_update)
 	{
+		ft_printf("moves coubt: %d\n", mlx->game_i.move_count);
 		mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){.rgba = COLOR_BLACK});
 		if (mlx->page == GAME_PAGE)
 		{
 			ft_render_map(mlx);
 			ft_render_player(mlx);
+			ft_print_move_count(mlx);
 		}
 		mlx->need_update = FALSE;
 	}
 }
 
-void	ft_init_player(t_mlx *mlx)
+void	ft_init_event(t_mlx *mlx)
 {
-	mlx->game_i.player_co.x = 0;
-	mlx->game_i.player_co.y = 0;
+	mlx_on_event(mlx->mlx, mlx->win, MLX_KEYDOWN, key_hook, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEDOWN, mouse_hook, mlx);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_MOUSEWHEEL, mouse_wheel_hook, NULL);
+	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, window_hook, mlx);
 }
 
 void	ft_init_app(t_map map)
@@ -65,11 +69,8 @@ void	ft_init_app(t_map map)
 	mlx.need_update = 1;
 	ft_init_textures(&mlx);
 	ft_init_player(&mlx);
-	mlx.tile_size = (double)info.width / ft_strlen(mlx.game_i.map.map[0]);
-	mlx_on_event(mlx.mlx, mlx.win, MLX_KEYDOWN, key_hook, &mlx);
-	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEDOWN, mouse_hook, &mlx);
-	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEWHEEL, mouse_wheel_hook, NULL);
-	mlx_on_event(mlx.mlx, mlx.win, MLX_WINDOW_EVENT, window_hook, &mlx);
+	mlx.tile_size = floor((double)info.width / ft_strlen(mlx.game_i.map.map[0]));
+	ft_init_event(&mlx);
 	mlx_add_loop_hook(mlx.mlx, update, &mlx);
 	mlx_loop(mlx.mlx);
 	ft_free_textures(&mlx);

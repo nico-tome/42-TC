@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 00:08:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 14:36:15 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 18:25:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,8 @@ void	key_hook(int key, void *param)
 	mlx = (t_mlx *)param;
 	if (key == 41)
 		mlx_loop_end(mlx->mlx);
-	else if (key == KEY_W)
-	{
-		mlx->game_i.player_co.y--;
-		mlx->need_update = TRUE;
-	}
-	else if (key == KEY_S)
-	{
-		mlx->game_i.player_co.y++;
-		mlx->need_update = TRUE;
-	}
-	else if (key == KEY_A)
-	{
-		mlx->game_i.player_co.x--;
-		mlx->need_update = TRUE;
-	}
-	else if (key == KEY_D)
-	{
-		mlx->game_i.player_co.x++;
-		mlx->need_update = TRUE;
-	}
+	else if (key == KEY_W || key == KEY_S || key == KEY_A || KEY_D)
+		ft_move_player(mlx, key);
 }
 
 void	mouse_hook(int button, void *param)
