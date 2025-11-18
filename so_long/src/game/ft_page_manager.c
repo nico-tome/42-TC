@@ -6,33 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 01:35:56 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 14:32:56 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_so_long.h"
-
-void	ft_draw_menu_page(t_mlx *mlx)
-{
-	mlx_color	color;
-	t_vec2		coord;
-
-	color.rgba = COLOR_BLUE;
-	coord.y = 20;
-	coord.x = mlx->window_size.x / 2 - ft_get_str_size("MAIN MENU", 16) / 2;
-	ft_mlx_putstr(mlx, coord, color, "MAIN MENU");
-}
-
-void	ft_draw_settings_page(t_mlx *mlx)
-{
-	mlx_color	color;
-	t_vec2		coord;
-
-	color.rgba = COLOR_GREEN;
-	coord.y = 20;
-	coord.x = mlx->window_size.x / 2 - ft_get_str_size("SETTINGS", 16) / 2;
-	ft_mlx_putstr(mlx, coord, color, "SETTINGS");
-}
 
 void	ft_render_tile(t_mlx *mlx, t_vec_d2 co, char tile, t_vec2 read)
 {
@@ -80,4 +58,18 @@ void	ft_render_map(t_mlx *mlx)
 		read.y++;
 		coord.y += mlx->tile_size;
 	}
+}
+
+void	ft_render_player(t_mlx *mlx)
+{
+	t_vec_d2	co;
+	double		scale;
+	mlx_image	image;
+
+	co.x = mlx->game_i.player_co.x * mlx->tile_size;
+	co.y = mlx->game_i.player_co.y * mlx->tile_size;
+	scale = ((double)mlx->tile_size / mlx->t_set.player.image_height);
+	image = mlx->t_set.player.image;
+	mlx_put_transformed_image_to_window(mlx->mlx, mlx->win, image,
+									 co.x, co.y, scale, scale, 0);
 }

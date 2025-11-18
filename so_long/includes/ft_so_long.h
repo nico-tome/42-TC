@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 01:09:47 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 14:26:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,9 +70,10 @@ typedef struct s_map
 
 typedef struct s_game_infos
 {
-	int		move_count;
-	int		coin_collected;
-	t_map	map;
+	int			move_count;
+	int			coin_collected;
+	t_map		map;
+	t_vec_d2	player_co;
 }				t_game_infos;
 
 typedef struct s_texture
@@ -93,11 +94,18 @@ typedef struct s_textures
 	t_texture	wall_se;
 	t_texture	wall_so;
 	t_texture	wall_full;
+	t_texture	wall_nt;
+	t_texture	wall_t_center;
+	t_texture	wall_st;
+	t_texture	wall_c_left;
+	t_texture	wall_c_center;
+	t_texture	wall_c_right;
 	t_texture	ground;
 	t_texture	exit_close;
 	t_texture	exit_open;
 	t_texture	spawn;
 	t_texture	coin;
+	t_texture	player;
 }			t_textures;
 
 typedef struct s_mlx
@@ -121,8 +129,7 @@ void		mouse_wheel_hook(int button, void *param);
 void		window_hook(int event, void *param);
 void		ft_mlx_putstr(t_mlx *mlx, t_vec2 coord, mlx_color color, char *str);
 int			ft_get_str_size(char *str, int font_size);
-void		ft_draw_menu_page(t_mlx *mlx);
-void		ft_draw_settings_page(t_mlx *mlx);
+void		ft_render_player(t_mlx *mlx);
 void		ft_render_map(t_mlx *mlx);
 t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read);
 

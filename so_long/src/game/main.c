@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 01:34:19 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/18 14:32:03 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,19 @@ void	update(void *param)
 	if (mlx->need_update)
 	{
 		mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){.rgba = COLOR_BLACK});
-		if (mlx->page == MAIN_MENU)
-			ft_draw_menu_page(mlx);
-		else if (mlx->page == SETTINGS)
-			ft_draw_settings_page(mlx);
-		else if (mlx->page == GAME_PAGE)
+		if (mlx->page == GAME_PAGE)
+		{
 			ft_render_map(mlx);
+			ft_render_player(mlx);
+		}
 		mlx->need_update = FALSE;
 	}
+}
+
+void	ft_init_player(t_mlx *mlx)
+{
+	mlx->game_i.player_co.x = 0;
+	mlx->game_i.player_co.y = 0;
 }
 
 void	ft_init_app(t_map map)
@@ -59,6 +64,7 @@ void	ft_init_app(t_map map)
 	mlx.game_i.map = map;
 	mlx.need_update = 1;
 	ft_init_textures(&mlx);
+	ft_init_player(&mlx);
 	mlx.tile_size = (double)info.width / ft_strlen(mlx.game_i.map.map[0]);
 	mlx_on_event(mlx.mlx, mlx.win, MLX_KEYDOWN, key_hook, &mlx);
 	mlx_on_event(mlx.mlx, mlx.win, MLX_MOUSEDOWN, mouse_hook, &mlx);
