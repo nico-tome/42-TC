@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:21:28 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/11 19:47:33 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 22:28:48 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # define MAP_IMPOSSIBLE_MAP_ERROR_CODE 35
 # define MAP_WRONG_TILE_INDEX_ERROR_CODE 36
 # define MALLOC_ERROR_CODE 42
+# define TEXTURE_ERROR_CODE 50
 # define ERROR_TYPE_ARGS "ARGS ERROR"
 # define ARGS_MORE_ERROR "Too many args (./so_long *.ber)"
 # define ARGS_LESS_ERROR "Not enought args (./so_long *.ber)"
@@ -44,6 +45,7 @@
 # define MAP_IMPOSSIBLE_ERROR "The map is impossible. (coin/end unreachable !)"
 # define MAP_TILE_ERROR "Unallowed character found. (Only 0 1 C E P allowed !)"
 # define MALLOC_ERROR "Malloc Error !"
+# define TEXTURE_ERROR "Texture Error !"
 
 void	ft_exit_error(int error_type);
 int		ft_is_error_code(int code);

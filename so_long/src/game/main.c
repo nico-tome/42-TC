@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 13:06:18 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 22:31:44 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void	ft_init_app(t_map map)
 	mlx.need_update = 1;
 	ft_init_textures(&mlx);
 	ft_init_player(&mlx);
-	mlx.tile_size = floor((double)info.width / ft_strlen(map.map[0]));
+	ft_get_tile_size(&mlx);
 	ft_init_event(&mlx);
 	mlx_add_loop_hook(mlx.mlx, update, &mlx);
 	mlx_loop(mlx.mlx);
@@ -93,6 +93,11 @@ int	main(int ac, char **av)
 	{
 		ft_free_map(map);
 		ft_exit_error(map_validity);
+	}
+	if (!ft_check_textures())
+	{
+		ft_free_map(map);
+		ft_exit_error(TEXTURE_ERROR_CODE);
 	}
 	ft_init_app(map);
 	ft_free_map(map);

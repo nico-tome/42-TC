@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:19:25 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/12 21:58:45 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 22:30:25 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	ft_exit_error(int error_type)
 		ft_map_error(error_type);
 	else if (error_type == MALLOC_ERROR_CODE)
 		ft_printf("%s\n", MALLOC_ERROR);
+	else if (error_type == TEXTURE_ERROR_CODE)
+		ft_printf("%s\n", TEXTURE_ERROR);
 	else
 		ft_printf("Unknown error type.");
 	exit(EXIT_FAILURE);

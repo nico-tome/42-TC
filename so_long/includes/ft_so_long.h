@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 12:01:08 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 22:26:44 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define SPAWN_TILE 'P'
 # define TILESET "01CEP"
 # define TILE_SIZE 16
+# define TILE_MAX_SIZE 32
+# define TILE_MIN_SIZE 20
 
 typedef enum e_page
 {
@@ -74,6 +76,7 @@ typedef struct s_game_infos
 	t_map	map;
 	t_vec2	player_co;
 	int		player_dir;
+	t_vec2	camera_pos;
 }				t_game_infos;
 
 typedef struct s_texture
@@ -138,5 +141,7 @@ t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read);
 void		ft_move_player(t_mlx *mlx, int key);
 void		ft_print_move_count(t_mlx *mlx);
 void		ft_render_end_page(t_mlx *mlx);
+void		ft_get_tile_size(t_mlx *mlx);
+int			ft_check_textures(void);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:38:15 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 00:34:22 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 21:48:27 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_init_player(t_mlx *mlx)
 
 	read.y = 0;
 	read.x = 0;
+	mlx->game_i.camera_pos = read;
 	tile = mlx->game_i.map.map[read.y][read.x];
 	while (mlx->game_i.map.map[read.y] && tile != SPAWN_TILE)
 	{

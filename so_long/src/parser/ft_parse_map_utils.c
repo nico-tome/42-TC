@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:04 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/16 18:07:26 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 21:14:20 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +104,6 @@ int	ft_check_size_close_map(t_parser_infos map_infos, t_map map)
 	while (row < map.size)
 	{
 		if (map_infos.row_size[row] != size)
-			return (MAP_WRONG_SIZE_ERROR_CODE);
-		if (map_infos.row_size[row] == map.size)
 			return (MAP_WRONG_SIZE_ERROR_CODE);
 		if (row == 0 || row == map.size - 1)
 		{
