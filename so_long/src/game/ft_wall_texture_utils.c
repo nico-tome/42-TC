@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 00:54:51 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/18 14:17:02 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 13:21:02 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,8 @@ t_grid	ft_get_wall_surroundings(t_mlx *mlx, t_vec2 read)
 	return (grid);
 }
 
-t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read)
+t_texture	ft_check_simple_wall(t_mlx *mlx, t_grid grid)
 {
-	t_grid	grid;
-
-	grid = ft_get_wall_surroundings(mlx, read);
 	if (grid.n == 2 && grid.e && !grid.s && grid.o)
 		return (mlx->t_set.wall_n);
 	if (grid.n && grid.e == 2 && grid.s && !grid.o)
@@ -58,6 +55,18 @@ t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read)
 		return (mlx->t_set.wall_se);
 	if (grid.n == 2 && grid.e && grid.s && grid .o)
 		return (mlx->t_set.wall_nt);
+	return (mlx->t_set.wall_t_center);
+}
+
+t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read)
+{
+	t_grid		grid;
+	t_texture	texture;
+
+	grid = ft_get_wall_surroundings(mlx, read);
+	texture = ft_check_simple_wall(mlx, grid);
+	if (texture.image != mlx->t_set.wall_t_center.image)
+		return (texture);
 	if (grid.n && !grid.e && grid.s && !grid.o)
 		return (mlx->t_set.wall_t_center);
 	if (grid.n && !grid.e && !grid.s && !grid.o)
