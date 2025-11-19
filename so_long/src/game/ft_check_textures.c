@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 21:56:57 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 22:27:18 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 23:04:57 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int	ft_check_file(char *path)
 
 	fd = open(path, O_RDONLY);
 	if (fd == -1)
+	{
+		ft_printf("Error\nTexture file not found: %s\n", path);
 		return (0);
+	}
 	close(fd);
 	return (1);
 }
@@ -26,7 +29,7 @@ int	ft_check_file(char *path)
 int	ft_check_textures(void)
 {
 	int			file_i;
-	static char	*path_list[24] = {"./assets/player_up.png",
+	static char	*path_list[25] = {"./assets/player_up.png",
 		"./assets/player_left.png", "./assets/player_right.png",
 		"./assets/player_down.png", "./assets/ground.png",
 		"./assets/exit_close.png", "./assets/exit_open.png",
@@ -37,7 +40,7 @@ int	ft_check_textures(void)
 		"./assets/wall_full.png", "./assets/wall_nt.png",
 		"./assets/wall_st.png",	"./assets/wall_t_c.png",
 		"./assets/wall_c_c.png", "./assets/wall_c_left.png",
-		"./assets/wall_c_right.png"};
+		"./assets/wall_c_right.png, \0"};
 
 	file_i = 0;
 	while (path_list[file_i])

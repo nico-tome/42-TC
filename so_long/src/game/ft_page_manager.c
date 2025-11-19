@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 22:37:04 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 22:55:25 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,14 @@ void	ft_render_map(t_mlx *mlx)
 	t_vec2		read;
 	char		tile;
 
-	coord.y = 0;
-	read.y = 0;
+	coord.y = mlx->game_i.camera_pos.y;
+	read.y = mlx->game_i.camera_pos.y / mlx->tile_size;
 	while (mlx->game_i.map.map[read.y])
 	{
-		read.x = 0;
-		coord.x = 0;
-		while (mlx->game_i.map.map[read.y][read.x])
+		read.x = mlx->game_i.camera_pos.x / mlx->tile_size;
+		coord.x = mlx->game_i.camera_pos.x;
+		tile = mlx->game_i.map.map[read.y][read.x];
+		while (tile && coord.x < mlx->window_size.x)
 		{
 			tile = mlx->game_i.map.map[read.y][read.x];
 			ft_render_tile(mlx, coord, tile, read);
