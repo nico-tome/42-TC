@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 21:56:57 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 23:04:57 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 23:09:45 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	ft_check_textures(void)
 		"./assets/wall_full.png", "./assets/wall_nt.png",
 		"./assets/wall_st.png",	"./assets/wall_t_c.png",
 		"./assets/wall_c_c.png", "./assets/wall_c_left.png",
-		"./assets/wall_c_right.png, \0"};
+		"./assets/wall_c_right.png", 0};
 
 	file_i = 0;
 	while (path_list[file_i])

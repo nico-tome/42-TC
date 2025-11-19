@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 22:26:44 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 23:14:47 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@
 # define SPAWN_TILE 'P'
 # define TILESET "01CEP"
 # define TILE_SIZE 16
-# define TILE_MAX_SIZE 32
-# define TILE_MIN_SIZE 20
+# define TILE_MAX_SIZE 64
+# define TILE_MIN_SIZE 32
 
 typedef enum e_page
 {

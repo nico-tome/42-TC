@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:38:15 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 23:43:30 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 23:28:03 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,11 @@
 void	ft_check_camera_scroll(t_mlx *mlx)
 {
 	t_vec2	player_pos;
-	int		line_len;
 
-	line_len = ft_strlen(mlx->game_i.map.map[0]);
 	player_pos.x = mlx->game_i.player_co.x * mlx->tile_size;
-	player_pos.x -= mlx->game_i.camera_pos.x;
 	player_pos.y = mlx->game_i.player_co.y * mlx->tile_size;
-	player_pos.y -= mlx->game_i.camera_pos.y;
-	if (player_pos.x >= mlx->window_size.x / 2 
-		&& line_len - (mlx->game_i.camera_pos.x / mlx->tile_size) > mlx->window_size.x / mlx->tile_size)
+	ft_printf("player co: %d;%d, window_size: %d;%d\n", player_pos.x, player_pos.y, mlx->window_size.x, mlx->window_size.y);
+	if (player_pos.x >= mlx->window_size.x)
 		mlx->game_i.camera_pos.x += mlx->tile_size;
 	else if (player_pos.x < mlx->game_i.camera_pos.x)
 		mlx->game_i.camera_pos.x -= mlx->tile_size;

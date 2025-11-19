@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 22:31:44 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 23:13:06 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ void	ft_init_app(t_map map)
 	info.height = 720;
 	mlx.win = mlx_new_window(mlx.mlx, &info);
 	mlx.page = GAME_PAGE;
+	mlx.window_size.x = 1280;
+	mlx.window_size.y = 720;
 	mlx.game_i.map = map;
 	mlx.need_update = 1;
 	ft_init_textures(&mlx);

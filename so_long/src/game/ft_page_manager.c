@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 22:55:25 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 23:35:05 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,12 +59,12 @@ void	ft_render_map(t_mlx *mlx)
 	t_vec2		read;
 	char		tile;
 
-	coord.y = mlx->game_i.camera_pos.y;
+	coord.y = 0;
 	read.y = mlx->game_i.camera_pos.y / mlx->tile_size;
 	while (mlx->game_i.map.map[read.y])
 	{
 		read.x = mlx->game_i.camera_pos.x / mlx->tile_size;
-		coord.x = mlx->game_i.camera_pos.x;
+		coord.x = 0;
 		tile = mlx->game_i.map.map[read.y][read.x];
 		while (tile && coord.x < mlx->window_size.x)
 		{
@@ -84,8 +84,8 @@ void	ft_render_player(t_mlx *mlx)
 	double		scale;
 	mlx_image	image;
 
-	co.x = mlx->game_i.player_co.x * mlx->tile_size;
-	co.y = mlx->game_i.player_co.y * mlx->tile_size;
+	co.x = mlx->game_i.player_co.x * mlx->tile_size - mlx->game_i.camera_pos.x;
+	co.y = mlx->game_i.player_co.y * mlx->tile_size - mlx->game_i.camera_pos.y;
 	scale = ((double)mlx->tile_size / mlx->t_set.player_up.image_height);
 	if (mlx->game_i.player_dir == 1)
 		image = mlx->t_set.player_right.image;
