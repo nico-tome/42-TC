@@ -6,30 +6,36 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:38:15 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 23:43:30 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/20 00:15:24 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/ft_so_long.h"
 
-void	ft_check_camera_scroll(t_mlx *mlx)
+void	ft_check_camera_scroll(t_mlx *mlx, int tile_size)
 {
 	t_vec2	player_pos;
+	t_vec2	camera_pos;
+	t_vec2	window_center;
 	int		line_len;
 
+	window_center.x = mlx->window_size.x / tile_size;
+	window_center.y = mlx->window_size.y / tile_size;
 	line_len = ft_strlen(mlx->game_i.map.map[0]);
-	player_pos.x = mlx->game_i.player_co.x * mlx->tile_size;
-	player_pos.x -= mlx->game_i.camera_pos.x;
-	player_pos.y = mlx->game_i.player_co.y * mlx->tile_size;
-	player_pos.y -= mlx->game_i.camera_pos.y;
-	if (player_pos.x >= mlx->window_size.x / 2 
-		&& line_len - (mlx->game_i.camera_pos.x / mlx->tile_size) > mlx->window_size.x / mlx->tile_size)
+	camera_pos = mlx->game_i.camera_pos;
+	player_pos.x = mlx->game_i.player_co.x * mlx->tile_size - camera_pos.x;
+	player_pos.y = mlx->game_i.player_co.y * mlx->tile_size - camera_pos.y;
+	if (player_pos.x >= mlx->window_size.x / 2 && mlx->game_i.player_dir == 1
+		&& line_len - (camera_pos.x / tile_size) > window_center.x)
 		mlx->game_i.camera_pos.x += mlx->tile_size;
-	else if (player_pos.x < mlx->game_i.camera_pos.x)
+	else if (player_pos.x <= mlx->window_size.x / 2
+		&& mlx->game_i.player_dir == -1 && camera_pos.x > 0)
 		mlx->game_i.camera_pos.x -= mlx->tile_size;
-	if (player_pos.y >= mlx->window_size.y)
+	if (player_pos.y >= mlx->window_size.y / 2 && mlx->game_i.player_dir == 2
+		&& mlx->game_i.map.size - (camera_pos.y / tile_size) > window_center.y)
 		mlx->game_i.camera_pos.y += mlx->tile_size;
-	else if (player_pos.y < mlx->game_i.camera_pos.y)
+	else if (player_pos.y <= mlx->window_size.y / 2
+		&& mlx->game_i.player_dir == -2 && camera_pos.y > 0)
 		mlx->game_i.camera_pos.y -= mlx->tile_size;
 }
 
@@ -122,6 +128,6 @@ void	ft_move_player(t_mlx *mlx, int key)
 		mlx->game_i.map.map[pos.y + move_y][pos.x + move_x] = FREE_SPACE_TILE;
 		mlx->need_update = TRUE;
 	}
-	ft_check_camera_scroll(mlx);
+	ft_check_camera_scroll(mlx, mlx->tile_size);
 	ft_check_end_map(mlx);
 }

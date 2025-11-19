@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 21:24:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 21:46:17 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/20 00:23:49 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,6 @@ void	ft_get_tile_size(t_mlx *mlx)
 		mlx->tile_size = TILE_MIN_SIZE;
 	else if (size > TILE_MAX_SIZE)
 		mlx->tile_size = TILE_MAX_SIZE;
+	else
+		mlx->tile_size = size;
 }
