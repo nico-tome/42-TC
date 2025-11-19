@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 00:41:52 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 12:59:56 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,13 @@ void	ft_render_end_page(t_mlx *mlx)
 {
 	char	*str;
 
-	str = ft_strjoin("GG ! \n Moves count: ", ft_itoa(mlx->game_i.move_count));
+	str = ft_strjoin("GG ! Moves count: ", ft_itoa(mlx->game_i.move_count));
+	mlx_set_font(mlx->mlx, "default");
+	mlx_set_font_scale(mlx->mlx, "default", 30);
 	mlx_string_put(mlx->mlx, mlx->win, 50, 50,
-		(mlx_color){.rgba = COLOR_BLUE}, str);
+		(mlx_color){.rgba = COLOR_GREEN}, str);
+	mlx_string_put(mlx->mlx, mlx->win, 50, 100,
+		(mlx_color){.rgba = COLOR_GREEN}, "Click to quit.");
 	free(str);
 }
 

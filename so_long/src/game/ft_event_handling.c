@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 00:08:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 00:07:53 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 12:05:28 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,12 @@ void	key_hook(int key, void *param)
 
 void	mouse_hook(int button, void *param)
 {
-	(void) button;
-	(void) param;
-}
+	t_mlx	*mlx;
 
-void	mouse_wheel_hook(int button, void *param)
-{
-	(void) button;
-	(void) param;
+	mlx = (t_mlx *)param;
+	if (mlx->page == END_PAGE)
+		mlx_loop_end(mlx->mlx);
+	(void)button;
 }
 
 void	window_hook(int event, void *param)

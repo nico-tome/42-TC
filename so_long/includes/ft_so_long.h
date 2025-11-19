@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 00:38:19 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/19 12:01:08 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,7 +129,6 @@ void		ft_init_player(t_mlx *mlx);
 void		ft_free_textures(t_mlx *mlx);
 void		key_hook(int key, void *param);
 void		mouse_hook(int button, void *param);
-void		mouse_wheel_hook(int button, void *param);
 void		window_hook(int event, void *param);
 void		ft_mlx_putstr(t_mlx *mlx, t_vec2 coord, mlx_color color, char *str);
 int			ft_get_str_size(char *str, int font_size);
