@@ -1,6 +1,7 @@
 NAME := so_long
 
 SRC_DIR := src/
+SRC_BONUS_DIR := src_bonus/
 ERROR_DIR := error/
 GAME_DIR := game/
 PARSER_DIR := parser/
@@ -20,6 +21,21 @@ SRCS := $(ERROR_DIR)ft_error.c \
         $(PARSER_DIR)ft_parse_map_utils.c \
         $(PARSER_DIR)ft_pathfinding.c \
         $(PARSER_DIR)ft_pathfinding_utils.c
+
+SRCS_BONUS :=	$(ERROR_DIR)ft_error_bonus.c \
+        		$(ERROR_DIR)ft_error_codes_bonus.c \
+    			$(GAME_DIR)main_bonus.c \
+				$(GAME_DIR)ft_event_handling_bonus.c \
+				$(GAME_DIR)ft_page_manager_bonus.c \
+				$(GAME_DIR)ft_put_string_utils_bonus.c \
+				$(GAME_DIR)ft_textures_utils_bonus.c \
+				$(GAME_DIR)ft_wall_texture_utils_bonus.c \
+				$(GAME_DIR)ft_player_bonus.c \
+		        $(PARSER_DIR)ft_check_map_bonus.c \
+		        $(PARSER_DIR)ft_file_parser_bonus.c \
+	        	$(PARSER_DIR)ft_parse_map_utils_bonus.c \
+	    	    $(PARSER_DIR)ft_pathfinding_bonus.c \
+		        $(PARSER_DIR)ft_pathfinding_utils_bonus.c
 
 OBJ := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 
