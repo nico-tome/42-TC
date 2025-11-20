@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 23:14:47 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/20 12:51:23 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,8 @@ t_texture	ft_get_wall_texture(t_mlx *mlx, t_vec2 read);
 void		ft_move_player(t_mlx *mlx, int key);
 void		ft_print_move_count(t_mlx *mlx);
 void		ft_render_end_page(t_mlx *mlx);
-void		ft_get_tile_size(t_mlx *mlx);
+double		ft_get_tile_size(t_mlx *mlx);
 int			ft_check_textures(void);
+void		ft_init_camera_pos(t_mlx *mlx);
 
 #endif

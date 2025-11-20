@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 23:13:06 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/20 12:51:42 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	ft_init_app(t_map map)
 	mlx.need_update = 1;
 	ft_init_textures(&mlx);
 	ft_init_player(&mlx);
-	ft_get_tile_size(&mlx);
+	mlx.tile_size = ft_get_tile_size(&mlx);
+	ft_init_camera_pos(&mlx);
 	ft_init_event(&mlx);
 	mlx_add_loop_hook(mlx.mlx, update, &mlx);
 	mlx_loop(mlx.mlx);
