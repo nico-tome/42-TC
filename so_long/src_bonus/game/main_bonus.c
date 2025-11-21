@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 14:04:43 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/20 14:06:35 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_so_long.h"
-#include "../../includes/ft_error.h"
-#include "../../includes/ft_parsing.h"
+#include "../../includes_bonus/ft_so_long_bonus.h"
+#include "../../includes_bonus/ft_error_bonus.h"
+#include "../../includes_bonus/ft_parsing_bonus.h"
 
 void	ft_free_map(t_map map)
 {

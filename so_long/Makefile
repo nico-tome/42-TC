@@ -41,7 +41,8 @@ SRCS_BONUS :=	$(ERROR_DIR)ft_error_bonus.c \
 
 OBJ := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
 
-HEADERS := headers/
+HEADERS := includes/
+HEADERS_BONUS := includes_bonus/
 
 LIBS := lib/libft/libft.a \
 		lib/MacroLibX/libmlx.so
