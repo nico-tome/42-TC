@@ -40,6 +40,7 @@ SRCS_BONUS :=	$(ERROR_DIR)ft_error_bonus.c \
 				$(GAME_DIR)ft_editor_bonus.c \
 				$(GAME_DIR)ft_death_bonus.c \
 				$(GAME_DIR)ft_save_map_bonus.c \
+				$(GAME_DIR)ft_attack_bonus.c \
     			$(GAME_DIR)main_bonus.c \
 		        $(PARSER_DIR)ft_check_map_bonus.c \
 		        $(PARSER_DIR)ft_file_parser_bonus.c \

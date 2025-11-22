@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 12:35:00 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 16:45:55 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 17:22:12 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	ft_free_textures1(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->t_set.coin_f3.image);
 	mlx_destroy_image(mlx->mlx, mlx->t_set.player_up_f0.image);
 }
+
 void	ft_free_textures2(t_mlx *mlx)
 {
 	mlx_destroy_image(mlx->mlx, mlx->t_set.player_down_f0.image);
@@ -57,6 +58,7 @@ void	ft_free_textures2(t_mlx *mlx)
 	mlx_destroy_image(mlx->mlx, mlx->t_set.spike_f0.image);
 	mlx_destroy_image(mlx->mlx, mlx->t_set.spike_f1.image);
 }
+
 void	ft_free_textures(t_mlx *mlx)
 {
 	ft_free_textures1(mlx);

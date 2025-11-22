@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:13:00 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 14:50:12 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 17:24:03 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void	ft_check_collision(t_mlx *mlx, int enemy_i)
 	t_map	map;
 	t_enemy	enemy;
 
-
 	map = mlx->game_i.map;
 	enemy = mlx->game_i.enemys[enemy_i];
 	if (enemy.type == ENEMY_V && mlx->page == GAME_PAGE
@@ -113,6 +112,7 @@ void	ft_render_enemys(t_mlx *mlx)
 {
 	t_vec2	pos;
 	int		i;
+	int		vel;
 
 	i = 0;
 	while (i < mlx->game_i.enemys_count)
@@ -122,12 +122,13 @@ void	ft_render_enemys(t_mlx *mlx)
 			ft_check_collision(mlx, i);
 			pos.x = mlx->game_i.enemys[i].pos.x;
 			pos.y = mlx->game_i.enemys[i].pos.y;
+			vel = mlx->game_i.enemys[i].vel;
 			if (mlx->game_i.map.map[pos.y][pos.x] == WALL_TILE)
 			{
 				if (mlx->game_i.enemys[i].type == ENEMY_V)
-					mlx->game_i.enemys[i].pos.x += -1 * mlx->game_i.enemys[i].vel;
+					mlx->game_i.enemys[i].pos.x += -1 * vel;
 				else
-					mlx->game_i.enemys[i].pos.y += -1 * mlx->game_i.enemys[i].vel;
+					mlx->game_i.enemys[i].pos.y += -1 * vel;
 			}
 			ft_render_enemy(mlx, i);
 		}

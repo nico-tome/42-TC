@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 22:07:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/21 22:29:18 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 17:14:36 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	ft_check_monster(t_mlx *mlx)
 	enemy_i = 0;
 	while (enemy_i < mlx->game_i.enemys_count)
 	{
-		if (ft_vec2_equal(mlx->game_i.enemys[enemy_i].pos, pos))
+		if (ft_vec2_equal(mlx->game_i.enemys[enemy_i].pos, pos)
+			&& !mlx->game_i.enemys[enemy_i].dead)
 			return (1);
 		enemy_i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 16:43:57 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 17:11:42 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -199,5 +199,6 @@ void		ft_change_tile(t_mlx *mlx);
 void		ft_move_cursore(t_mlx *mlx, int key);
 void		ft_check_camera_scroll(t_mlx *mlx, int tile_size);
 void		ft_save_map(t_mlx *mlx);
+void		ft_attack(t_mlx *mlx);
 
 #endif

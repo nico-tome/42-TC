@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:38:15 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 13:16:49 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 17:13:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,8 @@ void	ft_move_player(t_mlx *mlx, int key)
 	int		move_y;
 	int		move_x;
 
+	if (key == KEY_Q)
+		ft_attack(mlx);
 	pos = mlx->game_i.player_co;
 	move_y = 0 - (key == KEY_W) + (key == KEY_S);
 	move_x = 0 - (key == KEY_A) + (key == KEY_D);
