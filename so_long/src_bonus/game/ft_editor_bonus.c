@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:12:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 01:42:43 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 14:40:31 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	ft_change_tile(t_mlx *mlx)
 	pos.y = mlx->game_i.player_co.y;
 	pos.x = mlx->game_i.player_co.x;
 	mlx->game_i.map.map[pos.y][pos.x] = mlx->brush;
-	ft_free_enemys(mlx);
+	free(mlx->game_i.enemys);
 	ft_load_enemys(mlx, mlx->game_i.map);
 }
 
@@ -102,6 +102,8 @@ void	ft_move_cursore(t_mlx *mlx, int key)
 	{
 		mlx->game_i.player_co.y += move_y;
 		mlx->game_i.player_co.x += move_x;
+		mlx->game_i.player_dir = 0 - (key == KEY_A) + (key == KEY_D);
+		mlx->game_i.player_dir += 2 * (0 - (key == KEY_W) + (key == KEY_S));
 	}
 	ft_check_camera_scroll(mlx, mlx->tile_size);
 }

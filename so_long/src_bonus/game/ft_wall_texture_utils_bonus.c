@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 00:54:51 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 14:12:12 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 15:55:27 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,8 @@ t_texture	ft_check_simple_wall(t_mlx *mlx, t_grid grid)
 		return (mlx->t_set.wall_se);
 	if (grid.n == 2 && grid.e && grid.s && grid .o)
 		return (mlx->t_set.wall_nt);
+	if (!grid.n && !grid.e && grid.s && !grid.o)
+		return (mlx->t_set.wall_st_end);
 	return (mlx->t_set.wall_t_center);
 }
 

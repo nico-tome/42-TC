@@ -6,17 +6,11 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/21 15:13:00 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 02:10:27 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 14:50:12 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes_bonus/ft_so_long_bonus.h"
-
-void	ft_free_enemys(t_mlx *mlx)
-{
-	ft_printf("free enemys\n");
-	free(mlx->game_i.enemys);
-}
 
 int	ft_count_enemys(t_mlx *mlx)
 {
@@ -56,9 +50,9 @@ void	ft_load_enemys(t_mlx *mlx, t_map map)
 		read.x = 0;
 		while (map.map[read.y][read.x])
 		{
-			if (map.map[read.y][read.x] == ENEMY_H
-				|| map.map[read.y][read.x] == ENEMY_V)
+			if (ft_strchr(ENEMYSET, map.map[read.y][read.x]))
 			{
+				mlx->game_i.enemys[count].dead = 0;
 				mlx->game_i.enemys[count].pos = read;
 				mlx->game_i.enemys[count].type = map.map[read.y][read.x];
 				mlx->game_i.enemys[count++].vel = 1;
@@ -92,31 +86,51 @@ void	ft_render_enemy(t_mlx *mlx, int enemy_i)
 	}
 }
 
-void	ft_render_enemys(t_mlx *mlx)
+void	ft_check_collision(t_mlx *mlx, int enemy_i)
 {
-	t_enemy	enemy;
 	t_map	map;
-	int		i;
+	t_enemy	enemy;
+
 
 	map = mlx->game_i.map;
+	enemy = mlx->game_i.enemys[enemy_i];
+	if (enemy.type == ENEMY_V && mlx->page == GAME_PAGE
+		&& mlx->frame % 120 == 0)
+	{
+		if (map.map[enemy.pos.y][enemy.pos.x + enemy.vel] == WALL_TILE)
+			mlx->game_i.enemys[enemy_i].vel *= -1;
+		mlx->game_i.enemys[enemy_i].pos.x += mlx->game_i.enemys[enemy_i].vel;
+	}
+	else if (mlx->page == GAME_PAGE && mlx->frame % 120 == 0)
+	{
+		if (map.map[enemy.pos.y + enemy.vel][enemy.pos.x] == WALL_TILE)
+			mlx->game_i.enemys[enemy_i].vel *= -1;
+		mlx->game_i.enemys[enemy_i].pos.y += mlx->game_i.enemys[enemy_i].vel;
+	}
+}
+
+void	ft_render_enemys(t_mlx *mlx)
+{
+	t_vec2	pos;
+	int		i;
+
 	i = 0;
 	while (i < mlx->game_i.enemys_count)
 	{
-		enemy = mlx->game_i.enemys[i];
-		if (enemy.type == ENEMY_V && mlx->page == GAME_PAGE
-			&& mlx->frame % 120 == 0)
+		if (!mlx->game_i.enemys[i].dead)
 		{
-			if (map.map[enemy.pos.y][enemy.pos.x + enemy.vel] == WALL_TILE)
-				mlx->game_i.enemys[i].vel *= -1;
-			mlx->game_i.enemys[i].pos.x += mlx->game_i.enemys[i].vel;
+			ft_check_collision(mlx, i);
+			pos.x = mlx->game_i.enemys[i].pos.x;
+			pos.y = mlx->game_i.enemys[i].pos.y;
+			if (mlx->game_i.map.map[pos.y][pos.x] == WALL_TILE)
+			{
+				if (mlx->game_i.enemys[i].type == ENEMY_V)
+					mlx->game_i.enemys[i].pos.x += -1 * mlx->game_i.enemys[i].vel;
+				else
+					mlx->game_i.enemys[i].pos.y += -1 * mlx->game_i.enemys[i].vel;
+			}
+			ft_render_enemy(mlx, i);
 		}
-		else if (mlx->page == GAME_PAGE && mlx->frame % 120 == 0)
-		{
-			if (map.map[enemy.pos.y + enemy.vel][enemy.pos.x] == WALL_TILE)
-				mlx->game_i.enemys[i].vel *= -1;
-			mlx->game_i.enemys[i].pos.y += mlx->game_i.enemys[i].vel;
-		}
-		ft_render_enemy(mlx, i);
 		i++;
 	}
 }

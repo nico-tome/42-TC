@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:50:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/21 23:14:17 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 15:56:35 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	ft_load_walls(t_mlx *mlx)
 	ft_new_texture(mlx, &mlx->t_set.wall_full, "wall_full.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_nt, "wall_nt.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_st, "wall_st.png");
+	ft_new_texture(mlx, &mlx->t_set.wall_st_end, "wall_st_end.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_t_center, "wall_t_c.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_center, "wall_c_c.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_c_left, "wall_c_left.png");
