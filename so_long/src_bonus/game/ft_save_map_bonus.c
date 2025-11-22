@@ -1,27 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_put_string_utils.c                              :+:      :+:    :+:   */
+/*   ft_save_map_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/16 17:46:02 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/16 18:09:01 by ntome            ###   ########.fr       */
+/*   Created: 2025/11/22 01:25:26 by ntome             #+#    #+#             */
+/*   Updated: 2025/11/22 01:59:17 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/ft_so_long.h"
+#include "../../includes_bonus/ft_so_long_bonus.h"
 
-void	ft_mlx_putstr(t_mlx *mlx, t_vec2 coord, mlx_color color, char *str)
+void	ft_save_map(t_mlx *mlx)
 {
-	mlx_string_put(mlx->mlx, mlx->win, coord.x, coord.y, color, str);
-}
+	int		fd;
+	int		i;
+	char	*line;
 
-int	ft_get_str_size(char *str, int font_size)
-{
-	int	size;
-
-	size = ft_strlen(str);
-	size *= font_size;
-	return (size);
+	fd = open(mlx->file_path, O_WRONLY);
+	if (fd != -1)
+	{
+		i = 0;
+		while (i < mlx->game_i.map.size)
+		{
+			line = ft_strjoin(mlx->game_i.map.map[i], "\n");
+			write(fd, line, ft_strlen(line));
+			free(line);
+			i++;
+		}
+		close(fd);
+	}
 }

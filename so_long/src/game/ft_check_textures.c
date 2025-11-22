@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_textures.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 21:56:57 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 23:09:45 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/21 12:28:11 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_check_textures(void)
 		"./assets/player_left.png", "./assets/player_right.png",
 		"./assets/player_down.png", "./assets/ground.png",
 		"./assets/exit_close.png", "./assets/exit_open.png",
-		"./assets/spawn.png", "./assets/coin.png", "./assets/wall_n.png",
+		"./assets/spawn.png", "./assets/coin0.png", "./assets/wall_n.png",
 		"./assets/wall_s.png", "./assets/wall_e.png", "./assets/wall_o.png",
 		"./assets/wall_ne.png", "./assets/wall_no.png",
 		"./assets/wall_se.png", "./assets/wall_so.png",

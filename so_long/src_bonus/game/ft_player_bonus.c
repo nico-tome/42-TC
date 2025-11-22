@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_player_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/18 16:38:15 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 14:11:18 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/21 22:38:17 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,7 @@ void	ft_check_end_map(t_mlx *mlx)
 	if (mlx->game_i.map.map[co.y][co.x] == EXIT_TILE)
 	{
 		if (mlx->game_i.coin_collected == mlx->game_i.coin_to_collect)
-		{
 			mlx->page = END_PAGE;
-			mlx->need_update = TRUE;
-		}
 	}
 }
 
@@ -115,7 +112,6 @@ void	ft_move_player(t_mlx *mlx, int key)
 	{
 		mlx->game_i.player_co.y += move_y;
 		mlx->game_i.player_co.x += move_x;
-		mlx->need_update = TRUE;
 		mlx->game_i.move_count++;
 		mlx->game_i.player_dir = 0 - (key == KEY_A) + (key == KEY_D);
 		mlx->game_i.player_dir += 2 * (0 - (key == KEY_W) + (key == KEY_S));
@@ -124,7 +120,6 @@ void	ft_move_player(t_mlx *mlx, int key)
 	{
 		mlx->game_i.coin_collected++;
 		mlx->game_i.map.map[pos.y + move_y][pos.x + move_x] = FREE_SPACE_TILE;
-		mlx->need_update = TRUE;
 	}
 	ft_check_camera_scroll(mlx, mlx->tile_size);
 	ft_check_end_map(mlx);

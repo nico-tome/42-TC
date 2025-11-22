@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 17:53:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 14:06:35 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/21 23:12:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,27 @@ void	update(void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
-	if (mlx->need_update)
+	mlx->frame++;
+	mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){.rgba = COLOR_BLACK});
+	if (mlx->page == GAME_PAGE)
 	{
-		ft_printf("moves count: %d\n", mlx->game_i.move_count);
-		mlx_clear_window(mlx->mlx, mlx->win, (mlx_color){.rgba = COLOR_BLACK});
-		if (mlx->page == GAME_PAGE)
-		{
-			ft_render_map(mlx);
-			ft_render_player(mlx);
-			ft_print_move_count(mlx);
-		}
-		if (mlx->page == END_PAGE)
-			ft_render_end_page(mlx);
-		mlx->need_update = FALSE;
+		ft_render_map(mlx);
+		ft_render_player(mlx);
+		ft_render_enemys(mlx);
+		ft_check_death(mlx);
+		ft_print_move_count(mlx);
 	}
+	if (mlx->page == EDITOR_PAGE)
+	{
+		ft_render_map(mlx);
+		ft_render_enemys(mlx);
+		ft_render_cursore(mlx);
+		ft_render_help_text(mlx);
+	}
+	if (mlx->page == END_PAGE)
+		ft_render_end_page(mlx);
+	if (mlx->page == DEATH_PAGE)
+		ft_render_death_page(mlx);
 }
 
 void	ft_init_event(t_mlx *mlx)
@@ -55,7 +62,7 @@ void	ft_init_event(t_mlx *mlx)
 	mlx_on_event(mlx->mlx, mlx->win, MLX_WINDOW_EVENT, window_hook, mlx);
 }
 
-void	ft_init_app(t_map map)
+void	ft_init_app(t_map map, char *file_path)
 {
 	static t_mlx			mlx;
 	mlx_window_create_info	info;
@@ -67,12 +74,13 @@ void	ft_init_app(t_map map)
 	info.height = 720;
 	mlx.win = mlx_new_window(mlx.mlx, &info);
 	mlx.page = GAME_PAGE;
-	mlx.window_size.x = 1280;
-	mlx.window_size.y = 720;
+	mlx.window_size = (t_vec2){.x = 1280, .y = 720};
 	mlx.game_i.map = map;
-	mlx.need_update = 1;
+	mlx.frame = -1;
+	mlx.file_path = file_path;
 	ft_init_textures(&mlx);
 	ft_init_player(&mlx);
+	ft_load_enemys(&mlx, map);
 	mlx.tile_size = ft_get_tile_size(&mlx);
 	ft_init_camera_pos(&mlx);
 	ft_init_event(&mlx);
@@ -102,6 +110,6 @@ int	main(int ac, char **av)
 		ft_free_map(map);
 		ft_exit_error(TEXTURE_ERROR_CODE);
 	}
-	ft_init_app(map);
+	ft_init_app(map, av[1]);
 	ft_free_map(map);
 }

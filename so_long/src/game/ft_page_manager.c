@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 13:40:37 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/21 10:02:43 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,7 @@ void	ft_render_player(t_mlx *mlx)
 		image = mlx->t_set.player_left.image;
 	else if (mlx->game_i.player_dir == -2)
 		image = mlx->t_set.player_up.image;
-	else if (mlx->game_i.player_dir == 2)
+	else
 		image = mlx->t_set.player_down.image;
 	mlx_put_transformed_image_to_window(mlx->mlx, mlx->win, image,
 		co.x, co.y, scale, scale, 0);

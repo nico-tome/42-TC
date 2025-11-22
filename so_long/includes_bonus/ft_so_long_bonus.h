@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_so_long_bonus.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 14:17:22 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/22 01:40:35 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
+# include <time.h>
 # include "../lib/MacroLibX/includes/mlx.h"
 # include "../lib/MacroLibX/includes/mlx_extended.h"
 # include "../lib/libft/libft.h"
@@ -31,7 +32,10 @@
 # define COLLECTIBLE_TILE 'C'
 # define EXIT_TILE 'E'
 # define SPAWN_TILE 'P'
-# define TILESET "01CEP"
+# define SPIKE_TILE 'S'
+# define ENEMY_V 'V'
+# define ENEMY_H 'H'
+# define TILESET "01CEPSVH"
 # define TILE_SIZE 16
 # define TILE_MAX_SIZE 64
 # define TILE_MIN_SIZE 32
@@ -39,6 +43,8 @@
 typedef enum e_page
 {
 	GAME_PAGE,
+	EDITOR_PAGE,
+	DEATH_PAGE,
 	END_PAGE,
 }			t_page;
 
@@ -68,6 +74,14 @@ typedef struct s_map
 	int		size;
 }				t_map;
 
+typedef struct s_enemy
+{
+	t_vec2	pos;
+	int		vel;
+	char	type;
+}				t_enemy;
+
+
 typedef struct s_game_infos
 {
 	int		move_count;
@@ -77,11 +91,13 @@ typedef struct s_game_infos
 	t_vec2	player_co;
 	int		player_dir;
 	t_vec2	camera_pos;
+	int		enemys_count;
+	t_enemy	*enemys;
 }				t_game_infos;
 
 typedef struct s_texture
 {
-	mlx_image	*image;
+	mlx_image	image;
 	int			frame_count;
 	int			image_width;
 	int			image_height;
@@ -108,12 +124,39 @@ typedef struct s_textures
 	t_texture	exit_close;
 	t_texture	exit_open;
 	t_texture	spawn;
-	t_texture	coin;
-	t_texture	player_up;
-	t_texture	player_down;
-	t_texture	player_left;
-	t_texture	player_right;
+	t_texture	coin_f0;
+	t_texture	coin_f1;
+	t_texture	coin_f2;
+	t_texture	coin_f3;
+	t_texture	player_up_f0;
+	t_texture	player_up_f1;
+	t_texture	player_up_f2;
+	t_texture	player_up_f3;
+	t_texture	player_down_f0;
+	t_texture	player_down_f1;
+	t_texture	player_down_f2;
+	t_texture	player_down_f3;
+	t_texture	player_left_f0;
+	t_texture	player_left_f1;
+	t_texture	player_left_f2;
+	t_texture	player_left_f3;
+	t_texture	player_right_f0;
+	t_texture	player_right_f1;
+	t_texture	player_right_f2;
+	t_texture	player_right_f3;
 	t_texture	tile_selected;
+	t_texture	enemy_v_f0;
+	t_texture	enemy_v_f1;
+	t_texture	enemy_v_f2;
+	t_texture	enemy_v_f3;
+	t_texture	enemy_h_f0;
+	t_texture	enemy_h_f1;
+	t_texture	enemy_h_f2;
+	t_texture	enemy_h_f3;
+	t_texture	spike_f0;
+	t_texture	spike_f1;
+	t_texture	spike_f2;
+	t_texture	spike_f3;
 }			t_textures;
 
 typedef struct s_mlx
@@ -121,11 +164,14 @@ typedef struct s_mlx
 	mlx_context		mlx;
 	mlx_window		win;
 	t_vec2			window_size;
-	int				need_update;
+	int				frame;
 	t_page			page;
 	t_textures		t_set;
 	t_game_infos	game_i;
 	double			tile_size;
+	char			*file_path;
+	char			brush;
+	int				show_help;
 }				t_mlx;
 
 t_map		ft_get_map(char *file_path);
@@ -146,5 +192,21 @@ void		ft_render_end_page(t_mlx *mlx);
 double		ft_get_tile_size(t_mlx *mlx);
 int			ft_check_textures(void);
 void		ft_init_camera_pos(t_mlx *mlx);
+t_texture   ft_animation_coin(t_mlx *mlx);
+t_texture   ft_animation_spikes(t_mlx *mlx);
+void		ft_render_cursore(t_mlx *mlx);
+void		ft_render_enemys(t_mlx *mlx);
+void		ft_load_enemys(t_mlx *mlx, t_map map);
+void		ft_render_help_text(t_mlx *mlx);
+t_texture	ft_animation_enemy_h(t_mlx *mlx);
+t_texture	ft_animation_enemy_v(t_mlx *mlx);
+void		ft_check_death(t_mlx *mlx);
+void		ft_render_death_page(t_mlx *mlx);
+void		ft_switch_brush(t_mlx *mlx, int key);
+void		ft_change_tile(t_mlx *mlx);
+void		ft_move_cursore(t_mlx *mlx, int key);
+void		ft_check_camera_scroll(t_mlx *mlx, int tile_size);
+void		ft_save_map(t_mlx *mlx);
+void		ft_free_enemys(t_mlx *mlx);
 
 #endif

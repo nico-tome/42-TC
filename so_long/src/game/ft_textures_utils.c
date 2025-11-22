@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_textures_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 20:50:24 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 21:56:37 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/21 12:28:24 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	ft_init_textures(t_mlx *mlx)
 	ft_new_texture(mlx, &mlx->t_set.exit_close, "./assets/exit_close.png");
 	ft_new_texture(mlx, &mlx->t_set.exit_open, "./assets/exit_open.png");
 	ft_new_texture(mlx, &mlx->t_set.spawn, "./assets/spawn.png");
-	ft_new_texture(mlx, &mlx->t_set.coin, "./assets/coin.png");
+	ft_new_texture(mlx, &mlx->t_set.coin, "./assets/coin0.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_n, "./assets/wall_n.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_s, "./assets/wall_s.png");
 	ft_new_texture(mlx, &mlx->t_set.wall_e, "./assets/wall_e.png");

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_page_manager_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 19:29:49 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/20 14:11:04 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/21 15:16:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ void	ft_render_tile(t_mlx *mlx, t_vec_d2 co, char tile, t_vec2 read)
 	else if (tile == EXIT_TILE)
 		texture = mlx->t_set.exit_close;
 	else if (tile == COLLECTIBLE_TILE)
-		texture = mlx->t_set.coin;
+		texture = ft_animation_coin(mlx);
 	else if (tile == SPAWN_TILE)
 		texture = mlx->t_set.spawn;
+	else if (tile == SPIKE_TILE)
+		texture = ft_animation_spikes(mlx);
 	else
 		texture = mlx->t_set.ground;
 	image = texture.image;
@@ -87,15 +89,15 @@ void	ft_render_player(t_mlx *mlx)
 
 	co.x = mlx->game_i.player_co.x * mlx->tile_size - mlx->game_i.camera_pos.x;
 	co.y = mlx->game_i.player_co.y * mlx->tile_size - mlx->game_i.camera_pos.y;
-	scale = ((double)mlx->tile_size / mlx->t_set.player_up.image_height);
+	scale = ((double)mlx->tile_size / mlx->t_set.player_up_f0.image_height);
 	if (mlx->game_i.player_dir == 1)
-		image = mlx->t_set.player_right.image;
+		image = mlx->t_set.player_right_f0.image;
 	else if (mlx->game_i.player_dir == -1)
-		image = mlx->t_set.player_left.image;
+		image = mlx->t_set.player_left_f0.image;
 	else if (mlx->game_i.player_dir == -2)
-		image = mlx->t_set.player_up.image;
-	else if (mlx->game_i.player_dir == 2)
-		image = mlx->t_set.player_down.image;
+		image = mlx->t_set.player_up_f0.image;
+	else
+		image = mlx->t_set.player_down_f0.image;
 	mlx_put_transformed_image_to_window(mlx->mlx, mlx->win, image,
 		co.x, co.y, scale, scale, 0);
 }
