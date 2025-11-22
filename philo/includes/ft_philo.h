@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/19 19:05:33 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/23 00:15:41 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,4 @@ typedef struct s_params
 
 void	ft_check_args(t_params *params, int ac, char **av);
 
-#endif
+ #endif
