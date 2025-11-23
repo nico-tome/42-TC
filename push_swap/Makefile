@@ -48,7 +48,7 @@ ${LIBS}:
 $(NAME): ${LIBS} ${OBJ} ${OBJ_MANDA}
 	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${OBJ_MANDA} ${LIBS} ${FLAGS}
 
-${BUILD_DIR}%.o: ${SRC_DIR}%.c
+${BUILD_DIR}%.o${SRC_DIR}%.c
 	mkdir -p build
 	${CC} -o $@ -I ${HEADERS} -c $< ${FLAGS}
 
@@ -69,4 +69,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean flcean re all
+.PHONY: clean fclean re all

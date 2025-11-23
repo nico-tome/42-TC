@@ -11,8 +11,8 @@ SRCS := $(SRC_DIR)ft_parser.c \
 
 SRCS_BONUS :=	$(SRC_BONUS_DIR)ft_error_bonus.c
 
-OBJ := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRCS))
-OBJ_BONUS := $(patsubst %.c, $(BUILD_DIR_BONUS)%.o, $(SRCS_BONUS))
+OBJ := $(patsubst $(SRC_DIR)%.c, $(BUILD_DIR)%.o, $(SRCS))
+OBJ_BONUS := $(patsubst $(SRC_BONUS_DIR)%.c, $(BUILD_DIR_BONUS)%.o, $(SRCS_BONUS))
 
 HEADERS := includes/
 HEADERS_BONUS := includes_bonus/
@@ -47,4 +47,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean flcean re all
+.PHONY: clean fclean re all
