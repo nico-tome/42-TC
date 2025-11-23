@@ -22,11 +22,11 @@ SRC_ALL = ft_check_sort.c \
 	  	ft_free_utils.c \
       	ft_swap_utils.c
 
-MANDA = ft_push_swap.c
+MANDA := ft_push_swap.c
       
-BONUS = ft_checker_bonus.c
+BONUS := ft_checker_bonus.c
 
-OBJ   = $(patsubst %.c, $(BUILD_DIR)%.o, $(SRC_ALL))
+OBJ := $(patsubst %.c, $(BUILD_DIR)%.o, $(SRC_ALL))
 
 OBJ_MANDA = $(patsubst %.c, $(BUILD_DIR)%.o, $(MANDA))
 
@@ -38,7 +38,7 @@ LIBS = lib/libft/libft.a
 
 CC = cc
 
-FLAGS = -Wall -Werror -Wextra
+FLAGS = -Wall -Werror -Wextra -g
 
 all: ${NAME}
 
@@ -48,7 +48,7 @@ ${LIBS}:
 $(NAME): ${LIBS} ${OBJ} ${OBJ_MANDA}
 	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${OBJ_MANDA} ${LIBS} ${FLAGS}
 
-${BUILD_DIR}%.o${SRC_DIR}%.c
+${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	mkdir -p build
 	${CC} -o $@ -I ${HEADERS} -c $< ${FLAGS}
 

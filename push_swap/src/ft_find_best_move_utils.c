@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 14:45:02 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 18:15:38 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/23 15:35:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	ft_find_best_move(t_stack *stack_a, t_stack *stack_b)
 	i = 0;
 	best_idx = 0;
 	best_moves = -1;
-	while (i < stack_a->size && (best_moves != 0 || best_moves != 1))
+	while (i < stack_a->size && (best_moves != 0 && best_moves != 1))
 	{
 		moves_count = ft_calculate_mv(stack_a, stack_b, stack_a->items[i], i);
 		if (moves_count < best_moves || best_moves == -1)

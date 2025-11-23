@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min_max_utils.c                                 :+:      :+:    :+:   */
+/*   ft_index_values_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 14:29:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/02 18:13:25 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/23 15:39:56 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	ft_get_next_value(t_stack *stack, int item)
 	int	value;
 
 	i = 0;
+	value = stack->items[0];
 	if (stack->size > 0)
 	{
-		value = stack->items[0];
 		while (i < stack->size)
 		{
 			if (value > item

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:14:08 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/03 21:32:46 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/23 23:15:04 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ int	main(int ac, char **av)
 
 	if (ac == 1)
 		exit(EXIT_FAILURE);
-	size = ft_count_total_args(ac - 1, av);
+	size = ft_count_total_args(ac - 1, av + 1);
+	if (!size)
+		ft_error_exit();
 	stack_items = ft_parse_args(ac, av, size);
 	if (ft_check_dup(stack_items, size))
 		ft_error_exit();

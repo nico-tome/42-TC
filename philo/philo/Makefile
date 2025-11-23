@@ -1,8 +1,8 @@
 NAME := philo
 NAME_BONUS := philo_bonus
 
-SRC_DIR := philo/
-SRC_BONUS_DIR := philo_bonus/
+SRC_DIR := src/
+SRC_BONUS_DIR := src_bonus/
 BUILD_DIR := build/
 BUILD_DIR_BONUS := build_bonus/
 
