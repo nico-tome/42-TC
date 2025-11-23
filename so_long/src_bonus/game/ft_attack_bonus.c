@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 14:51:53 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 17:24:26 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/23 12:04:02 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ void	ft_attack(t_mlx *mlx)
 
 	player_pos.x = mlx->game_i.player_co.x;
 	player_pos.y = mlx->game_i.player_co.y;
-	ft_printf("%d;%d\n", player_pos.x, player_pos.y);
 	if (mlx->game_i.player_dir == 1)
 		player_pos.x++;
 	else if (mlx->game_i.player_dir == -1)
@@ -44,7 +43,6 @@ void	ft_attack(t_mlx *mlx)
 		player_pos.y++;
 	else
 		player_pos.y--;
-	ft_printf("%d;%d\n", player_pos.x, player_pos.y);
 	is_enemy = ft_is_monster(mlx, player_pos);
 	if (is_enemy > -1)
 		mlx->game_i.enemys[is_enemy].dead = 1;
