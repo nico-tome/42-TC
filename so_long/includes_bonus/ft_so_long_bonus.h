@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/07 18:50:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 17:11:42 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/25 00:48:48 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 # define FT_SO_LONG_BONUS_H
 
 # include <unistd.h>
-# include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <math.h>
-# include <time.h>
 # include "../lib/MacroLibX/includes/mlx.h"
 # include "../lib/MacroLibX/includes/mlx_extended.h"
 # include "../lib/libft/libft.h"
@@ -82,7 +80,6 @@ typedef struct s_enemy
 	char	type;
 	int		dead;
 }				t_enemy;
-
 
 typedef struct s_game_infos
 {
@@ -162,8 +159,6 @@ typedef struct s_mlx
 	char			*file_path;
 	char			brush;
 	int				show_help;
-	char			key_down[255];
-	char			key_hold[255];
 }				t_mlx;
 
 t_map		ft_get_map(char *file_path);
@@ -184,8 +179,8 @@ void		ft_render_end_page(t_mlx *mlx);
 double		ft_get_tile_size(t_mlx *mlx);
 int			ft_check_textures(void);
 void		ft_init_camera_pos(t_mlx *mlx);
-t_texture   ft_animation_coin(t_mlx *mlx);
-t_texture   ft_animation_spikes(t_mlx *mlx);
+t_texture	ft_animation_coin(t_mlx *mlx);
+t_texture	ft_animation_spikes(t_mlx *mlx);
 void		ft_render_cursore(t_mlx *mlx);
 void		ft_render_enemys(t_mlx *mlx);
 void		ft_load_enemys(t_mlx *mlx, t_map map);

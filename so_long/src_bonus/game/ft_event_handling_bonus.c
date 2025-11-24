@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 00:08:48 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/22 16:43:01 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/25 00:42:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	key_hook(int key, void *param)
 	t_mlx	*mlx;
 
 	mlx = (t_mlx *)param;
-	mlx->key_down[key] = 1;
 	if (key == 41)
 		mlx_loop_end(mlx->mlx);
 	else if (mlx->page == GAME_PAGE && key != KEY_ENTER)
