@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/26 14:14:08 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/23 23:15:04 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/25 15:33:48 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	}
 	ft_init_stack(stack_a, stack_b, stack_items, size);
-	ft_sort(stack_a, stack_b);
+	if (!ft_is_sorted(stack_a))
+		ft_sort(stack_a, stack_b);
 	ft_free_stacks(stack_a, stack_b);
 }
