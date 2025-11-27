@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/23 00:15:41 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/27 21:12:15 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+
+typedef enum e_state
+{
+	SLEEPING,
+	EATING,
+	THINKING,
+}			t_state;
 
 typedef struct s_params
 {
@@ -27,6 +34,23 @@ typedef struct s_params
 	int	error;
 }				t_params;
 
-void	ft_check_args(t_params *params, int ac, char **av);
+typedef struct s_philosopher
+{
+	int		*fork_left;
+	int		*fork_right;
+	double	start_eating;
+	double	start_sleeping;
+	double	start_thinking;
+	t_state	state;
+}				t_philosopher;
 
- #endif
+typedef struct s_simulation
+{
+	pthread_t		*threads;
+	t_philosopher	*philosophers;
+}				t_simulation;
+
+void	ft_check_args(t_params *params, int ac, char **av);
+void	ft_init_philos(t_params *params);
+
+#endif

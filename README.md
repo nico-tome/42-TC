@@ -35,6 +35,6 @@ Sort a stack of numbers using a set of actions and two stacks.
 
 Setup a connection between two terminals using UNIX signals.
 
-### 🐬 **So Long** (?/100)
+### 🐬 **So Long** (125/100) ✅⭐⭐⭐
 
 Create a 2D game with the MacroLibX. And thanks for all the fish!

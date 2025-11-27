@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/27 14:32:20 by ntome            ###   ########.fr       */
+/*   Created: 2025/11/27 14:29:37 by ntome             #+#    #+#             */
+/*   Updated: 2025/11/27 21:11:50 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
 
-int	main(int ac, char **av)
+void	ft_init_philos(t_params *params)
 {
-	t_params	params;
-
-	ft_check_args(&params, ac, av);
-	if (params.error)
-	{
-		write(2, "Args error !\n", 13);
-		exit(EXIT_FAILURE);
-	}
-	ft_init_philos(&params);
+	(void)params;
 }

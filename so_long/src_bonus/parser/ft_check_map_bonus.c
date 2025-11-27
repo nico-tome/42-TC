@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/11 22:41:26 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/25 15:55:13 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/27 13:08:52 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	ft_check_map(t_map map)
 		error_code = ft_check_pathfinding(map);
 	free(map_infos.row_size);
 	free(map_infos.row_tiles);
-	error_code = ft_check_monster_spawn(map);
+	if (ft_is_succes_code(error_code))
+		error_code = ft_check_monster_spawn(map);
 	return (error_code);
 }
