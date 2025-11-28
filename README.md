@@ -27,7 +27,7 @@ Setup a virtual machine.
 
 ## 2️⃣ | RING 2
 
-### 🧮 **Push Swap**: (?/100)
+### 🧮 **Push Swap**: (125/100) ✅⭐
 
 Sort a stack of numbers using a set of actions and two stacks.
 

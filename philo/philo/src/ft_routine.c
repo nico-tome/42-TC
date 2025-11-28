@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_routine.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:19 by ntome            ###   ########.fr       */
+/*   Created: 2025/11/28 15:52:30 by ntome             #+#    #+#             */
+/*   Updated: 2025/11/28 23:41:20 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
 
-int	main(int ac, char **av)
+void	*ft_routine(void *param)
 {
-	t_params		params;
-	t_simulation	simulation;
+	t_philosopher *philo;
 
-	if (!ft_check_args(&params, ac, av))
+	philo = param;
+	ft_printf("start routine\n");
+	while (1)
 	{
-		write(2, "Args error !\n", 13);
-		exit(EXIT_FAILURE);
+		ft_take_fork(philo);
+		ft_eating(philo);
+		ft_sleeping(philo);
+		ft_write_log(philo, THINKING_MSG);
 	}
-	ft_init_philos(&simulation, params);
+	return (param);
 }

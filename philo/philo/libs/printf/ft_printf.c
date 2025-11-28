@@ -1,26 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:19 by ntome            ###   ########.fr       */
+/*   Created: 2025/10/20 15:53:37 by ntome             #+#    #+#             */
+/*   Updated: 2025/10/21 14:27:34 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_philo.h"
+#include "ft_printf.h"
 
-int	main(int ac, char **av)
+int	ft_printf(const char *str, ...)
 {
-	t_params		params;
-	t_simulation	simulation;
+	int		i;
+	int		len;
+	va_list	params;
 
-	if (!ft_check_args(&params, ac, av))
+	i = 0;
+	len = 0;
+	va_start(params, str);
+	while (str[i])
 	{
-		write(2, "Args error !\n", 13);
-		exit(EXIT_FAILURE);
+		if (str[i] == '%')
+		{
+			i++;
+			len += ft_print_flag(str[i], params);
+		}
+		else
+		{
+			len++;
+			ft_write_char(str[i]);
+		}
+		i++;
 	}
-	ft_init_philos(&simulation, params);
+	va_end(params);
+	return (len);
 }

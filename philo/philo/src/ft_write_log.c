@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_write_log.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:19 by ntome            ###   ########.fr       */
+/*   Created: 2025/11/28 23:28:26 by ntome             #+#    #+#             */
+/*   Updated: 2025/11/28 23:35:22 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
 
-int	main(int ac, char **av)
+void	ft_write_log(t_philosopher *philo, char *msg)
 {
-	t_params		params;
-	t_simulation	simulation;
+	int	time;
 
-	if (!ft_check_args(&params, ac, av))
-	{
-		write(2, "Args error !\n", 13);
-		exit(EXIT_FAILURE);
-	}
-	ft_init_philos(&simulation, params);
+	time = ft_get_time();
+	pthread_mutex_lock(philo->writing);
+	ft_printf("%d %d %s", time, philo->idx, msg);
+	pthread_mutex_unlock(philo->writing);
 }

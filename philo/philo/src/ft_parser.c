@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:22:30 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/27 21:11:10 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/28 13:27:54 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,13 @@ int	ft_atoi(const char *nptr)
 	return (sign * result);
 }
 
-void	ft_check_args(t_params *params, int ac, char **av)
+int	ft_check_args(t_params *params, int ac, char **av)
 {
 	params->philo_num = 0;
 	params->time_to_die = 0;
 	params->time_to_eat = 0;
 	params->time_to_sleep = 0;
 	params->need_to_eat = 0;
-	params->error = 0;
 	if (ac >= 2)
 		params->philo_num = ft_atoi(av[1]);
 	if (ac >= 3)
@@ -58,5 +57,6 @@ void	ft_check_args(t_params *params, int ac, char **av)
 		params->need_to_eat = ft_atoi(av[5]);
 	if (params->philo_num < 1 || params->time_to_eat <= 0
 		|| params->time_to_die <= 0 || params->time_to_sleep <= 0)
-		params->error = 1;
+		return (0);
+	return (1);
 }
