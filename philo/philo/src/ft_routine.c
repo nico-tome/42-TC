@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 15:52:30 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 23:41:20 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 11:31:49 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,13 @@
 
 void	*ft_routine(void *param)
 {
-	t_philosopher *philo;
+	t_philosopher	*philo;
 
 	philo = param;
-	ft_printf("start routine\n");
-	while (1)
+	ft_printf("start routine, id %d\n", philo->idx);
+	if (philo->idx % 2 == 0)
+		usleep(philo->params->time_to_eat);
+	while (philo->eat_count < 10)
 	{
 		ft_take_fork(philo);
 		ft_eating(philo);

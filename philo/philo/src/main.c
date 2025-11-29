@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 15:53:19 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 11:28:16 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	main(int ac, char **av)
 		write(2, "Args error !\n", 13);
 		exit(EXIT_FAILURE);
 	}
+	simulation.running = 1;
 	ft_init_philos(&simulation, params);
 }

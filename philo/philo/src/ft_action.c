@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:04:14 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 23:32:06 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 10:26:31 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
-#include <pthread.h>
 
 void	ft_take_fork(t_philosopher *philo)
 {

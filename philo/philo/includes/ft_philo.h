@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/28 23:27:39 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 11:24:03 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <sys/time.h>
+# include <stdio.h>
 # include "../libs/printf/ft_printf.h"
 
 # define EATING_MSG "is eating\n"
@@ -53,6 +54,7 @@ typedef struct s_simulation
 	t_philosopher	*philosophers;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	writing;
+	int				running;
 }				t_simulation;
 
 int		ft_check_args(t_params *params, int ac, char **av);
