@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 11:24:03 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 18:09:05 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,12 @@
 
 typedef struct s_params
 {
-	int	philo_num;
-	int	time_to_die;
-	int	time_to_eat;
-	int	time_to_sleep;
-	int	need_to_eat;
+	int			philo_num;
+	int			time_to_die;
+	int			time_to_eat;
+	int			time_to_sleep;
+	int			need_to_eat;
+	long long	start;
 }				t_params;
 
 typedef struct s_philosopher
@@ -41,10 +42,11 @@ typedef struct s_philosopher
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
 	int				eat_count;
-	int				last_eat;
+	long long		last_eat;
 	t_params		*params;
 	int				idx;
 	pthread_mutex_t	*writing;
+	pthread_mutex_t	*check;
 }				t_philosopher;
 
 typedef struct s_simulation
@@ -55,19 +57,20 @@ typedef struct s_simulation
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	writing;
 	int				running;
+	pthread_mutex_t	check_run;
 }				t_simulation;
 
-int		ft_check_args(t_params *params, int ac, char **av);
-void	ft_init_philos(t_simulation *simulation, t_params params);
-void	ft_free_mutexs(t_simulation *simulation, int mutex_count);
-void	ft_free_threads(t_simulation *simulation, int thread_count);
-void	ft_free_simulation(t_simulation *simulation);
-void	*ft_routine(void *param);
-int		ft_get_time(void);
-void	ft_mssleep(t_philosopher *philo, int sleep_time);
-void	ft_sleeping(t_philosopher *philo);
-void	ft_eating(t_philosopher *philo);
-void	ft_take_fork(t_philosopher *philo);
-void	ft_write_log(t_philosopher *philo, char *msg);
+int			ft_check_args(t_params *params, int ac, char **av);
+void		ft_init_philos(t_simulation *simulation, t_params params);
+void		ft_free_mutexs(t_simulation *simulation, int mutex_count);
+void		ft_free_threads(t_simulation *simulation, int thread_count);
+void		ft_free_simulation(t_simulation *simulation);
+void		*ft_routine(void *param);
+long long	ft_get_time(void);
+void		ft_mssleep(t_philosopher *philo, int sleep_time);
+void		ft_sleeping(t_philosopher *philo);
+void		ft_eating(t_philosopher *philo);
+void		ft_take_fork(t_philosopher *philo);
+void		ft_write_log(t_philosopher *philo, char *msg);
 
 #endif

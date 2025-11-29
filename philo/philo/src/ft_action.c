@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:04:14 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 10:26:31 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 17:48:16 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,13 @@ void	ft_eating(t_philosopher *philo)
 {
 	int	time;
 
-	time = ft_get_time();
+	time = ft_get_time() - philo->params->start;
 	philo->last_eat = time;
 	ft_write_log(philo, EATING_MSG);
 	ft_mssleep(philo, philo->params->time_to_eat);
 	philo->eat_count++;
 	pthread_mutex_unlock(philo->fork_right);
+	ft_write_log(philo, "release fork\n");
 	pthread_mutex_unlock(philo->fork_left);
 }
 

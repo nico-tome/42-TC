@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 23:28:26 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 10:41:10 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/29 18:07:00 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 void	ft_write_log(t_philosopher *philo, char *msg)
 {
-	int	time;
+	long long	time;
 
-	time = ft_get_time();
+	time = ft_get_time() - philo->params->start;
 	pthread_mutex_lock(philo->writing);
-	printf("%d %d %s", time, philo->idx, msg);
+	printf("%lld %d %s", time, philo->idx, msg);
 	pthread_mutex_unlock(philo->writing);
 }
