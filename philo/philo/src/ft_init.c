@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:29:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 17:41:00 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/30 17:02:06 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_init_value(t_simulation *simulation, int idx)
 		simulation->philosophers[idx].fork_right = NULL;
 	else
 		simulation->philosophers[idx].fork_right = &simulation->forks[idx2];
-	simulation->philosophers[idx].writing = &simulation->writing;
+	simulation->philosophers[idx].mutexs = &simulation->mutexs;
 	simulation->philosophers[idx].params = &simulation->params;
 }
 
@@ -76,15 +76,11 @@ void	ft_init_philos(t_simulation *simulation, t_params params)
 	simulation->threads = malloc(sizeof(pthread_t) * params.philo_num);
 	if (!simulation->philosophers || !simulation->forks || !simulation->threads)
 		ft_free_simulation(simulation);
-	if (!ft_init_forks(simulation)
-		|| pthread_mutex_init(&simulation->writing, NULL) == -1)
+	if (!ft_init_forks(simulation))
 		ft_free_simulation(simulation);
 	i = 0;
 	while (i < params.philo_num)
-	{
-		ft_init_value(simulation, i);
-		i++;
-	}
+		ft_init_value(simulation, i++);
 	if (!ft_init_threads(simulation))
 	{
 		ft_free_mutexs(simulation, params.philo_num);

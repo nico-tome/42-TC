@@ -23,19 +23,14 @@ OBJ_BONUS := $(patsubst $(SRC_BONUS_DIR)%.c, $(BUILD_DIR_BONUS)%.o, $(SRCS_BONUS
 HEADERS := includes/
 HEADERS_BONUS := includes_bonus/
 
-LIBS := libs/printf/libftprintf.a
-
 CC := cc
 
 FLAGS := -g -Wall -Werror -Wextra
 
 all: ${NAME}
 
-${LIBS}:
-	@make -C libs/printf
-
-$(NAME): ${LIBS} ${OBJ}
-	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${LIBS} ${FLAGS}
+$(NAME): ${OBJ}
+	${CC} -o ${NAME} -I ${HEADERS} ${OBJ} ${FLAGS}
 
 ${BUILD_DIR}%.o: ${SRC_DIR}%.c
 	@mkdir -p $(dir $@)
@@ -45,17 +40,15 @@ ${BUILD_DIR_BONUS}%.o: ${SRC_BONUS_DIR}%.c
 	@mkdir -p $(dir $@)
 	${CC} -o $@ -I ${HEADERS_BONUS} -c $< ${FLAGS}
 
-bonus: ${LIBS} ${OBJ_BONUS}
-	${CC} -o ${NAME_BONUS} -I ${HEADERS_BONUS} ${OBJ_BONUS} ${LIBS} ${FLAGS}
+bonus: ${OBJ_BONUS}
+	${CC} -o ${NAME_BONUS} -I ${HEADERS_BONUS} ${OBJ_BONUS} ${FLAGS}
 
 clean:
 	rm -f ${OBJ}
 	rm -f ${OBJ_BONUS}
-	@make -C libs/printf clean
 
 fclean: clean
 	rm -f ${NAME}
-	rm -f ${LIBS}
 	rm -f ${NAME_BONUS}
 
 re: fclean all

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 18:09:05 by ntome            ###   ########.fr       */
+/*   Updated: 2025/11/30 17:07:09 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@
 # include <stdlib.h>
 # include <sys/time.h>
 # include <stdio.h>
-# include "../libs/printf/ft_printf.h"
 
 # define EATING_MSG "is eating\n"
 # define THINKING_MSG "is thinking\n"
@@ -37,27 +36,33 @@ typedef struct s_params
 	long long	start;
 }				t_params;
 
+typedef struct	s_mutexs
+{
+	pthread_mutex_t	writing;
+	pthread_mutex_t	check;
+	pthread_mutex_t	running;
+}				t_mutexs;
+
 typedef struct s_philosopher
 {
 	pthread_mutex_t	*fork_left;
 	pthread_mutex_t	*fork_right;
-	int				eat_count;
 	long long		last_eat;
 	t_params		*params;
+	t_mutexs		*mutexs;
+	int				*running;
+	int				eat_count;
 	int				idx;
-	pthread_mutex_t	*writing;
-	pthread_mutex_t	*check;
 }				t_philosopher;
 
 typedef struct s_simulation
 {
-	t_params		params;
+	pthread_mutex_t	*forks;
 	pthread_t		*threads;
 	t_philosopher	*philosophers;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	writing;
+	t_mutexs		mutexs;
+	t_params		params;
 	int				running;
-	pthread_mutex_t	check_run;
 }				t_simulation;
 
 int			ft_check_args(t_params *params, int ac, char **av);
@@ -66,11 +71,11 @@ void		ft_free_mutexs(t_simulation *simulation, int mutex_count);
 void		ft_free_threads(t_simulation *simulation, int thread_count);
 void		ft_free_simulation(t_simulation *simulation);
 void		*ft_routine(void *param);
-long long	ft_get_time(void);
 void		ft_mssleep(t_philosopher *philo, int sleep_time);
 void		ft_sleeping(t_philosopher *philo);
 void		ft_eating(t_philosopher *philo);
 void		ft_take_fork(t_philosopher *philo);
 void		ft_write_log(t_philosopher *philo, char *msg);
+long long	ft_get_time(void);
 
 #endif
