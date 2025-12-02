@@ -6,19 +6,26 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/30 15:32:15 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/01 23:29:38 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
+#include <pthread.h>
 
 int	ft_check_death(t_simulation *simulation, int i)
 {
 	long long	time;
 
 	time = ft_get_time();
-	if (time - simulation->philosophers[i].last_eat > simulation->params.need_to_eat)
+	pthread_mutex_lock(&simulation->mutexs.check);
+	if (time - simulation->philosophers[i].last_eat
+		> simulation->params.time_to_die)
+	{
+		pthread_mutex_unlock(&simulation->mutexs.check);
 		return (1);
+	}
+	pthread_mutex_unlock(&simulation->mutexs.check);
 	return (0);
 }
 
@@ -27,21 +34,26 @@ int	ft_check_fills(t_simulation *simulation, int i)
 	long long	time;
 
 	time = ft_get_time();
-	if (time - simulation->philosophers[i].eat_count > simulation->params.need_to_eat)
+	pthread_mutex_lock(&simulation->mutexs.check);
+	if (time - simulation->philosophers[i].eat_count
+		> simulation->params.need_to_eat)
+	{
+		pthread_mutex_unlock(&simulation->mutexs.check);
 		return (1);
+	}
+	pthread_mutex_unlock(&simulation->mutexs.check);
 	return (0);
 }
 
-//TODO mutex running
 void	ft_monitoring(t_simulation *simulation)
 {
 	int	i;
-	int	count;
+	//int	count;
 
 	while (1)
 	{
 		i = 0;
-		count = 0;
+		//count = 0;
 		while (i < simulation->params.philo_num)
 		{
 			if (ft_check_death(simulation, i))
@@ -50,15 +62,15 @@ void	ft_monitoring(t_simulation *simulation)
 				printf("%d dead\n", i);
 				exit(EXIT_SUCCESS);
 			}
-			count += ft_check_fills(simulation, i);
+			//count += ft_check_fills(simulation, i);
 			i++;
 		}
-		if (count ==  simulation->params.philo_num)
-		{
-			simulation->running = 0;
-			printf("bad \n");
-			exit(EXIT_SUCCESS);
-		}
+		//if (count == simulation->params.philo_num && simulation->params.need_to_eat > 0)
+		//{
+		//	simulation->running = 0;
+		//	printf("bad \n");
+		//	exit(EXIT_SUCCESS);
+		//}
 	}
 }
 

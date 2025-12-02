@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:56:04 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 17:50:37 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/01 23:33:43 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
-#include <pthread.h>
 
 long long	ft_get_time(void)
 {
@@ -23,14 +22,14 @@ long long	ft_get_time(void)
 
 void	ft_mssleep(t_philosopher *philo, int sleep_time)
 {
-	int	sleep_total;
+	long long	start;
 
-	(void)philo;
-	sleep_total = 0;
-	while (sleep_total < sleep_time)
+	start = ft_get_time();
+	while (ft_get_time() - start < sleep_time)
 	{
+		printf("time: %lld - %lld = %lld\n", ft_get_time(), start, ft_get_time() - start);
+		if (ft_get_time() - start >= philo->params->time_to_die)
+			break;
 		usleep(10);
-		sleep_total += 10;
-		//TODO mutex check running
 	}
 }
