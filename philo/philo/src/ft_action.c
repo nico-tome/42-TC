@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:04:14 by ntome             #+#    #+#             */
-/*   Updated: 2025/11/29 17:48:16 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/03 17:11:33 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,20 @@
 
 void	ft_take_fork(t_philosopher *philo)
 {
-	pthread_mutex_lock(philo->fork_right);
-	ft_write_log(philo, TAKING_FORK_MSG);
-	pthread_mutex_lock(philo->fork_left);
-	ft_write_log(philo, TAKING_FORK_MSG);
+	if (philo->idx % 2 == 0)
+	{
+		pthread_mutex_lock(philo->fork_right);
+		ft_write_log(philo, TAKING_FORK_MSG);
+		pthread_mutex_lock(philo->fork_left);
+		ft_write_log(philo, TAKING_FORK_MSG);
+	}
+	else
+	{
+		pthread_mutex_lock(philo->fork_left);
+		ft_write_log(philo, TAKING_FORK_MSG);
+		pthread_mutex_lock(philo->fork_right);
+		ft_write_log(philo, TAKING_FORK_MSG);
+	}
 }
 
 void	ft_eating(t_philosopher *philo)
@@ -25,13 +35,18 @@ void	ft_eating(t_philosopher *philo)
 	int	time;
 
 	time = ft_get_time() - philo->params->start;
+	pthread_mutex_lock(&philo->mutexs->check);
 	philo->last_eat = time;
+	pthread_mutex_unlock(&philo->mutexs->check);
 	ft_write_log(philo, EATING_MSG);
 	ft_mssleep(philo, philo->params->time_to_eat);
+	pthread_mutex_lock(&philo->mutexs->check);
 	philo->eat_count++;
+	pthread_mutex_unlock(&philo->mutexs->check);
 	pthread_mutex_unlock(philo->fork_right);
 	ft_write_log(philo, "release fork\n");
 	pthread_mutex_unlock(philo->fork_left);
+	ft_write_log(philo, "release fork\n");
 }
 
 void	ft_sleeping(t_philosopher *philo)

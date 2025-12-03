@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:29:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/01 23:30:28 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/03 17:01:07 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	ft_init_value(t_simulation *simulation, int idx)
 		simulation->philosophers[idx].fork_right = &simulation->forks[idx2];
 	simulation->philosophers[idx].mutexs = &simulation->mutexs;
 	simulation->philosophers[idx].params = &simulation->params;
+	simulation->philosophers[idx].running = &simulation->running;
 }
 
 int	ft_init_forks(t_simulation *simulation)

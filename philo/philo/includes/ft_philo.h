@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/01 23:08:14 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/03 17:11:06 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ typedef struct s_params
 	long long	start;
 }				t_params;
 
-typedef struct	s_mutexs
+typedef struct s_mutexs
 {
 	pthread_mutex_t	writing;
 	pthread_mutex_t	check;

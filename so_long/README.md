@@ -38,3 +38,5 @@ To create this priject I use the [MacroLibX](https://github.com/seekrs/MacroLibX
 The logic of my code is simple:
 
 I start by parsing the map given in argument, check if it's a .ber file, check if I can open it. Then i use a [flood fill algorithme](https://en.wikipedia.org/wiki/Flood_fill) to check if I can reach every collectiles and the exit tile. I also check if there is only one spawn and one exit, and also if the map is rectangular and i it's surrounded by walls.
+
+After that I check that all my textures are in the correct folder and with the open permission. Then, I setup the mlx window by following the [doc tutorial](https://macrolibx.kbz8.me/guides/initialization/).

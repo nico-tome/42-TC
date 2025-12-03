@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:56:04 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/01 23:33:43 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/03 17:32:41 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,10 @@ void	ft_mssleep(t_philosopher *philo, int sleep_time)
 	long long	start;
 
 	start = ft_get_time();
-	while (ft_get_time() - start < sleep_time)
+	while (ft_get_time() - start < (long long)sleep_time)
 	{
-		printf("time: %lld - %lld = %lld\n", ft_get_time(), start, ft_get_time() - start);
 		if (ft_get_time() - start >= philo->params->time_to_die)
-			break;
+			break ;
 		usleep(10);
 	}
 }
