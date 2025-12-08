@@ -1,7 +1,7 @@
-NAME := philo
+NAME := philo_bonus
 
-SRC_DIR := src/
-BUILD_DIR := build/
+SRC_DIR := src_bonus/
+BUILD_DIR := build_bonus/
 
 SRCS := $(SRC_DIR)ft_parser.c \
 		$(SRC_DIR)ft_free.c \
@@ -14,7 +14,7 @@ SRCS := $(SRC_DIR)ft_parser.c \
 
 OBJ := $(patsubst $(SRC_DIR)%.c, $(BUILD_DIR)%.o, $(SRCS))
 
-HEADERS := includes/
+HEADERS := includes_bonus/
 
 CC := cc
 

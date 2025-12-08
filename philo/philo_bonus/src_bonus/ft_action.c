@@ -6,28 +6,18 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:04:14 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 15:48:06 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/08 16:15:55 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_philo.h"
+#include "../includes_bonus/ft_philo_bonus.h"
 
 void	ft_take_fork(t_philosopher *philo)
 {
-	if (philo->idx % 2 == 0)
-	{
-		pthread_mutex_lock(philo->fork_right);
-		ft_write_log(philo, TAKING_FORK_MSG);
-		pthread_mutex_lock(philo->fork_left);
-		ft_write_log(philo, TAKING_FORK_MSG);
-	}
-	else
-	{
-		pthread_mutex_lock(philo->fork_left);
-		ft_write_log(philo, TAKING_FORK_MSG);
-		pthread_mutex_lock(philo->fork_right);
-		ft_write_log(philo, TAKING_FORK_MSG);
-	}
+	sem_wait(philo->semaphores->forks);
+	ft_write_log(philo, TAKING_FORK_MSG);
+	sem_wait(philo->semaphores->forks);
+	ft_write_log(philo, TAKING_FORK_MSG);
 }
 
 void	ft_eating(t_philosopher *philo)
@@ -35,16 +25,16 @@ void	ft_eating(t_philosopher *philo)
 	int	time;
 
 	time = ft_get_time() - philo->params->start;
-	pthread_mutex_lock(&philo->mutexs->check);
+	sem_wait(philo->semaphores->check);
 	philo->last_eat = time;
-	pthread_mutex_unlock(&philo->mutexs->check);
+	sem_post(philo->semaphores->check);
 	ft_write_log(philo, EATING_MSG);
 	ft_mssleep(philo, philo->params->time_to_eat);
-	pthread_mutex_lock(&philo->mutexs->check);
+	sem_wait(philo->semaphores->check);
 	philo->eat_count++;
-	pthread_mutex_unlock(&philo->mutexs->check);
-	pthread_mutex_unlock(philo->fork_right);
-	pthread_mutex_unlock(philo->fork_left);
+	sem_post(philo->semaphores->check);
+	sem_post(philo->semaphores->forks);
+	sem_post(philo->semaphores->forks);
 }
 
 void	ft_sleeping(t_philosopher *philo)

@@ -6,19 +6,19 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 15:52:30 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 11:50:30 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/08 15:53:24 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_philo.h"
+#include "../includes_bonus/ft_philo_bonus.h"
 
 int	ft_check_running(t_philosopher *philo)
 {
 	int	running;
 
-	pthread_mutex_lock(&philo->mutexs->check);
+	sem_wait(philo->semaphores->check);
 	running = *philo->running;
-	pthread_mutex_unlock(&philo->mutexs->check);
+	sem_post(philo->semaphores->check);
 	return (running);
 }
 

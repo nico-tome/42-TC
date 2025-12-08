@@ -1,30 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_philo.h                                         :+:      :+:    :+:   */
+/*   ft_philo_bonus.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 15:48:38 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/08 16:09:42 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PHILO_H
-# define FT_PHILO_H
+#ifndef FT_PHILO_BONUS_H
+# define FT_PHILO_BONUS_H
 
 # include <pthread.h>
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <sys/time.h>
 # include <stdio.h>
+# include <semaphore.h>
 
 # define EATING_MSG      "\033[0;92mis eating\n\033[0m"
 # define THINKING_MSG    "\033[0;93mis thinking\n\033[0m"
 # define SLEEPING_MSG    "\033[0;94mis sleeping\n\033[0m"
 # define TAKING_FORK_MSG "\033[0;93mhas taken a fork\n\033[0m"
 # define DIED_MSG        "\033[0;91mdied\n\033[0m"
+# define FORK_SEM "/forks_sem"
+# define WRITE_SEM "/write_sem"
+# define CHECK_SEM "/check_sem"
+# define RUN_SEM "/run_sem"
 
 typedef struct s_params
 {
@@ -36,20 +42,19 @@ typedef struct s_params
 	long long	start;
 }				t_params;
 
-typedef struct s_mutexs
+typedef struct s_semaphores
 {
-	pthread_mutex_t	writing;
-	pthread_mutex_t	check;
-	pthread_mutex_t	running;
-}				t_mutexs;
+	sem_t	*writing;
+	sem_t	*check;
+	sem_t	*running;
+	sem_t	*forks;
+}				t_semaphores;
 
 typedef struct s_philosopher
 {
-	pthread_mutex_t	*fork_left;
-	pthread_mutex_t	*fork_right;
 	long long		last_eat;
 	t_params		*params;
-	t_mutexs		*mutexs;
+	t_semaphores	*semaphores;
 	int				*running;
 	int				eat_count;
 	int				idx;
@@ -57,17 +62,16 @@ typedef struct s_philosopher
 
 typedef struct s_simulation
 {
-	pthread_mutex_t	*forks;
 	pthread_t		*threads;
 	t_philosopher	*philosophers;
-	t_mutexs		mutexs;
+	t_semaphores	semaphores;
 	t_params		params;
 	int				running;
 }				t_simulation;
 
 int			ft_check_args(t_params *params, int ac, char **av);
 void		ft_init_philos(t_simulation *simulation, t_params params);
-void		ft_free_mutexs(t_simulation *simulation, int mutex_count);
+void		ft_free_semaphores(t_simulation *simulation);
 void		ft_free_threads(t_simulation *simulation, int thread_count);
 void		ft_free_simulation(t_simulation *simulation);
 void		*ft_routine(void *param);
