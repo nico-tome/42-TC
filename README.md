@@ -45,6 +45,16 @@ Create a 2D game with the MacroLibX. And thanks for all the fish!
 
 Learn using thread in C with nutex and race condition (+ semaphores for the bonus part).
 
-### 🐚 **Minishell**: (?/100)
+### 🐚 **[Minishell](https://github.com/nico-tome/Minishell)**: (?/100)
 
 Create a shell... GLHF
+
+## 4️⃣ | RING 4
+
+### 💮 **[CPP](cpp)**:
+
+#### **[CPP00](cpp/cpp00)**: (?/100)
+
+Namespaces, classes, member functions, stdio streams,
+initialization lists, static, const, and some other basic
+stuf.
