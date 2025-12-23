@@ -94,6 +94,7 @@ When possible, I use **combined rotations**:
 This significantly reduces the number of operations.
 
 I will do those stpes until 3 elements remain in stack A.
+
 ---
 
 ### Step 5️⃣ Push back to stack A
