@@ -40,3 +40,5 @@ The logic of my code is simple:
 I start by parsing the map given in argument, check if it's a .ber file, check if I can open it. Then i use a [flood fill algorithme](https://en.wikipedia.org/wiki/Flood_fill) to check if I can reach every collectiles and the exit tile. I also check if there is only one spawn and one exit, and also if the map is rectangular and i it's surrounded by walls.
 
 After that I check that all my textures are in the correct folder and with the open permission. Then, I setup the mlx window by following the [doc tutorial](https://macrolibx.kbz8.me/guides/initialization/).
+
+The I setup my main loop: change player position -> check collision -> adapt -> draw on the screen. When I draw the map, I check for scrolling (if my position is out of the screen, then I move my camera), I also check the frame  count to know wich frame of a animation I need to use for my enemies and spike sprites (in the bonus) and I check how many coins I have collected to know if I draw the close or the open exit. After all the logic implemented, the project is like a big piece of lego, we just need to link the tools together to have a nice and beatifull game.
