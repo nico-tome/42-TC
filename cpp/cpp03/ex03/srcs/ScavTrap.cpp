@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/26 00:26:50 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/26 01:11:17 by ntome            ###   ########.fr       */
+/*   Updated: 2025/12/29 13:16:31 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void    ScavTrap::attack(const std::string &target)
 {
     if (this->energyPoints > 0 && this->hitPoints > 0) {
         this->energyPoints--;
-        std::cout << CYAN << "🪫 ScavTrap " << this->name << " attacks " << target
+        std::cout << CYAN << "💥 ScavTrap " << this->name << " attacks " << target
                   << ", causing " << this->attackDamage << " points of damage!" << RESET << std::endl;
     } else {
         std::cout << RED << "🪫 ScavTrap " << this->name << " has no energy or hit points left to attack!" << RESET << std::endl;
