@@ -192,23 +192,3 @@ else if (format[i] == 's')
 The **order of `va_arg` calls must exactly match the format string**.
 
 ---
-
-## ⚠️ Common pitfalls
-
-* Forgetting to call `va_end`
-* Using the wrong type with `va_arg`
-* Not counting printed characters correctly
-* Mixing signed / unsigned conversions
-* Not handling `NULL` strings properly
-
----
-
-## 🎯 What this project teaches
-
-* Parsing strings manually
-* Working with variable arguments
-* Writing reusable functions
-* Understanding how `printf` really works
-* Managing memory and output in C
-
----
