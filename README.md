@@ -58,3 +58,26 @@ Create a shell... GLHF
 Namespaces, classes, member functions, stdio streams,
 initialization lists, static, const, and some other basic
 stuf.
+
+#### **[CPP01](cpp/cpp01)**: (?/100)
+
+Memory allocation, pointers to members,
+references and switch statements.
+
+#### **[CPP02](cpp/cpp02)**: (?/100)
+
+Ad-hoc polymorphism, operator overloading
+and the Orthodox Canonical class form.
+
+#### **[CPP03](cpp/cpp03)**: (?/100)
+
+Inheritance.
+
+#### **[CPP04](cpp/cpp04)**: (?/100)
+
+Subtype Polymorphism, Abstract Classes, and
+Interfaces.
+
+### 🧊 **[Cube3D](cube)**: (?/100)
+
+My first RayCaster with ~miniLibX~ MacroLibX.
