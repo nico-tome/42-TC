@@ -78,6 +78,6 @@ Inheritance.
 Subtype Polymorphism, Abstract Classes, and
 Interfaces.
 
-### 🧊 **[Cube3D](cube)**: (?/100)
+### :hurtrealbad: **[Cube3D](cube)**: (?/100)
 
 My first RayCaster with ~miniLibX~ MacroLibX.
