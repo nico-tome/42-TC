@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:29:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/03 17:01:07 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/09 22:18:42 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ void	ft_init_value(t_simulation *simulation, int idx)
 	idx2 = (idx + 1) % simulation->params.philo_num;
 	simulation->philosophers[idx].idx = idx;
 	simulation->philosophers[idx].eat_count = 0;
-	simulation->philosophers[idx].last_eat = ft_get_time();
+	simulation->philosophers[idx].last_eat = 0;
 	simulation->philosophers[idx].fork_left = &simulation->forks[idx];
 	if (simulation->params.philo_num == 1)
-		simulation->philosophers[idx].fork_right = NULL;
+		simulation->philosophers[idx].fork_right = &simulation->forks[idx];
 	else
 		simulation->philosophers[idx].fork_right = &simulation->forks[idx2];
 	simulation->philosophers[idx].mutexs = &simulation->mutexs;

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 15:57:09 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/09 21:56:21 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,12 @@ int	ft_check_death(t_simulation *simulation, int i)
 {
 	long long	time;
 
-	time = ft_get_time() - simulation->params.start;
+	time = ft_get_time();
 	sem_wait(simulation->semaphores.check);
 	if (time - simulation->philosophers[i].last_eat
 		> simulation->params.time_to_die)
 	{
+		sem_post(simulation->semaphores.forks);
 		sem_post(simulation->semaphores.check);
 		return (1);
 	}
