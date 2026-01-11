@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:04:14 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/09 21:56:54 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 15:12:44 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 
 void	ft_take_fork(t_philosopher *philo)
 {
+	if (philo->params->philo_num == 1)
+	{
+		ft_write_log(philo, TAKING_FORK_MSG);
+		ft_mssleep(philo, philo->params->time_to_die);
+		return ;
+	}
 	sem_wait(philo->semaphores->forks);
 	ft_write_log(philo, TAKING_FORK_MSG);
 	sem_wait(philo->semaphores->forks);
@@ -24,6 +30,8 @@ void	ft_eating(t_philosopher *philo)
 {
 	int	time;
 
+	if (philo->params->philo_num == 1)
+		return ;
 	time = ft_get_time() - philo->params->start;
 	sem_wait(philo->semaphores->check);
 	philo->last_eat = time;

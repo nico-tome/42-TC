@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/09 22:19:07 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 15:07:58 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@ int	ft_check_death(t_simulation *simulation, int i)
 	if (time - simulation->philosophers[i].last_eat
 		> simulation->params.time_to_die)
 	{
-		if (simulation->params.philo_num == 1)
-			pthread_mutex_unlock(simulation->philosophers[0].fork_left);
 		pthread_mutex_unlock(&simulation->mutexs.check);
 		return (1);
 	}
@@ -75,6 +73,7 @@ void	ft_monitoring(t_simulation *simulation)
 				ft_exit(simulation);
 			i++;
 		}
+		usleep(10);
 	}
 }
 
@@ -90,5 +89,6 @@ int	main(int ac, char **av)
 	}
 	simulation.running = 1;
 	ft_init_philos(&simulation, params);
+	usleep(10);
 	ft_monitoring(&simulation);
 }

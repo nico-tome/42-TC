@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:29:37 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 16:13:23 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 15:13:16 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_init_value(t_simulation *simulation, int idx)
 {
 	simulation->philosophers[idx].idx = idx;
 	simulation->philosophers[idx].eat_count = 0;
-	simulation->philosophers[idx].last_eat = ft_get_time();
+	simulation->philosophers[idx].last_eat = 0;
 	simulation->philosophers[idx].semaphores = &simulation->semaphores;
 	simulation->philosophers[idx].params = &simulation->params;
 	simulation->philosophers[idx].running = &simulation->running;

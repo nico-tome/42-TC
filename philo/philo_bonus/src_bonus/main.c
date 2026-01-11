@@ -6,12 +6,13 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/09 21:56:21 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 15:12:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/ft_philo_bonus.h"
 #include <semaphore.h>
+#include <unistd.h>
 
 void	ft_exit(t_simulation *simulation)
 {
@@ -27,12 +28,11 @@ int	ft_check_death(t_simulation *simulation, int i)
 {
 	long long	time;
 
-	time = ft_get_time();
+	time = ft_get_time() - simulation->params.start;
 	sem_wait(simulation->semaphores.check);
 	if (time - simulation->philosophers[i].last_eat
 		> simulation->params.time_to_die)
 	{
-		sem_post(simulation->semaphores.forks);
 		sem_post(simulation->semaphores.check);
 		return (1);
 	}
@@ -74,6 +74,7 @@ void	ft_monitoring(t_simulation *simulation)
 				ft_exit(simulation);
 			i++;
 		}
+		usleep(10);
 	}
 }
 
