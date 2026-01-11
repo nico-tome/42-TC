@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 16:04:14 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/11 15:12:44 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 23:11:17 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_eating(t_philosopher *philo)
 
 void	ft_sleeping(t_philosopher *philo)
 {
+	if (philo->params->philo_num == 1)
+		return ;
 	ft_write_log(philo, SLEEPING_MSG);
 	ft_mssleep(philo, philo->params->time_to_sleep);
 }

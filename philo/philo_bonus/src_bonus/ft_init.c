@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/27 14:29:37 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/11 15:13:16 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 23:11:25 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes_bonus/ft_philo_bonus.h"
 #include <semaphore.h>
+#include <unistd.h>
 
 void	ft_init_value(t_simulation *simulation, int idx)
 {
@@ -32,7 +33,7 @@ int	ft_init_semaphores(t_simulation *simulation)
 	sem_unlink(CHECK_SEM);
 	sem_unlink(WRITE_SEM);
 	sem_unlink(FORK_SEM);
-	simulation->semaphores.running = sem_open(RUN_SEM, O_CREAT, 644, 1);
+	simulation->semaphores.running = sem_open(RUN_SEM, O_CREAT, 644, 0);
 	simulation->semaphores.check = sem_open(CHECK_SEM, O_CREAT, 644, 1);
 	simulation->semaphores.writing = sem_open(WRITE_SEM, O_CREAT, 644, 1);
 	simulation->semaphores.forks = sem_open(FORK_SEM, O_CREAT, 644, num);
@@ -41,48 +42,82 @@ int	ft_init_semaphores(t_simulation *simulation)
 		|| simulation->semaphores.check == SEM_FAILED
 		|| simulation->semaphores.running == SEM_FAILED)
 		return (0);
+	sem_post(simulation->semaphores.running);
+	sem_wait(simulation->semaphores.running);
 	return (1);
 }
 
-int	ft_init_threads(t_simulation *simulation)
+void	*ft_check_running(void *params)
 {
-	int	thread_idx;
-	int	thread_count;
+	t_simulation	*simulation;
 
-	thread_idx = 0;
-	thread_count = 0;
-	while (thread_idx < simulation->params.philo_num)
+	simulation = params;
+	sem_wait(simulation->semaphores.running);
+	sem_wait(simulation->semaphores.check);
+	simulation->running = 0;
+	sem_post(simulation->semaphores.check);
+	return (simulation);
+}
+
+int	check_run(t_simulation *simulation)
+{
+	sem_wait(simulation->semaphores.check);
+	if (simulation->running == 0)
 	{
-		if (!pthread_create(&simulation->threads[thread_idx], NULL,
-				ft_routine, &simulation->philosophers[thread_idx]))
-			thread_count++;
-		thread_idx++;
+		sem_post(simulation->semaphores.check);
+		return (0);
 	}
-	if (thread_count != simulation->params.philo_num)
-		ft_free_threads(simulation, thread_count);
-	return (thread_count == simulation->params.philo_num);
+	sem_post(simulation->semaphores.check);
+	return (1);
+}
+
+void	ft_launch_philo(t_simulation *simulation, int i)
+{
+	pthread_t	check_death;
+
+	simulation->philosophers[i].idx = i;
+	if (i % 2 == 1)
+		usleep(20);
+	if (pthread_create(&check_death, NULL, ft_check_running, simulation))
+	{
+		sem_wait(simulation->semaphores.running);
+		ft_free_semaphores(simulation);
+		return ;
+	}
+	while (check_run(simulation))
+	{
+		ft_take_fork(&simulation->philosophers[i]);
+		ft_eating(&simulation->philosophers[i]);
+		ft_sleeping(&simulation->philosophers[i]);
+	}
+	pthread_join(check_death, NULL);
 }
 
 void	ft_init_philos(t_simulation *simulation, t_params params)
 {
 	int	i;
 
-	simulation->params = params;
 	simulation->philosophers = malloc(sizeof(t_philosopher) * params.philo_num);
-	simulation->threads = malloc(sizeof(pthread_t) * params.philo_num);
-	if (!simulation->philosophers || !simulation->threads)
-		ft_free_simulation(simulation);
+	simulation->pids = malloc(sizeof(int) * params.philo_num);
+	if (!simulation->pids)
+		return ;
+	simulation->params = params;
 	if (!ft_init_semaphores(simulation))
+		free(simulation->pids);
+	i = -1;
+	while (i++ < params.philo_num)
 	{
-		ft_free_semaphores(simulation);
-		ft_free_simulation(simulation);
+		ft_init_value(simulation, i);
+		simulation->pids[i] = 0;
 	}
-	i = 0;
-	while (i < params.philo_num)
-		ft_init_value(simulation, i++);
-	if (!ft_init_threads(simulation))
+	i = -1;
+	while (++i < params.philo_num)
 	{
-		ft_free_semaphores(simulation);
-		ft_free_simulation(simulation);
+		simulation->pids[i] = fork();
+		if (simulation->pids[i] == 0)
+		{
+			ft_launch_philo(simulation, i);
+			exit(EXIT_SUCCESS);
+		}
 	}
 }

@@ -6,7 +6,6 @@ BUILD_DIR := build_bonus/
 SRCS := $(SRC_DIR)ft_parser.c \
 		$(SRC_DIR)ft_free.c \
 		$(SRC_DIR)ft_init.c \
-		$(SRC_DIR)ft_routine.c \
 		$(SRC_DIR)ft_action.c \
 		$(SRC_DIR)ft_time.c \
 		$(SRC_DIR)ft_write_log.c \

@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/28 15:52:30 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 15:53:24 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 20:27:51 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ int	ft_check_running(t_philosopher *philo)
 {
 	int	running;
 
+	running = 0;
 	sem_wait(philo->semaphores->check);
-	running = *philo->running;
 	sem_post(philo->semaphores->check);
 	return (running);
 }

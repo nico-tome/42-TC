@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:12:29 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/08 16:09:42 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 21:10:25 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <sys/time.h>
 # include <stdio.h>
 # include <semaphore.h>
+# include <sys/wait.h>
 
 # define EATING_MSG      "\033[0;92mis eating\n\033[0m"
 # define THINKING_MSG    "\033[0;93mis thinking\n\033[0m"
@@ -55,9 +56,9 @@ typedef struct s_philosopher
 	long long		last_eat;
 	t_params		*params;
 	t_semaphores	*semaphores;
-	int				*running;
 	int				eat_count;
 	int				idx;
+	int				*running;
 }				t_philosopher;
 
 typedef struct s_simulation
@@ -66,6 +67,7 @@ typedef struct s_simulation
 	t_philosopher	*philosophers;
 	t_semaphores	semaphores;
 	t_params		params;
+	int				*pids;
 	int				running;
 }				t_simulation;
 

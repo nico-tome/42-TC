@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/11 15:12:30 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/11 22:52:29 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,22 +24,6 @@ void	ft_exit(t_simulation *simulation)
 	ft_free_simulation(simulation);
 }
 
-int	ft_check_death(t_simulation *simulation, int i)
-{
-	long long	time;
-
-	time = ft_get_time() - simulation->params.start;
-	sem_wait(simulation->semaphores.check);
-	if (time - simulation->philosophers[i].last_eat
-		> simulation->params.time_to_die)
-	{
-		sem_post(simulation->semaphores.check);
-		return (1);
-	}
-	sem_post(simulation->semaphores.check);
-	return (0);
-}
-
 int	ft_check_fills(t_simulation *simulation, int i)
 {
 	sem_wait(simulation->semaphores.check);
@@ -53,35 +37,52 @@ int	ft_check_fills(t_simulation *simulation, int i)
 	return (0);
 }
 
-void	ft_monitoring(t_simulation *simulation)
+void	ft_end_all(t_simulation *simulation)
 {
 	int	i;
-	int	count;
 
-	while (1)
+	i = 0;
+	while (i <= simulation->params.philo_num)
 	{
+		sem_post(simulation->semaphores.running);
+		i++;
+	}
+}
+
+void	ft_monitoring(t_simulation *simulation)
+{
+	int	stop;
+	int	i;
+	int	time;
+	int	tot_eat;
+
+	stop = 0;
+	while (!stop)
+	{
+		tot_eat = 0;
 		i = 0;
-		count = 0;
 		while (i < simulation->params.philo_num)
 		{
-			if (ft_check_death(simulation, i))
-			{
-				ft_write_log(&simulation->philosophers[i], DIED_MSG);
-				ft_exit(simulation);
-			}
-			count += ft_check_fills(simulation, i);
-			if (count == simulation->params.philo_num)
-				ft_exit(simulation);
+			tot_eat = ft_check_fills(simulation, i);
+			sem_wait(simulation->semaphores.check);
+			time = ft_get_time() - simulation->params.start;
+			stop = time - simulation->philosophers[i].last_eat >= simulation->params.time_to_die;
 			i++;
+			sem_post(simulation->semaphores.check);
 		}
-		usleep(10);
+		if (tot_eat == simulation->params.philo_num)
+			break ;
 	}
+	ft_end_all(simulation);
+	sem_post(simulation->semaphores.check);
+	ft_write_log(&simulation->philosophers[i - 1], DIED_MSG);
 }
 
 int	main(int ac, char **av)
 {
 	t_params		params;
 	t_simulation	simulation;
+	int				i;
 
 	if (!ft_check_args(&params, ac, av))
 	{
@@ -90,5 +91,11 @@ int	main(int ac, char **av)
 	}
 	simulation.running = 1;
 	ft_init_philos(&simulation, params);
+	i = 0;
 	ft_monitoring(&simulation);
+	while (i < params.philo_num)
+	{
+		waitpid(simulation.pids[i], 0, 0);
+		i++;
+	}
 }
