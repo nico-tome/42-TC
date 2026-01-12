@@ -41,7 +41,7 @@ Create a 2D game with the MacroLibX. And thanks for all the fish!
 
 ## 3️⃣ | RING 3
 
-### 🍝 **[Philosopher](philo)**: (?/100)
+### 🍝 **[Philosopher](philo)**: (100/100)
 
 Learn using thread in C with nutex and race condition (+ semaphores for the bonus part).
 
