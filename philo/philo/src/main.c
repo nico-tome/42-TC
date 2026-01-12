@@ -6,12 +6,11 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/19 18:09:20 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/11 15:07:58 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/12 14:07:46 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/ft_philo.h"
-#include <pthread.h>
 
 void	ft_exit(t_simulation *simulation)
 {
@@ -43,7 +42,7 @@ int	ft_check_fills(t_simulation *simulation, int i)
 {
 	pthread_mutex_lock(&simulation->mutexs.check);
 	if (simulation->philosophers[i].eat_count
-		> simulation->params.need_to_eat && simulation->params.need_to_eat > 0)
+		>= simulation->params.need_to_eat && simulation->params.need_to_eat > 0)
 	{
 		pthread_mutex_unlock(&simulation->mutexs.check);
 		return (1);
