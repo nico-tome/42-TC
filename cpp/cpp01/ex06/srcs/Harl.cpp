@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 23:07:52 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/24 00:20:59 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/16 15:49:24 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void	Harl::complain(std::string level)
 	int	print = 0;
 	void (Harl::*funcsptr[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string	funcsName[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	//TODO change this for a switch statement
 	for (int i = 0; i < 4; i++) {
 		if (level == funcsName[i] || print == 1) {
 			(this->*funcsptr[i])();
