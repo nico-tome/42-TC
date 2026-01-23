@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:34:54 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/22 19:30:39 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/23 09:32:30 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,13 +70,37 @@ void	Phonebook::add_contact(void)
 	}
 	while (1)
 	{
+		if (std::cin.eof())
+			return ;
 		std::cout << std::endl << "Enter your contact nickname: ";
 		std::getline(std::cin, nickname);
+		if (!last_name[0])
+			std::cout << "Nickname cannot be empty." << std::endl;
+		else
+			break;
 	}
-	std::cout << std::endl << "Enter your contact phone number: ";
-	std::getline(std::cin, phonenumber);
-	std::cout << std::endl << "Enter your contact darkest secret: ";
-	std::getline(std::cin, secret);
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << std::endl << "Enter your contact phone number: ";
+		std::getline(std::cin, phonenumber);
+		if (!last_name[0])
+			std::cout << "Phone number cannot be empty." << std::endl;
+		else
+			break;
+	}
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << std::endl << "Enter your contact darkest secret: ";
+		std::getline(std::cin, secret);
+		if (!last_name[0])
+			std::cout << "Secret cannot be empty." << std::endl;
+		else
+			break;
+	}
 	std::cout << std::endl;
 
 	this->contacts[this->size % 8].set_new(first_name, last_name, nickname, phonenumber, secret);
