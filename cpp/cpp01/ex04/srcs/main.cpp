@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 15:28:08 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/23 16:38:41 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/29 20:33:43 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int main(int ac, char **av)
 			else
 				MyFile << Buffer[i];
 		};
+		MyFile << std::endl;
 	}
 
 	MyFile.close();
