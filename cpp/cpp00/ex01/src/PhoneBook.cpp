@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:34:54 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/23 09:32:30 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/29 16:28:48 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	Phonebook::add_contact(void)
 			return ;
 		std::cout << std::endl << "Enter your contact nickname: ";
 		std::getline(std::cin, nickname);
-		if (!last_name[0])
+		if (!nickname[0])
 			std::cout << "Nickname cannot be empty." << std::endl;
 		else
 			break;
@@ -85,7 +85,7 @@ void	Phonebook::add_contact(void)
 			return ;
 		std::cout << std::endl << "Enter your contact phone number: ";
 		std::getline(std::cin, phonenumber);
-		if (!last_name[0])
+		if (!phonenumber[0])
 			std::cout << "Phone number cannot be empty." << std::endl;
 		else
 			break;
@@ -96,7 +96,7 @@ void	Phonebook::add_contact(void)
 			return ;
 		std::cout << std::endl << "Enter your contact darkest secret: ";
 		std::getline(std::cin, secret);
-		if (!last_name[0])
+		if (!secret[0])
 			std::cout << "Secret cannot be empty." << std::endl;
 		else
 			break;
@@ -109,7 +109,7 @@ void	Phonebook::add_contact(void)
 	if (std::cin.eof())
 		return ;
 
-	if (this->size >= 8)
+	if (this->size > 8)
 		std::cout << "New contact saved ! (oldest one was deleted)" << std::endl;
 	else
 		std::cout << "New contact saved !" << std::endl;
@@ -118,6 +118,7 @@ void	Phonebook::add_contact(void)
 void	Phonebook::search_contact(void)
 {
 	int	size;
+	int	idx;
 	std::string	index;
 
 	if (this->size == 0)
@@ -141,7 +142,7 @@ void	Phonebook::search_contact(void)
 		std::cout << "|" << std::endl;
 	}
 	std::cout << "o----------o----------o----------o----------o" << std::endl;
-	std::cout << std::endl << "Enter an idex: ";
+	std::cout << std::endl << "Enter an index: ";
 	std::getline(std::cin, index);
 
 	if (std::cin.eof())
@@ -152,7 +153,8 @@ void	Phonebook::search_contact(void)
 		std::cout << "Index is not a number." << std::endl;
 		return ;
 	}
-	if (std::atoi(index.c_str()) > size)
+	idx = std::atoi(index.c_str());
+	if (idx >= size || idx < 0)
 	{
 		std::cout << "Index is out of range." << std::endl;
 		return ;
