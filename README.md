@@ -53,7 +53,7 @@ Create a shell... GLHF
 
 ### 💮 **[CPP](cpp)**:
 
-#### **[CPP00](cpp/cpp00)**: (?/100)
+#### **[CPP00](cpp/cpp00)**: (100/100) ✅⭐
 
 Namespaces, classes, member functions, stdio streams,
 initialization lists, static, const, and some other basic
