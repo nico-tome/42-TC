@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:34:54 by ntome             #+#    #+#             */
-/*   Updated: 2026/01/29 16:28:48 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/29 19:01:11 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ void	Phonebook::search_contact(void)
 		return ;
 	}
 	if (this->size > 8)
-		size = 7;
+		size = 8;
 	else
 		size = this->size;
 
