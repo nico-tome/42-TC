@@ -4,8 +4,8 @@ This folder contain every cpp project from the CC. The goal is to learn C++ and 
 
 Here the list :
 - 0️⃣ [CPP 00](cpp00) (100/100) ✅⭐
-- 1️⃣ [CPP 01](cpp01) (?/100)
-- 2️⃣ [CPP 02](cpp02) (?/100)
+- 1️⃣ [CPP 01](cpp01) (100/100) ✅
+- 2️⃣ [CPP 02](cpp02) (100/100) ✅
 - 3️⃣ [CPP 03](cpp03) (?/100)
 - 4️⃣ [CPP 04](cpp04) (?/100)
 - 5️⃣ [CPP 05](cpp05) (?/100)
