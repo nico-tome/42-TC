@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 15:53:34 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/24 18:02:02 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/31 12:58:11 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,14 +104,14 @@ Fixed	Fixed::operator++(int)
 {
 	Fixed	tmp = *this;
 	++this->fixed_point;
-	return (*this);
+	return (tmp);
 }
 
 Fixed	Fixed::operator--(int)
 {
 	Fixed	tmp = *this;
 	--this->fixed_point;
-	return (*this);
+	return (tmp);
 }
 
 Fixed	Fixed::min(Fixed &f1, Fixed &f2)

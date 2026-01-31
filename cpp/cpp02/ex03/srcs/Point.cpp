@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 18:21:04 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/24 18:51:33 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/31 13:23:21 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ float	Point::getY(void) const
 
 float	Point::cross(const Point &p1, const Point &p2) const
 {
-	return ((p2.x - p1.x) * (this->y - p1.y) - (p2.y - p1.y) * (this->x - p1.x));
+	return ((this->x - p2.x) * (p1.y - p2.y) - (p1.x - p2.x) * (this->y - p2.y));
 }
