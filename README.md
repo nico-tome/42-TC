@@ -69,7 +69,7 @@ references and switch statements.
 Ad-hoc polymorphism, operator overloading
 and the Orthodox Canonical class form.
 
-#### **[CPP03](cpp/cpp03)**: (?/100)
+#### **[CPP03](cpp/cpp03)**: (100/100) ✅
 
 Inheritance.
 
