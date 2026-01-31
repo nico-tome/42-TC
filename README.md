@@ -59,12 +59,12 @@ Namespaces, classes, member functions, stdio streams,
 initialization lists, static, const, and some other basic
 stuf.
 
-#### **[CPP01](cpp/cpp01)**: (?/100)
+#### **[CPP01](cpp/cpp01)**: (100/100) ✅
 
 Memory allocation, pointers to members,
 references and switch statements.
 
-#### **[CPP02](cpp/cpp02)**: (?/100)
+#### **[CPP02](cpp/cpp02)**: (100/100) ✅
 
 Ad-hoc polymorphism, operator overloading
 and the Orthodox Canonical class form.
