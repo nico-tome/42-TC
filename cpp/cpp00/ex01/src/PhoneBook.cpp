@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:34:54 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/22 17:58:56 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/29 19:01:11 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,61 @@ void	Phonebook::add_contact(void)
 	std::string	phonenumber;
 	std::string	secret;
 
-	std::cout << "Enter your contact first name: ";
-	std::getline(std::cin, first_name);
-	std::cout << std::endl << "Enter your contact last name: ";
-	std::getline(std::cin, last_name);
-	std::cout << std::endl << "Enter your contact nickname: ";
-	std::getline(std::cin, nickname);
-	std::cout << std::endl << "Enter your contact phone number: ";
-	std::getline(std::cin, phonenumber);
-	std::cout << std::endl << "Enter your contact darkest secret: ";
-	std::getline(std::cin, secret);
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << "Enter your contact first name: ";
+		std::getline(std::cin, first_name);
+		if (!first_name[0])
+			std::cout << "First name cannot be empty." << std::endl;
+		else
+			break;
+	}
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << std::endl << "Enter your contact last name: ";
+		std::getline(std::cin, last_name);
+		if (!last_name[0])
+			std::cout << "Last name cannot be empty." << std::endl;
+		else
+			break;
+	}
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << std::endl << "Enter your contact nickname: ";
+		std::getline(std::cin, nickname);
+		if (!nickname[0])
+			std::cout << "Nickname cannot be empty." << std::endl;
+		else
+			break;
+	}
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << std::endl << "Enter your contact phone number: ";
+		std::getline(std::cin, phonenumber);
+		if (!phonenumber[0])
+			std::cout << "Phone number cannot be empty." << std::endl;
+		else
+			break;
+	}
+	while (1)
+	{
+		if (std::cin.eof())
+			return ;
+		std::cout << std::endl << "Enter your contact darkest secret: ";
+		std::getline(std::cin, secret);
+		if (!secret[0])
+			std::cout << "Secret cannot be empty." << std::endl;
+		else
+			break;
+	}
 	std::cout << std::endl;
 
 	this->contacts[this->size % 8].set_new(first_name, last_name, nickname, phonenumber, secret);
@@ -64,7 +109,7 @@ void	Phonebook::add_contact(void)
 	if (std::cin.eof())
 		return ;
 
-	if (this->size >= 8)
+	if (this->size > 8)
 		std::cout << "New contact saved ! (oldest one was deleted)" << std::endl;
 	else
 		std::cout << "New contact saved !" << std::endl;
@@ -73,6 +118,7 @@ void	Phonebook::add_contact(void)
 void	Phonebook::search_contact(void)
 {
 	int	size;
+	int	idx;
 	std::string	index;
 
 	if (this->size == 0)
@@ -81,7 +127,7 @@ void	Phonebook::search_contact(void)
 		return ;
 	}
 	if (this->size > 8)
-		size = 7;
+		size = 8;
 	else
 		size = this->size;
 
@@ -96,7 +142,7 @@ void	Phonebook::search_contact(void)
 		std::cout << "|" << std::endl;
 	}
 	std::cout << "o----------o----------o----------o----------o" << std::endl;
-	std::cout << std::endl << "Enter an idex: ";
+	std::cout << std::endl << "Enter an index: ";
 	std::getline(std::cin, index);
 
 	if (std::cin.eof())
@@ -107,7 +153,8 @@ void	Phonebook::search_contact(void)
 		std::cout << "Index is not a number." << std::endl;
 		return ;
 	}
-	if (std::atoi(index.c_str()) > size)
+	idx = std::atoi(index.c_str());
+	if (idx >= size || idx < 0)
 	{
 		std::cout << "Index is out of range." << std::endl;
 		return ;

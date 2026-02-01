@@ -41,11 +41,11 @@ Create a 2D game with the MacroLibX. And thanks for all the fish!
 
 ## 3️⃣ | RING 3
 
-### 🍝 **[Philosopher](philo)**: (100/100)
+### 🍝 **[Philosopher](philo)**: (100/100) ✅
 
 Learn using thread in C with nutex and race condition (+ semaphores for the bonus part).
 
-### 🐚 **[Minishell](https://github.com/nico-tome/Minishell)**: (?/100)
+### 🐚 **[Minishell](https://github.com/nico-tome/Minishell)**: (101/100) ✅⭐
 
 Create a shell... GLHF
 
@@ -53,23 +53,23 @@ Create a shell... GLHF
 
 ### 💮 **[CPP](cpp)**:
 
-#### **[CPP00](cpp/cpp00)**: (?/100)
+#### **[CPP00](cpp/cpp00)**: (100/100) ✅⭐
 
 Namespaces, classes, member functions, stdio streams,
 initialization lists, static, const, and some other basic
 stuf.
 
-#### **[CPP01](cpp/cpp01)**: (?/100)
+#### **[CPP01](cpp/cpp01)**: (100/100) ✅
 
 Memory allocation, pointers to members,
 references and switch statements.
 
-#### **[CPP02](cpp/cpp02)**: (?/100)
+#### **[CPP02](cpp/cpp02)**: (100/100) ✅
 
 Ad-hoc polymorphism, operator overloading
 and the Orthodox Canonical class form.
 
-#### **[CPP03](cpp/cpp03)**: (?/100)
+#### **[CPP03](cpp/cpp03)**: (100/100) ✅
 
 Inheritance.
 

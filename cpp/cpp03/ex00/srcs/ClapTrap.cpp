@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 19:01:14 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/26 01:36:41 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/30 10:03:58 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,10 @@ void ClapTrap::attack(const std::string &target)
 
 void ClapTrap::takeDamage(unsigned int amount)
 {
-    this->hitPoints -= amount;
+	if (amount > this->hitPoints)
+		this->hitPoints = 0;
+	else
+		this->hitPoints -= amount;
     std::cout << MAGENTA << "🤕 ClapTrap " << this->name << " took " << amount << " damage and now has "
               << this->hitPoints << " hit point(s) !" << RESET << std::endl;
 }

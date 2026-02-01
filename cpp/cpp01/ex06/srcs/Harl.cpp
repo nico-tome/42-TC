@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/23 23:07:52 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/24 00:20:59 by ntome            ###   ########.fr       */
+/*   Updated: 2026/01/29 22:14:47 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,25 @@ void	Harl::error(void)
 
 void	Harl::complain(std::string level)
 {
-	int	print = 0;
+	int	idx = 0;
 	void (Harl::*funcsptr[])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	std::string	funcsName[] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	for (int i = 0; i < 4; i++) {
-		if (level == funcsName[i] || print == 1) {
-			(this->*funcsptr[i])();
-			print = 1;
-		}
+	while (idx < 4) {
+		if (level == funcsName[idx])
+			break;
+		idx++;
 	}
-	if (!print)
-		std::cout << "Level dont correspond to anything." << std::endl;
+	switch (idx) {
+		case 0:
+			(this->*funcsptr[0])();
+		case 1:
+			(this->*funcsptr[1])();
+		case 2:
+			(this->*funcsptr[2])();
+		case 3:
+			(this->*funcsptr[3])();
+			break;
+		default:
+			std::cout << "Level dont correspond to anything." << std::endl;
+	}
 }
