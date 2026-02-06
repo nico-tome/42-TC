@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:12:18 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/27 18:12:26 by ntome            ###   ########.fr       */
+/*   Updated: 2026/02/06 20:44:34 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ class WrongAnimal
 
         WrongAnimal&			operator=(const WrongAnimal& other);
 
-        virtual void	makeSound() const;
+        void	makeSound() const;
         std::string		getType() const;
 };
 

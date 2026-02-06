@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/27 18:19:38 by ntome             #+#    #+#             */
-/*   Updated: 2025/12/28 14:07:37 by ntome            ###   ########.fr       */
+/*   Updated: 2026/02/06 20:44:18 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ Dog::Dog(void): Animal()
 Dog::Dog(const Dog& other): Animal(other)
 {
     std::cout << YELLOW << "📋 [🐕 Dog] Copy constructor called" << RESET << std::endl;
-    *this = other;
+	this->type = other.type;
+    this->brain = new Brain(*(other.brain));
 }
 
 Dog::~Dog(void)
@@ -42,6 +43,7 @@ Dog& Dog::operator=(const Dog& other)
     std::cout << CYAN << "🟰 [🐕 Dog] Copy assignment operator called" << RESET << std::endl;
     if (this == &other)
 		return (*this);
+	delete this->brain;
 	this->type = other.type;
     this->brain = new Brain(*(other.brain));
 
