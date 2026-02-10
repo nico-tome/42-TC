@@ -73,7 +73,7 @@ and the Orthodox Canonical class form.
 
 Inheritance.
 
-#### **[CPP04](cpp/cpp04)**: (?/100)
+#### **[CPP04](cpp/cpp04)**: (100/100) ✅⭐⭐
 
 Subtype Polymorphism, Abstract Classes, and
 Interfaces.
@@ -81,3 +81,39 @@ Interfaces.
 ### :hurtrealbad: **[Cube3D](https://github.com/nico-tome/Cube3D)**: (?/100)
 
 My first RayCaster with ~miniLibX~ MacroLibX.
+
+### 🕸️ **[NetPractice](netpractice)**: (?/100)
+
+Discover the basics of networking.
+
+## 5️⃣ | RING 5
+
+### 💮 **[CPP](cpp)**:
+
+#### **[CPP05](cpp/cpp05)**: (?/100)
+
+Repetition and Exceptions
+
+#### **[CPP06](cpp/cpp06)**: (?/100)
+
+C++ casts
+
+#### **[CPP07](cpp/cpp07)**: (?/100)
+
+C++ templates
+
+#### **[CPP08](cpp/cpp08)**: (?/100)
+
+Templated containers, iterators, algorithms
+
+#### **[CPP09](cpp/cpp09)**: (?/100)
+
+STL
+
+### 🗨️ **[IRC](irc)**: (?/100)
+
+Internet Relay Chat
+
+### 🗄️ **[Inception](inception)**: (?/100)
+
+I'm dreaming about container.
