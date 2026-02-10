@@ -17,7 +17,7 @@ Through this project, we learn how to:
 `printf` is a function that prints formatted text to the standard output.
 
 Example from the standard library:
-```c
+``` c
 printf("Hello %s, you are %d years old\n", name, age);
 ```
 
@@ -49,7 +49,7 @@ Usually, `ft_printf` must handle:
 
 ## 🔍 Example usage
 
-```c
+``` c
 #include "ft_printf.h"
 
 int main(void)
@@ -98,7 +98,7 @@ When `%` is found:
 
 Example:
 
-```c
+``` c
 "%d" → print an integer
 "%s" → print a string
 ```
