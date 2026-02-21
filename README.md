@@ -78,11 +78,11 @@ Inheritance.
 Subtype Polymorphism, Abstract Classes, and
 Interfaces.
 
-### :hurtrealbad: **[Cube3D](https://github.com/nico-tome/Cube3D)**: (?/100)
+### :hurtrealbad: **[Cube3D](https://github.com/nico-tome/Cube3D)**: (125/100) ✅⭐⭐⭐
 
 My first RayCaster with ~miniLibX~ MacroLibX.
 
-### 🕸️ **[NetPractice](netpractice)**: (?/100)
+### 🕸️ **[NetPractice](netpractice)**: (100/100) ✅⭐
 
 Discover the basics of networking.
 
