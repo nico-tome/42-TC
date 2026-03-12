@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/05 11:35:31 by ntome             #+#    #+#             */
-/*   Updated: 2026/03/05 11:36:07 by ntome            ###   ########.fr       */
+/*   Updated: 2026/03/12 14:39:19 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ int main(void)
     /* TEST BUREAUCRATS WITH A BAD GRADE */
     std::cout << std::endl << std::endl << "\e[32mTEST BUREAUCRATS WITH A BAD GRADE\e[0m" << std::endl << std::endl;
 
+    //TODO un try pour chaque
     try{
         Bureaucrat bureaucrat5("badgrade 1", -1);
         Bureaucrat bureaucrat6("badgrade 2", 0);
