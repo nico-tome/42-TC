@@ -90,7 +90,7 @@ Discover the basics of networking.
 
 ### 💮 **[CPP](cpp)**:
 
-#### **[CPP05](cpp/cpp05)**: (?/100)
+#### **[CPP05](cpp/cpp05)**: (100/100) ✅
 
 Repetition and Exceptions
 
