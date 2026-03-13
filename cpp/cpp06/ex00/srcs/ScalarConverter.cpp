@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ScalarConverter.cpp                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ntome <ntome@42angouleme.fr>               +#+  +:+       +#+        */
+/*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/02/28 17:43:08 by ntome             #+#    #+#             */
-/*   Updated: 2026/03/03 15:26:15 by ntome            ###   ########.fr       */
+/*   Updated: 2026/03/13 09:10:45 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ScalarConverter::convert(const std::string src) {
 		else
 			std::cout << PURPLE << "char: impossible" << RESET << std::endl;
 
-		if (float_val <= INT_MAX && float_val >= INT_MIN)
+		if (float_val <= static_cast<float>(INT_MAX) && float_val >= static_cast<float>(INT_MIN))
 			std::cout << YELLOW << "int: " << static_cast<int>(float_val) << RESET << std::endl;
 		else
 			std::cout << YELLOW << "int: impossible" << RESET << std::endl;
