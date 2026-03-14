@@ -94,11 +94,11 @@ Discover the basics of networking.
 
 Repetition and Exceptions
 
-#### **[CPP06](cpp/cpp06)**: (?/100)
+#### **[CPP06](cpp/cpp06)**: (100/100) ✅
 
 C++ casts
 
-#### **[CPP07](cpp/cpp07)**: (?/100)
+#### **[CPP07](cpp/cpp07)**: (100/100) ✅
 
 C++ templates
 
