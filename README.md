@@ -98,11 +98,11 @@ Repetition and Exceptions
 
 C++ casts
 
-#### **[CPP07](cpp/cpp07)**: (100/100) ✅
+#### **[CPP07](cpp/cpp07)**: (80/100) ✅
 
 C++ templates
 
-#### **[CPP08](cpp/cpp08)**: (?/100)
+#### **[CPP08](cpp/cpp08)**: (100/100) ✅
 
 Templated containers, iterators, algorithms
 
