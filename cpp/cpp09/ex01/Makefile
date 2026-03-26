@@ -1,7 +1,7 @@
-NAME		:= 	btc
+NAME		:= 	RPN
 
 SRCS		:= 	main.cpp \
-				BitcoinExchange.cpp \
+				RPN.cpp \
 
 DIR		:=	srcs/
 BUILD_DIR	:=	build/

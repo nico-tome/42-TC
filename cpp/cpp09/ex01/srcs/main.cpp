@@ -6,37 +6,20 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 14:49:12 by ntome             #+#    #+#             */
-/*   Updated: 2026/03/26 16:51:28 by ntome            ###   ########.fr       */
+/*   Updated: 2026/03/26 18:04:22 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "BitcoinExchange.hpp"
+#include "RPN.hpp"
 #include "color.hpp"
 #include <iostream>
 
 int main(int ac, char **av)
 {
-	if (ac != 2)
-	{
-		std::cerr << RED << "Wrong args number ! ./btc <file.csv>" << RESET << std::endl;
-		return 1;
+	if (ac != 2) {
+		std::cout << RED << "Error: Bad input." << RESET << std::endl;
+		return (1);
 	}
-
-	BitcoinExchange	btc;
-	
-	try
-	{
-		btc.loadData("data.csv");
-	} catch(const std::exception& e) {
-		std::cerr << RED << "Error: " << e.what() << RESET << '\n';
-	}
-	try
-	{
-		btc.printExchange(av[1]);
-	}
-	catch(const std::exception& e) {
-		std::cerr << RED << "Error: " << e.what() << RESET << '\n';
-	}
-	
-	
+	RPN	rpn;
+	rpn.calculate(av[1]);
 }

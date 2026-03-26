@@ -1,7 +1,7 @@
-NAME		:= 	btc
+NAME		:= 	PmergeMe
 
 SRCS		:= 	main.cpp \
-				BitcoinExchange.cpp \
+				PmergeMe.cpp \
 
 DIR		:=	srcs/
 BUILD_DIR	:=	build/
