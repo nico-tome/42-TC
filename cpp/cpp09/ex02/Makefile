@@ -1,7 +1,6 @@
 NAME		:= 	PmergeMe
 
 SRCS		:= 	main.cpp \
-				PmergeMe.cpp \
 
 DIR		:=	srcs/
 BUILD_DIR	:=	build/
