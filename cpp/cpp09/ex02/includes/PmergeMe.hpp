@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 18:29:31 by ntome             #+#    #+#             */
-/*   Updated: 2026/03/27 13:02:43 by ntome            ###   ########.fr       */
+/*   Updated: 2026/03/27 15:24:26 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,14 @@ void PmergeMe<T>::sort(unsigned int pairSize)
 				if (currentPair % 2 == 0 && currentPair > 1)
 					pend.push_back(_container[i + j]);
 				else
-					nonParticipating.push_back(_container[i + j]);
+					newContainer.push_back(_container[i + j]);
 			}
-		} else {
-			while (i++ < size - 1)
-				nonParticipating.push_back(_container[i]);;
+		} 
+		else {
+			while (i < size)
+				nonParticipating.push_back(_container[i++]);
 		}
+
 		currentPair++;
 		i += pairSize;
 	}

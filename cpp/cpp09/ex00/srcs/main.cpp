@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/03 14:49:12 by ntome             #+#    #+#             */
-/*   Updated: 2026/03/26 16:51:28 by ntome            ###   ########.fr       */
+/*   Updated: 2026/03/27 15:24:50 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int main(int ac, char **av)
 		btc.loadData("data.csv");
 	} catch(const std::exception& e) {
 		std::cerr << RED << "Error: " << e.what() << RESET << '\n';
+		return 1;
 	}
 	try
 	{
