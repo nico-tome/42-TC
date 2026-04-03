@@ -106,14 +106,14 @@ C++ templates
 
 Templated containers, iterators, algorithms
 
-#### **[CPP09](cpp/cpp09)**: (?/100)
+#### **[CPP09](cpp/cpp09)**: (93/100) ✅
 
 STL
 
-### 🗨️ **[IRC](irc)**: (?/100)
+### 🗨️ **[IRC](irc)**: (?/100) 
 
 Internet Relay Chat
 
-### 🗄️ **[Inception](inception)**: (?/100)
+### 🗄️ **[Inception](inception)**: (120/100) ✅
 
 I'm dreaming about container.
