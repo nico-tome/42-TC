@@ -6,7 +6,7 @@
 /*   By: ntome <ntome@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/03/26 10:55:22 by ntome             #+#    #+#             */
-/*   Updated: 2026/03/26 16:48:39 by ntome            ###   ########.fr       */
+/*   Updated: 2026/04/03 14:12:47 by ntome            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ bool	BitcoinExchange::checkDate(std::string date)
 		if (day > 29)
 			return (false);
 		if (day == 29) {
-			if (year % 4 != 0)
+			if (year % 4 != 0 || (year % 100 == 0 && year % 400 != 0))
 				return (false);
 		}
 	}
@@ -147,6 +147,8 @@ void	BitcoinExchange::printExchange(std::string path)
 			std::cerr << RED << "Error: bad input => " << line << RESET << std::endl;
 		else {
 			date = line.substr(0, line.find(" | "));
+			if (!checkDate(date))
+				std::cerr << RED << "Error: bad date => " << date << RESET << std::endl;
 			value = std::strtof((line.substr(line.find(" | ") + 3, line.length())).c_str(), NULL);
 			if (value > 1000)
 				std::cerr << RED << "Error: " << ERR_NUM << " " << value << " > 1000" << RESET << std::endl;
