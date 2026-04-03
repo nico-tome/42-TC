@@ -106,8 +106,8 @@ services:
     restart: on-failure
 
   static_webpage:
-    build: ./requirements/bonus/static_webpage
-    container_name: static_webpage
+    build: ./requirements/bonus/static_page
+    container_name: static_page
     networks:
       - inception
     ports:
