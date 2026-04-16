@@ -110,7 +110,7 @@ Templated containers, iterators, algorithms
 
 STL
 
-### 🗨️ **[IRC](https://github.com/nico-tome/ft_irc)**: (125/100) ✅⭐⭐
+### 🗨️ **[IRC](https://github.com/nico-tome/ft_irc)**: (125/100) ✅⭐⭐⭐
 
 Internet Relay Chat
 
